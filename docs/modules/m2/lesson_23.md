@@ -593,7 +593,7 @@ len(list(dishes(MENU)))         →  9
 
 ### Що далі
 
-- Ноутбук заняття: [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_2/lessons/lesson_23_practicum_recursion/note_lesson_23_recursion_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_2/lessons/lesson_23_practicum_recursion/note_lesson_23_recursion.ipynb){ .solutions-link } — меню, сортування і ваучер: прогнози, лічильники викликів, вправи з перевірками.
+- Ноутбук заняття: [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_2/lessons/lesson_23_practicum_recursion/note_lesson_23_recursion_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_2/lessons/lesson_23_practicum_recursion/note_lesson_23_recursion.ipynb){ .solutions-link } — меню, сортування і ваучер: траси стеку викликів, сортування злиттям і дослід подвоєння, перебір з поверненням і відсікання, мемоізація, явний стек; 29 розібраних прикладів з повним кодом (визначення й запуск — в окремих клітинках) і 3 задачі з перевірками.
 - Наступне заняття — урок 24 «`@property`, декоратори класів, dunder»: як зробити так, щоб `sorted(deliveries)` і `len(menu)` працювали для наших класів.
 - Практикум П5 (урок 27): динамічне програмування — коли підзадачі повторюються.
 

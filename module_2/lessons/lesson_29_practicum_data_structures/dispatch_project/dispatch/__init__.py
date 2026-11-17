@@ -1,4 +1,4 @@
-"""dispatch — диспетчерська «Смачно + Таксі»: артефакт модуля 2 (урок 28)."""
+"""dispatch — диспетчерська «Смачно + Таксі»: артефакт модуля 2 (урок 29)."""
 
 from dispatch.models import Order
 from dispatch.service import Dispatcher
