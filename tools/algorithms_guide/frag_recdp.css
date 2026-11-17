@@ -1,0 +1,34 @@
+/* frag_recdp */
+svg.rd-tl{width:100%;height:auto;display:block}
+svg .rd-grid{stroke:var(--line);stroke-width:1;stroke-dasharray:2 4}
+svg .rd-hour{font-family:var(--mono);font-size:11px;fill:var(--muted);text-anchor:middle}
+svg .rd-name{font-family:var(--mono);font-size:13px;font-weight:600;fill:var(--fg);text-anchor:end;dominant-baseline:central}
+svg .rd-in{font-family:var(--mono);font-size:11px;fill:var(--fg);text-anchor:middle;dominant-baseline:central}
+.rd-bar rect{fill:var(--flowbg);stroke:var(--ink);stroke-width:1.5}
+.rd-bar.cur rect{fill:var(--cur);stroke:var(--cur)}.rd-bar.cur .rd-in{fill:#1b1b1b}
+.rd-bar.ok rect{fill:var(--ok);stroke:var(--ok)}.rd-bar.ok .rd-in{fill:#fff}
+.rd-bar.ref rect{fill:var(--pivot);stroke:var(--pivot)}.rd-bar.ref .rd-in{fill:#fff}
+.rd-bar.bad rect{fill:var(--swap);stroke:var(--swap);opacity:.45}.rd-bar.bad .rd-in{fill:#fff}
+.rd-bar.dimmed{opacity:.35}
+svg.tree .rd-node rect{fill:var(--panel);stroke:var(--ink);stroke-width:2}
+svg.tree .rd-node.cur rect{fill:var(--cur);stroke:var(--cur)}svg.tree .rd-node.cur text{fill:#1b1b1b}
+svg.tree .rd-node.ok rect{fill:var(--ok);stroke:var(--ok)}svg.tree .rd-node.ok text{fill:#fff}
+svg.tree .rd-node.front rect{stroke:var(--cur);stroke-width:3;stroke-dasharray:5 3}
+svg.tree .rd-node text.rd-note{font-size:11px;font-weight:600;fill:var(--pivot)}
+svg.tree .rd-node.ok text.rd-note{fill:var(--ok)}
+.rd-race-head{display:grid;grid-template-columns:150px 1fr 90px;gap:10px;font-size:13px;color:var(--muted);margin-bottom:6px}
+.rd-race-head i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:6px}
+.rd-race{display:grid;grid-template-columns:150px 1fr 90px;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}
+.rd-race .nm{font-weight:600;font-size:14px}
+.rd-race .tr{display:flex;flex-direction:column;gap:3px}
+.rd-race .b{display:block;height:10px;border-radius:3px;min-width:2px}
+.rd-race .b.c{background:var(--ink)}.rd-race .b.w{background:var(--pivot)}
+.rd-race .nums{font-family:var(--mono);font-size:13px;text-align:right;font-variant-numeric:tabular-nums}
+.rd-race .nums small{color:var(--muted)}
+.rd-race.win .nm{color:var(--ok)}.rd-race.win .nm::after{content:" 🏆"}
+.rd-race.lose .nm{color:var(--swap)}
+table.t tr.rd-hot td{background:color-mix(in srgb,var(--cur) 30%,transparent)}
+table.t tr.rd-ref td{background:color-mix(in srgb,var(--pivot) 20%,transparent)}
+table.t tr.rd-take td{color:var(--ok);font-weight:600}
+@media (max-width:560px){.rd-race,.rd-race-head{grid-template-columns:100px 1fr 76px}}
+#coindp .lead a{color:var(--ink);font-weight:600}

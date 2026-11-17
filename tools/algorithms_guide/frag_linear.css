@@ -1,0 +1,21 @@
+/* ===== frag_linear: linked-list boxes and arrows ===== */
+svg.lin{width:100%;height:auto;display:block}
+svg.lin .lin-box rect{fill:var(--panel);stroke:var(--ink);stroke-width:2}
+svg.lin .lin-box line{stroke:var(--ink);stroke-width:2}
+svg.lin .lin-box text{font-family:var(--mono);font-weight:600;font-size:15px;fill:var(--fg);text-anchor:middle;dominant-baseline:central}
+svg.lin .lin-box circle{fill:var(--ink)}
+svg.lin .lin-box.cur rect{fill:var(--cur);stroke:var(--cur)}svg.lin .lin-box.cur text{fill:#1b1b1b}svg.lin .lin-box.cur line{stroke:#1b1b1b}svg.lin .lin-box.cur circle{fill:#1b1b1b}
+svg.lin .lin-box.ok rect{fill:var(--ok);stroke:var(--ok)}svg.lin .lin-box.ok text{fill:#fff}svg.lin .lin-box.ok line{stroke:#fff}svg.lin .lin-box.ok circle{fill:#fff}
+svg.lin .lin-box.new rect{fill:var(--swap);stroke:var(--swap)}svg.lin .lin-box.new text{fill:#fff}svg.lin .lin-box.new line{stroke:#fff}svg.lin .lin-box.new circle{fill:#fff}
+svg.lin .lin-box.none rect{fill:none;stroke:var(--muted);stroke-dasharray:4 3}svg.lin .lin-box.none text{fill:var(--muted);font-weight:500;font-size:13px}
+svg.lin .lin-ar{fill:none;stroke:var(--muted);stroke-width:2}
+svg.lin .lin-ar.on{stroke:var(--ok)}svg.lin .lin-ar.cur{stroke:var(--cur);stroke-width:3}svg.lin .lin-ar.new{stroke:var(--swap);stroke-width:3}
+svg.lin marker path{fill:var(--muted)}
+svg.lin marker.on path{fill:var(--ok)}svg.lin marker.cur path{fill:var(--cur)}svg.lin marker.new path{fill:var(--swap)}
+svg.lin .lin-tag{font-family:var(--mono);font-size:13px;font-weight:600;fill:var(--pivot);text-anchor:middle}
+.cell.cap{border-style:dashed;color:var(--muted);background:transparent}
+#brackets-chars{gap:3px}
+#brackets-chars .cell{width:30px;height:38px;font-size:15px}
+#brackets-chars .cell.sp{color:var(--muted)}
+#queue-list .cell,#queue-deque .cell{width:52px}
+#lru-cache .chip{padding:8px 12px}

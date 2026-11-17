@@ -1,0 +1,228 @@
+<!-- ============ ARRAY vs LINKED LIST ============ -->
+<section class="lesson" id="arrlist" data-title="Масив проти зв'язного списку">
+  <h2>Масив проти зв'язного списку: вставка</h2>
+  <p class="lead">Диспетчерська «Смачно + Таксі» тримає список замовлень <code>101…106</code>. Надходить термінове <b>100</b>, і його треба вставити на початок, у середину або в кінець. Python <code>list</code> — це <b>динамічний масив</b>: елементи лежать у пам'яті підряд, тому під час вставки всі елементи праворуч від позиції зсуваються на одне місце. <b>Зв'язний список</b> зберігає кожен елемент в окремому вузлі з посиланням на наступний. Для вставки достатньо створити вузол і переставити два посилання, але до потрібного місця треба спершу дійти по посиланнях.</p>
+  <details class="predict"><summary>🔮 Прогноз: скільки елементів зсуне масив, якщо вставити 100 на початок списку з 6 замовлень? А скільки посилань змінить зв'язний список?</summary><p>Масив зсуне всі 6 елементів: вставка на початок — найгірший випадок, O(n). Зв'язному списку достатньо створити вузол, що вказує на стару голову: одне нове посилання, жодного зсуву, O(1). У кінець усе навпаки: масив нічого не зсуває, а список мусить пройти всі вузли до останнього.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="arrlist-controls"></div>
+        <div class="controls">
+          <label>Вставити 100 <select id="arrlist-pos">
+            <option value="0">на початок (index 0)</option>
+            <option value="3" selected>у середину (index 3)</option>
+            <option value="6">у кінець (index 6)</option>
+          </select></label>
+        </div>
+        <div class="row">
+          <h4>Динамічний масив (<code>list</code>) <small>зсув праворуч</small></h4>
+          <div class="flow" id="arrlist-flow-a"></div>
+          <div class="cells" id="arrlist-arr"></div>
+          <div class="msg" id="arrlist-msg-a"></div>
+        </div>
+        <div class="row">
+          <h4>Зв'язний список <small>нові посилання</small></h4>
+          <div class="flow" id="arrlist-flow-l"></div>
+          <svg class="lin" id="arrlist-svg" viewBox="0 0 640 170" aria-label="Зв'язний список"></svg>
+          <div class="msg" id="arrlist-msg-l"></div>
+        </div>
+        <div class="stats"><span>Зсувів у масиві: <b id="arrlist-moves">0</b></span><span>Кроків по посиланнях: <b id="arrlist-walk">0</b></span><span>Змінено посилань: <b id="arrlist-links">0</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <div class="tablewrap"><table class="t">
+          <tr><th>Операція</th><th>list (масив)</th><th>зв'язний список</th></tr>
+          <tr><td>доступ <code>a[i]</code></td><td class="num">O(1)</td><td class="num">O(n)</td></tr>
+          <tr><td>вставка / видалення на початку</td><td class="num">O(n)</td><td class="num">O(1)</td></tr>
+          <tr><td>вставка в кінець</td><td class="num">O(1)*</td><td class="num">O(n), з tail — O(1)</td></tr>
+          <tr><td>вставка після відомого вузла</td><td class="num">O(n)</td><td class="num">O(1)</td></tr>
+        </table></div>
+        <p class="note">* <code>list</code> виділяє пам'ять із запасом. Порожні клітинки праворуч — це запас (capacity). Коли запас закінчується, Python виділяє більший блок і копіює туди всі елементи. Таке трапляється рідко, тому в середньому <code>append</code> коштує O(1).</p>
+        <p style="margin:0">Масив: майже все в Python (<code>list</code>), NumPy, буфери. Зв'язний список: <code>collections.deque</code> (блоки, зв'язані двобічно), <code>OrderedDict</code> і LRU-кеш, стек викликів, черги в ядрі ОС.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>array_insert — що робить list.insert</h3><pre class="code" id="arrlist-code-a"></pre></div>
+      <div class="card"><h3>linked_insert</h3><pre class="code" id="arrlist-code-l"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="arrlist-course"></div>
+</section>
+
+<!-- ============ REVERSE LINKED LIST ============ -->
+<section class="lesson" id="revlist" data-title="Розворот зв'язного списку">
+  <h2>Розворот зв'язного списку: три вказівники</h2>
+  <p class="lead">Маршрут таксі збережено як зв'язний список зупинок <code>1 → 2 → 3 → 4 → 5</code>. Для зворотного рейсу його треба розвернути <b>на місці</b>, без нового списку. Ідея: пройти вузли один раз і кожну стрілку <code>next</code> направити назад. Щоб не загубити решту списку, потрібні три вказівники: <code>prev</code> (вже розвернута частина), <code>cur</code> (поточний вузол) і <code>nxt</code> (збережений наступний).</p>
+  <details class="predict"><summary>🔮 Прогноз: що станеться, якщо виконати <code>cur.next = prev</code> раніше, ніж <code>nxt = cur.next</code>?</summary><p>Посилання на решту списку зникне: <code>cur.next</code> уже вказує назад, і до вузлів 3, 4, 5 більше не дістатися. Тому спершу запам'ятовуємо наступний вузол, а вже потім розвертаємо стрілку. Це класична помилка на співбесідах.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="revlist-controls"></div>
+        <div class="controls"><label>Вузлів <input type="range" id="revlist-n" min="2" max="7" value="5"> <b id="revlist-n-v" style="font-family:var(--mono)">5</b></label></div>
+        <div class="flow" id="revlist-flow"></div>
+        <svg class="lin" id="revlist-svg" viewBox="0 0 640 190" aria-label="Розворот зв'язного списку"></svg>
+        <div class="msg" id="revlist-msg"></div>
+        <div class="stats"><span>Розвернуто стрілок: <b id="revlist-done">0</b></span><span>Додаткова пам'ять: <b>3 змінні · O(1)</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">Час O(n): кожен вузол відвідуємо один раз. Пам'ять O(1): три змінні, хоч би яким довгим був список. Цей самий прийом із трьома вказівниками використовують, щоб розвернути частину списку, порівняти дві половини (перевірка паліндрома) чи змінити порядок у буфері. На співбесідах це одна з найчастіших задач про посилання.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>reverse_linked_list</h3><pre class="code" id="revlist-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="revlist-course"></div>
+</section>
+
+<!-- ============ BRACKETS (STACK) ============ -->
+<section class="lesson" id="brackets" data-title="Стек: дужки">
+  <h2>Стек: перевірка дужок у шаблоні SMS</h2>
+  <p class="lead">Диспетчерська розсилає SMS за шаблоном <code>Замовлення {id} (кур'єр: {name}) [до {time}]</code>. Якщо в шаблоні не закрита якась дужка, повідомлення зламається. <b>Стек</b> (LIFO: останнім прийшов — першим вийшов) розв'язує цю задачу природно: відкривну дужку кладемо на вершину, а кожна закривна мусить збігтися з <b>верхньою</b> відкривною. Наприкінці стек має бути порожнім.</p>
+  <details class="predict"><summary>🔮 Прогноз: <code>"({)}"</code> — дужок кожного виду порівну. Збалансовано?</summary><p>Ні. Коли приходить <code>)</code>, на вершині стека лежить <code>{</code>, а не <code>(</code>. Дужки закриваються не в тому порядку, в якому відкривались. Простий підрахунок дужок такого не помітить, а стек помічає.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="brackets-controls"></div>
+        <div class="controls">
+          <label>Текст <input type="text" id="brackets-text" size="34" value="Замовлення {id} (кур'єр: {name}) [до {time}]"></label>
+        </div>
+        <div class="controls">
+          <button class="btn" data-brackets="Замовлення {id} (кур'єр: {name}) [до {time}]">шаблон SMS</button>
+          <button class="btn" data-brackets="({)}">({)}</button>
+          <button class="btn" data-brackets="((">((</button>
+          <button class="btn" data-brackets="())">())</button>
+          <button class="btn" data-brackets="{[()()]}">{[()()]}</button>
+        </div>
+        <div class="flow" id="brackets-flow"></div>
+        <div class="cells" id="brackets-chars" style="margin:18px 0 22px"></div>
+        <div class="ds" id="brackets-stack"></div>
+        <div class="msg" id="brackets-msg"></div>
+        <div id="brackets-verdict"></div>
+        <div class="stats"><span>Символів переглянуто: <b id="brackets-seen">0</b></span><span>push: <b id="brackets-push">0</b></span><span>pop: <b id="brackets-pop">0</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">Час O(n): один прохід по тексту. Пам'ять O(n) у найгіршому випадку, коли всі дужки відкривні. Стек стоїть за кнопкою «Скасувати» (undo), за стеком викликів функцій, перевіркою синтаксису в IDE і компіляторах, розбором HTML/XML і ітеративним DFS. У Python для стека беруть звичайний <code>list</code>: <code>append</code> і <code>pop()</code> з кінця коштують O(1).</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>is_balanced</h3><pre class="code" id="brackets-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="brackets-course"></div>
+</section>
+
+<!-- ============ QUEUE: list vs deque ============ -->
+<section class="lesson" id="queue" data-title="Черга: list проти deque">
+  <h2>Черга замовлень: <code>list.pop(0)</code> проти <code>deque.popleft()</code></h2>
+  <p class="lead">Замовлення обслуговуються в порядку надходження: хто перший прийшов, того першим і обслужили. Це <b>черга</b> (FIFO). Найпростіше взяти <code>list</code> і забирати перший елемент через <code>pop(0)</code>. Але в масиві після цього всі елементи, що лишились, зсуваються на одне місце ліворуч. <code>collections.deque</code> — двобічна черга з блоків, зв'язаних посиланнями. Вона просто зсуває свою «голову», нічого не переписуючи.</p>
+  <details class="predict"><summary>🔮 Прогноз: скільки зсувів зробить <code>list</code>, щоб видати 8 замовлень по черзі? А для 100 000?</summary><p>7 + 6 + … + 1 + 0 = 28 = n(n − 1)/2. Для 100 000 замовлень це майже 5 мільярдів зсувів: черга на списку працює за O(n²). У <code>deque</code> зсувів 0 для будь-якого n: кожен <code>popleft()</code> коштує O(1).</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="queue-controls"></div>
+        <div class="controls"><label>Замовлень <input type="range" id="queue-n" min="3" max="12" value="8"> <b id="queue-n-v" style="font-family:var(--mono)">8</b></label></div>
+        <div class="row">
+          <h4><code>list.pop(0)</code> <small>O(n) на кожне замовлення</small></h4>
+          <div class="flow" id="queue-flow-l"></div>
+          <div class="cells" id="queue-list"></div>
+          <div class="msg" id="queue-msg-l"></div>
+        </div>
+        <div class="row">
+          <h4><code>deque.popleft()</code> <small>O(1)</small></h4>
+          <div class="flow" id="queue-flow-d"></div>
+          <div class="cells" id="queue-deque"></div>
+          <div class="msg" id="queue-msg-d"></div>
+        </div>
+        <div class="ds" id="queue-out"></div>
+        <div class="tiles" style="margin-top:14px">
+          <div class="tile"><div class="v" id="queue-moves-l">0</div><div class="l">зсувів у list</div></div>
+          <div class="tile"><div class="v" id="queue-moves-d">0</div><div class="l">зсувів у deque</div></div>
+          <div class="tile"><div class="v" id="queue-big">—</div><div class="l">зсувів list для 100 000 замовлень</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <div class="tablewrap"><table class="t">
+          <tr><th>Операція</th><th>list</th><th>deque</th></tr>
+          <tr><td>додати в кінець</td><td class="num">O(1)</td><td class="num">O(1)</td></tr>
+          <tr><td>забрати з початку</td><td class="num">O(n)</td><td class="num">O(1)</td></tr>
+          <tr><td>доступ за індексом у середині</td><td class="num">O(1)</td><td class="num">O(n)</td></tr>
+        </table></div>
+        <p class="note">Черги — це BFS у графах і деревах, планувальники задач, буфери повідомлень, цикл подій <code>asyncio</code>. Для черги між потоками є <code>queue.Queue</code>: та сама FIFO, але безпечна для потоків.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>Черга на list</h3><pre class="code" id="queue-code-l"></pre></div>
+      <div class="card"><h3>Черга на deque</h3><pre class="code" id="queue-code-d"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="queue-course"></div>
+</section>
+
+<!-- ============ SLIDING WINDOW MAX ============ -->
+<section class="lesson" id="windowmax" data-title="Максимум у вікні: монотонна deque">
+  <h2>Максимум у ковзному вікні: монотонна deque</h2>
+  <p class="lead">Є кількість замовлень за кожну годину зміни. Для кожних <b>k</b> годин поспіль треба знайти пікове значення, щоб знати, скільки водіїв тримати на лінії. Наївно для кожного вікна рахують <code>max</code>, і це O(n·k). Монотонна черга дає O(n). <code>deque</code> зберігає <b>індекси</b>, а значення на цих індексах спадають зліва направо. Ліворуч завжди максимум вікна. Елемент, менший за новий, видаляється з правого кінця: поки новий у вікні, старий ніколи не стане максимумом.</p>
+  <details class="predict"><summary>🔮 Прогноз: скільки разів кожен індекс може потрапити в deque і вийти з неї?</summary><p>Щонайбільше один раз увійти (<code>append</code>) і один раз вийти (<code>pop</code> або <code>popleft</code>). Тому хоча всередині циклу <code>for</code> є <code>while</code>, сумарна робота — не більше 2n операцій, тобто O(n).</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="windowmax-controls"></div>
+        <div class="controls">
+          <label>k <input type="range" id="windowmax-k" min="2" max="5" value="3"> <b id="windowmax-k-v" style="font-family:var(--mono)">3</b></label>
+          <button class="btn" id="windowmax-new">Нові дані</button>
+          <button class="btn" id="windowmax-classic">Приклад [1, 3, −1, −3, 5, 3, 6, 7]</button>
+        </div>
+        <div class="flow" id="windowmax-flow"></div>
+        <div class="cells" id="windowmax-cells" style="margin:18px 0 26px"></div>
+        <div class="ds" id="windowmax-deque"></div>
+        <div class="ds" id="windowmax-result" style="margin-top:6px"></div>
+        <div class="msg" id="windowmax-msg"></div>
+        <div class="stats"><span>Операцій з deque: <b id="windowmax-ops">0</b></span><span>Порівнянь наївно (n−k+1)·k: <b id="windowmax-naive">0</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">Час O(n), пам'ять O(k). Ковзні максимуми й мінімуми потрібні в моніторингу (пікове навантаження за останні 5 хвилин), фінансах (максимум ціни за період), обробці сигналів і в задачах на співбесідах. Монотонну чергу також використовують у ДП-оптимізаціях. Сама <code>deque</code> тут потрібна, бо видаляємо з <b>обох</b> кінців за O(1).</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>sliding_window_max</h3><pre class="code" id="windowmax-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="windowmax-course"></div>
+</section>
+
+<!-- ============ LRU CACHE ============ -->
+<section class="lesson" id="lru" data-title="LRU-кеш">
+  <h2>LRU-кеш: ціни маршрутів без повторних запитів</h2>
+  <p class="lead">Ціну маршруту диспетчерська отримує від повільного зовнішнього сервісу. Популярні маршрути запитують знову й знову, тож ціни варто кешувати, але пам'ять обмежена: тут лише <b>3</b> записи. Коли місця немає, LRU (Least Recently Used) викидає той запис, яким <b>найдовше не користувались</b>. <code>OrderedDict</code> поєднує словник (пошук за O(1)) і двобічний зв'язний список (порядок використання). Ліворуч лежить найдавніший запис, праворуч — найсвіжіший.</p>
+  <details class="predict"><summary>🔮 Прогноз: кеш на 3 записи. Після <code>get("Поділ→Оболонь")</code> приходить новий маршрут. Кого викинуть: «Поділ→Оболонь», доданий першим, чи «Центр→Поділ»?</summary><p>«Центр→Поділ». <code>get</code> переставив «Поділ→Оболонь» у кінець як щойно використаний, тож найдавнішим став «Центр→Поділ». Кеш FIFO викинув би перший доданий. Усю різницю між LRU і FIFO робить один рядок: <code>move_to_end</code> у <code>get</code>.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="lru-controls"></div>
+        <div class="flow" id="lru-flow"></div>
+        <div class="ds" id="lru-ops" style="margin-bottom:14px"></div>
+        <div class="ds" id="lru-cache"></div>
+        <div class="legend"><span>← найдавніший (його викинуть першим)</span><span style="margin-left:auto">найсвіжіший →</span></div>
+        <div class="msg" id="lru-msg"></div>
+        <div class="tiles" style="margin-top:14px">
+          <div class="tile"><div class="v" id="lru-hits">0</div><div class="l">влучань (hits)</div></div>
+          <div class="tile"><div class="v" id="lru-misses">0</div><div class="l">промахів (misses)</div></div>
+          <div class="tile"><div class="v" id="lru-evict">0</div><div class="l">витіснень</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0"><code>get</code> і <code>put</code> працюють за O(1): словник знаходить вузол, а зв'язний список переставляє його в кінець без зсувів. Пам'ять O(capacity). LRU працює в кеші процесора й сторінок ОС, у браузерах, CDN, Redis (<code>maxmemory-policy allkeys-lru</code>). У Python є готовий декоратор <code>functools.lru_cache(maxsize=…)</code>.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>LRUCache</h3><pre class="code" id="lru-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="lru-course"></div>
+</section>

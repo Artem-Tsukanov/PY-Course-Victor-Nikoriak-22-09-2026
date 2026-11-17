@@ -1,0 +1,212 @@
+<!-- ============ BST ============ -->
+<section class="lesson" id="bst" data-title="Бінарне дерево пошуку">
+  <h2>Бінарне дерево пошуку (BST)</h2>
+  <p class="lead">Диспетчерська зберігає номери поїздок так, щоб шукати їх швидко й мати їх завжди впорядкованими. <b>Бінарне дерево пошуку</b> тримає одне правило (інваріант): усе ліворуч від вузла — менше, усе праворуч — більше. Тому пошук на кожному кроці йде лише в одну гілку, і кількість кроків дорівнює висоті дерева. Якщо вставляти номери у випадковому порядку, дерево виходить низьким. Якщо вставляти відсортовані, воно вироджується в «ланцюжок».</p>
+  <details class="predict"><summary>🔮 Прогноз: скільки порівнянь треба, щоб знайти найбільший номер серед 15, якщо номери вставляли за зростанням?</summary><p>15. Кожен новий номер більший за всі попередні, тож іде праворуч: дерево стає списком висотою 14, і пошук перебирає всі вузли — O(n). При випадковому порядку вставки висота зазвичай 4–6, і порівнянь стільки ж — O(log n) у середньому.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="bst-controls"></div>
+        <div class="controls">
+          <label>Порядок вставки <select id="bst-mode"><option value="random">випадковий</option><option value="sorted">відсортований (вироджене дерево)</option></select></label>
+          <label>Шукати <select id="bst-target"></select></label>
+          <button class="btn" id="bst-new">Нові номери</button>
+        </div>
+        <div class="flow" id="bst-flow"></div>
+        <div class="ds" id="bst-input" style="margin-bottom:8px"></div>
+        <svg class="tree" id="bst-svg" aria-label="Бінарне дерево пошуку"></svg>
+        <div class="msg" id="bst-msg"></div>
+        <div class="stats"><span>Вузлів: <b id="bst-n">0</b></span><span>Висота: <b id="bst-h">—</b></span><span>Порівнянь при пошуку: <b id="bst-cmp">0</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <div class="tablewrap"><table class="t">
+          <tr><th>Операція</th><th>Збалансоване</th><th>Вироджене</th></tr>
+          <tr><td>пошук / вставка / видалення</td><td class="num">O(log n)</td><td class="num">O(n)</td></tr>
+          <tr><td>обхід у порядку зростання</td><td class="num">O(n)</td><td class="num">O(n)</td></tr>
+        </table></div>
+        <p class="note">Складність усіх операцій — <b>O(h)</b>, де h — висота. Тому в реальних системах беруть самобалансовані дерева (червоно-чорні, AVL, B-дерева): індекси баз даних, <code>TreeMap</code> у Java, файлові системи. Словник Python знаходить ключ швидше (O(1)), але не тримає ключі впорядкованими й не вміє шукати діапазон.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>bst_insert і bst_search_count</h3><pre class="code" id="bst-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="bst-course"></div>
+</section>
+
+<!-- ============ TRAVERSALS ============ -->
+<section class="lesson" id="traverse" data-title="Обходи дерева">
+  <h2>Обходи дерева: прямий, симетричний, зворотний і по рівнях</h2>
+  <p class="lead">Треба вивести всі номери з дерева — але в якому порядку? <b>Обхід у глибину</b> (DFS) рекурсивно заходить у ліву й праву гілку, і відрізняється лише тим, <b>коли</b> записує сам вузол: до нащадків (pre-order), між ними (in-order) чи після (post-order). <b>Обхід у ширину</b> (BFS) іде рівень за рівнем через чергу <code>deque</code>. Дерево однакове — змінюється лише одна позиція рядка <code>result.append</code>.</p>
+  <details class="predict"><summary>🔮 Прогноз: який обхід видасть номери BST у порядку зростання?</summary><p>In-order (лівий → вузол → правий). Усе ліве піддерево менше за вузол, усе праве — більше, тож вузол записується саме між ними. Це спосіб отримати відсортований список з BST за O(n).</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="traverse-controls"></div>
+        <div class="controls">
+          <label>Обхід <select id="traverse-mode">
+            <option value="pre">pre-order: вузол → ліве → праве</option>
+            <option value="in">in-order: ліве → вузол → праве</option>
+            <option value="post">post-order: ліве → праве → вузол</option>
+            <option value="bfs">BFS: по рівнях (черга)</option>
+          </select></label>
+        </div>
+        <div class="flow" id="traverse-flow"></div>
+        <svg class="tree" id="traverse-svg" aria-label="Дерево для обходу"></svg>
+        <div class="ds" id="traverse-ds"></div>
+        <div class="ds" id="traverse-out" style="margin-top:6px"></div>
+        <div class="msg" id="traverse-msg"></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0 0 8px">Усі чотири обходи — <b>O(n)</b> часу: кожен вузол відвідується один раз. Пам'ять: DFS — O(h) на стек викликів, BFS — O(w), де w — найширший рівень.</p>
+        <div class="tablewrap"><table class="t">
+          <tr><th>Обхід</th><th>Типова задача</th></tr>
+          <tr><td>pre-order</td><td>скопіювати чи серіалізувати дерево: корінь іде першим</td></tr>
+          <tr><td>in-order</td><td>вивести BST відсортованим, перевірити, що дерево — BST</td></tr>
+          <tr><td>post-order</td><td>видалити дерево, порахувати розмір папок: спершу діти, потім батько</td></tr>
+          <tr><td>BFS</td><td>найближчий вузол, друк по рівнях, найкоротший шлях</td></tr>
+        </table></div>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3 id="traverse-code-title">preorder</h3><pre class="code" id="traverse-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="traverse-course"></div>
+</section>
+
+<!-- ============ HEAP ============ -->
+<section class="lesson" id="heap" data-title="Купа: найтерміновіше замовлення">
+  <h2>Купа: найтерміновіше замовлення першим</h2>
+  <p class="lead">Диспетчерська має завжди брати замовлення з найменшим часом до дедлайну (хвилини). Сортувати весь список після кожного нового замовлення — O(n log n). <b>Мін-купа</b> тримає слабше правило: кожен батько не більший за своїх дітей. Цього досить, щоб мінімум завжди був у корені. Купа живе у звичайному списку: діти елемента <code>i</code> — це <code>2i+1</code> і <code>2i+2</code>, батько — <code>(i−1)//2</code>. Дерево і список нижче — одна й та сама пам'ять.</p>
+  <details class="predict"><summary>🔮 Прогноз: скільки обмінів максимум зробить push у купу з 1000 елементів?</summary><p>Близько 10. Новий елемент «спливає» лише вгору по одній гілці, а висота купи — log₂(1000) ≈ 10. Тому <code>push</code> і <code>pop</code> — O(log n), а подивитися мінімум — O(1).</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="heap-controls"></div>
+        <div class="controls">
+          <label>Операції <input type="text" id="heap-ops" value="30 12 45 7 20 3 18 pop pop pop" size="30"></label>
+          <button class="btn" id="heap-rand">Випадкові</button>
+        </div>
+        <div class="flow" id="heap-flow"></div>
+        <svg class="tree" id="heap-svg" aria-label="Купа у вигляді дерева"></svg>
+        <div class="row" style="margin:14px 0 10px"><h4 style="margin:0 0 18px">Той самий список <small>_items</small></h4><div class="cells" id="heap-arr"></div></div>
+        <div class="ds" id="heap-out"></div>
+        <div class="msg" id="heap-msg"></div>
+        <div class="stats"><span>Порівнянь: <b id="heap-cmp">0</b></span><span>Обмінів: <b id="heap-swp">0</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <div class="tablewrap"><table class="t">
+          <tr><th>Операція</th><th>Купа</th><th>Відсортований список</th></tr>
+          <tr><td>подивитися мінімум</td><td class="num">O(1)</td><td class="num">O(1)</td></tr>
+          <tr><td>додати</td><td class="num">O(log n)</td><td class="num">O(n)</td></tr>
+          <tr><td>забрати мінімум</td><td class="num">O(log n)</td><td class="num">O(n) / O(1) з кінця</td></tr>
+        </table></div>
+        <p class="note">У Python готова купа — модуль <code>heapq</code> (<code>heappush</code>, <code>heappop</code>) поверх звичайного списку. На купі стоять черги з пріоритетом, алгоритм Дейкстри, планувальники задач, Heap Sort і «топ-k» (<code>heapq.nsmallest</code>).</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>MinHeap</h3><pre class="code" id="heap-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="heap-course"></div>
+</section>
+
+<!-- ============ TRIE ============ -->
+<section class="lesson" id="trie" data-title="Префіксне дерево">
+  <h2>Префіксне дерево (Trie): автодоповнення</h2>
+  <p class="lead">Оператор набирає перші літери страви, і система одразу пропонує варіанти. Перебирати всі назви й перевіряти <code>startswith</code> — O(n·m). <b>Префіксне дерево</b> зберігає назви по літерах: спільний початок слів — спільна гілка. Щоб знайти всі слова на «бо», досить пройти дві літери вниз і зібрати все, що росте з цього вузла.</p>
+  <details class="predict"><summary>🔮 Прогноз: від чого залежить час пошуку вузла префікса — від кількості слів у дереві чи від довжини префікса?</summary><p>Лише від довжини префікса: на кожну літеру — один перехід <code>children.get(letter)</code> у словнику, O(1). Хоч у дереві 6 назв, хоч мільйон — «бо» шукається за 2 кроки. Збір результатів залежить уже від кількості знайдених слів.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="trie-controls"></div>
+        <div class="controls">
+          <label>Слова <input type="text" id="trie-words" value="борщ, бограч, банош, біляш, вареники, вертута" size="34"></label>
+          <label>Префікс <input type="text" id="trie-prefix" value="бо" size="6"></label>
+        </div>
+        <div class="flow" id="trie-flow"></div>
+        <svg class="tree" id="trie-svg" aria-label="Префіксне дерево"></svg>
+        <div class="legend"><span><i style="background:var(--cur)"></i>поточний вузол</span><span><i style="background:var(--ok)"></i>шлях префікса / зібрано</span><span><i style="border:2px solid var(--ink);background:transparent"></i>подвійне коло — кінець слова (is_word)</span></div>
+        <div class="ds" id="trie-out" style="margin-top:10px"></div>
+        <div class="msg" id="trie-msg"></div>
+        <div class="stats"><span>Вузлів: <b id="trie-n">1</b></span><span>Переходів при пошуку: <b id="trie-steps">0</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">Додати слово довжиною m — <b>O(m)</b>. Знайти вузол префікса довжиною p — <b>O(p)</b>, незалежно від кількості слів; зібрати k результатів — ще пропорційно їхній сумарній довжині. Платимо пам'яттю: кожна літера — окремий вузол зі словником. Застосування: автодоповнення в пошукових рядках і IDE, перевірка правопису, маршрутизація IP (найдовший префікс), словники ігор у слова.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>Trie</h3><pre class="code" id="trie-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="trie-course"></div>
+</section>
+
+<!-- ============ DIJKSTRA ============ -->
+<section class="lesson" id="dijkstra" data-title="Дейкстра">
+  <h2>Алгоритм Дейкстри: найшвидший маршрут таксі</h2>
+  <p class="lead">Таксі треба доїхати між районами міста за найменшу кількість хвилин. BFS тут не підходить: він рахує <b>переходи</b>, а дороги мають різну тривалість. <b>Дейкстра</b> щоразу дістає з купи найближчий ще не оброблений район і пробує покращити відстані до його сусідів — це «релаксація» ребра. Поки всі ваги невід'ємні, район, вийнятий з купи першим, уже має остаточну найменшу відстань.</p>
+  <details class="predict"><summary>🔮 Прогноз: з Подолу (A) до Центру (B) є пряма дорога 6 хв. Чи вона найкраща?</summary><p>Ні. Через Лук'янівку (E) виходить 2 + 3 = 5 хв. Дейкстра спершу запише B = 6, а коли обробить E, «релаксує» ребро E–B і покращить відстань до 5. Тому відповідь з'являється лише тоді, коли вузол дістали з купи, а не коли вперше побачили.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="dijkstra-controls"></div>
+        <div class="controls">
+          <label>Звідки <select id="dijkstra-start"></select></label>
+          <label>Куди <select id="dijkstra-target"></select></label>
+        </div>
+        <div class="flow" id="dijkstra-flow"></div>
+        <svg class="graph" id="dijkstra-svg" viewBox="0 0 400 270" aria-label="Граф районів міста з часом проїзду"></svg>
+        <div class="legend" id="dijkstra-legend"></div>
+        <div class="ds" id="dijkstra-heap" style="margin-top:10px"></div>
+        <div class="tablewrap" style="margin-top:10px"><table class="t" id="dijkstra-table"></table></div>
+        <div class="msg" id="dijkstra-msg"></div>
+        <div class="stats"><span>Вийнято з купи: <b id="dijkstra-pops">0</b></span><span>Релаксацій: <b id="dijkstra-relax">0</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">З купою (<code>heapq</code>) — <b>O((V + E) log V)</b>. Працює лише з невід'ємними вагами: від'ємне ребро могло б покращити вже «закритий» вузол — тоді потрібен Беллман–Форд. Застосування: навігатори й диспетчеризація таксі, маршрутизація в мережах (OSPF), логістика, ігровий AI (A* — це Дейкстра з підказкою-евристикою).</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>dijkstra і reconstruct_path</h3><pre class="code" id="dijkstra-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="dijkstra-course"></div>
+</section>
+
+<!-- ============ BELLMAN-FORD ============ -->
+<section class="lesson" id="bellman" data-title="Беллман–Форд">
+  <h2>Беллман–Форд: від'ємні ваги й від'ємні цикли</h2>
+  <p class="lead">Тепер вага ребра — це вартість поїздки для водія, і на ділянці B→A діє знижка: <b>−3</b>. Дейкстра з від'ємними ребрами може помилитися. <b>Беллман–Форд</b> простіший і повільніший: він V−1 разів проходить <b>весь список ребер</b> і релаксує кожне. За раунд k знаходяться всі найкращі шляхи з не більше ніж k ребер. Ще один, контрольний прохід виявляє <b>від'ємний цикл</b> — петлю, якою можна «заробляти» безкінечно.</p>
+  <details class="predict"><summary>🔮 Прогноз: ребра в списку стоять «невдало» — від кінця маршруту до початку. Скільки раундів знадобиться для 5 вузлів?</summary><p>Усі 4 (V − 1). Відстань просувається лише на одне ребро за раунд, бо ребра, ближчі до старту, оброблюються останніми. За вдалого порядку вистачило б одного раунду — тому в коді є ранній вихід <code>if not changed: break</code>.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="bellman-controls"></div>
+        <div class="controls">
+          <label><input type="checkbox" id="bellman-cycle"> додати ребро C→B = −5 (від'ємний цикл)</label>
+        </div>
+        <div class="flow" id="bellman-flow"></div>
+        <svg class="graph" id="bellman-svg" viewBox="0 0 400 230" aria-label="Орієнтований граф з від'ємним ребром"></svg>
+        <div class="ds" id="bellman-edges" style="margin-top:8px"></div>
+        <div class="tablewrap" style="margin-top:10px"><table class="t" id="bellman-table"></table></div>
+        <div class="msg" id="bellman-msg"></div>
+        <div id="bellman-verdict"></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">Час <b>O(V · E)</b> — повільніше за Дейкстру, зате працює з від'ємними вагами й знаходить від'ємні цикли. Застосування: протоколи маршрутизації з векторами відстаней (RIP), пошук арбітражу валют (цикл обмінів із прибутком = від'ємний цикл у графі з вагами −log курсу), задачі з бонусами та знижками.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>bellman_ford</h3><pre class="code" id="bellman-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="bellman-course"></div>
+</section>

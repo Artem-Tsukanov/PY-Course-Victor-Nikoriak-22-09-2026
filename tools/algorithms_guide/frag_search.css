@@ -1,0 +1,35 @@
+/* ---- frag_search ---- */
+#bisect .cells .cell{width:49px;font-size:12px}
+#bisect .cells{row-gap:30px}
+#bisect .cells .cell.ghost{border-style:dashed;color:var(--muted);font-family:var(--sans);font-size:12px}
+.bl-list{display:flex;flex-direction:column;gap:3px;font-size:14px}
+.bl-row{display:grid;grid-template-columns:28px minmax(0,1fr) 90px;align-items:center;gap:8px;border:1px solid var(--line);border-radius:7px;padding:3px 10px;background:var(--panel)}
+.bl-row .i{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.bl-row .t{font-family:var(--mono);font-size:12px;color:var(--pivot);text-align:right;white-space:nowrap}
+.bl-row.cmp{background:var(--cur);border-color:var(--cur);color:#1b1b1b}
+.bl-row.cmp .i,.bl-row.cmp .t{color:#1b1b1b}
+.bl-row.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.bl-row.ok .i,.bl-row.ok .t{color:#fff}
+.bl-row.dim{opacity:.35}
+.bl-row.ghost{border-style:dashed;color:var(--muted)}
+.hours{display:flex;gap:3px;margin-top:4px}
+.hours span{flex:1;min-width:0;text-align:center;font-size:10px;font-family:var(--mono);color:var(--muted)}
+.ht{display:flex;flex-direction:column;gap:3px}
+.ht-row{display:grid;grid-template-columns:34px minmax(0,1fr) 120px;align-items:center;gap:8px;border:1px solid var(--line);border-radius:7px;padding:4px 10px;background:var(--panel);font-size:14px;min-height:32px}
+.ht-row .i{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.ht-row .k{font-family:var(--mono)}
+.ht-row .t{font-size:12px;color:var(--pivot);text-align:right;font-family:var(--mono)}
+.ht-row.none .k{color:var(--muted)}
+.ht-row.dummy .k{color:var(--swap);font-weight:600}
+.ht-row.dummy{border-style:dashed;border-color:var(--swap)}
+.ht-row.cmp{background:var(--cur);border-color:var(--cur);color:#1b1b1b}
+.ht-row.cmp .i,.ht-row.cmp .t,.ht-row.cmp .k{color:#1b1b1b}
+.ht-row.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.ht-row.ok .i,.ht-row.ok .t,.ht-row.ok .k{color:#fff}
+.ht-row.bad{background:var(--swap);border-color:var(--swap);color:#fff}
+.ht-row.bad .i,.ht-row.bad .t,.ht-row.bad .k{color:#fff}
+#anagram-groups tr.hot td{background:var(--cur);color:#1b1b1b}
+#anagram-groups tr.new td{background:color-mix(in srgb,var(--ok) 25%,transparent)}
+#anagram-groups td.key{font-family:var(--mono);white-space:nowrap}
+#hashtable .grid{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+@media (max-width:860px){#hashtable .grid{grid-template-columns:1fr}}

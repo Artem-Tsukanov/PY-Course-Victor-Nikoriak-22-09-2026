@@ -1,0 +1,207 @@
+<!-- ============ RECURSION: CALL STACK ============ -->
+<section class="lesson" id="callstack" data-title="Рекурсія і стек викликів">
+  <h2>Рекурсія і стек викликів: меню ресторану</h2>
+  <p class="lead">Меню «Смачно + Таксі» вкладене: розділ «Напої» містить «Гарячі», а там ще й «Каву» з двома видами. Скільки всього страв і скільки коштує все меню? Наперед невідомо, наскільки глибоко воно вкладене, тож цикл «на два рівні» не підійде. <b>Рекурсія</b> розв'язує задачу однаково на кожному рівні: страва — це <b>базовий випадок</b>, а розділ — сума відповідей його підпунктів. Кожен незавершений виклик чекає у <b>стеку викликів</b> Python, а відповіді «спливають» знизу вгору. Перемкніть режим на <b>явний стек</b>: той самий обхід, але стек — звичайний список, яким керуємо ми.</p>
+  <details class="predict"><summary>🔮 Прогноз: скільки викликів <code>count_dishes</code> буде для всього меню і яка найбільша глибина стека?</summary><p>17 викликів — по одному на кожен вузол дерева: 8 розділів (разом із самим меню) і 9 страв. Найбільша глибина — 5 кадрів: меню → Напої → Гарячі → Кава → Еспресо. Глибина рекурсії дорівнює глибині даних, тому на дуже глибоких даних Python зупиниться з <code>RecursionError</code> (межа ≈1000). Явний стек такої межі не має.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="callstack-controls"></div>
+        <div class="controls">
+          <label>Режим <select id="callstack-mode"><option value="rec">рекурсія (стек викликів Python)</option><option value="it">явний стек (list)</option></select></label>
+          <label>Рахуємо <select id="callstack-fn"><option value="count">кількість страв</option><option value="price">суму цін</option></select></label>
+        </div>
+        <div class="flow" id="callstack-flow"></div>
+        <svg class="tree" id="callstack-svg" viewBox="0 0 720 300" aria-label="Дерево меню"></svg>
+        <div class="ds" id="callstack-ds" style="margin-top:8px"></div>
+        <div class="msg" id="callstack-msg"></div>
+        <div class="stats"><span>Викликів / знято зі стека: <b id="callstack-calls">0</b></span><span>Глибина стека зараз: <b id="callstack-depth">0</b></span><span>Найбільша глибина: <b id="callstack-max">0</b></span><span>Результат: <b id="callstack-res">—</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0 0 8px">Час O(n) — кожен вузол відвідуємо один раз. Пам'ять O(h), де h — глибина вкладеності: стільки кадрів одночасно чекає у стеку. Рекурсія природна для вкладених даних: файлова система (<code>os.walk</code>), JSON, HTML/DOM, дерева розбору, організаційні структури.</p>
+        <p class="note" style="margin:0">Рекурсивна і стекова версії рахують однаково, але обходять у різному порядку: <code>list.pop()</code> бере <b>останній</b> доданий підпункт, тому «Хліб» опрацьовано першим. У курсі <code>count_dishes</code> записано коротше: <code>sum(count_dishes(c) for c in node.values())</code> — тут цикл розгорнуто, щоб бачити кожне повернення.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3 id="callstack-code-title">count_dishes</h3><pre class="code" id="callstack-code"></pre></div>
+      <div class="card"><h3>Дані: MENU</h3><pre class="code" id="callstack-data"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="callstack-course"></div>
+</section>
+
+<!-- ============ RECURSION: BACKTRACKING ============ -->
+<section class="lesson" id="backtrack" data-title="Перебір з поверненням">
+  <h2>Перебір з поверненням: ваучер на поїздки</h2>
+  <p class="lead">Клієнт має ваучер на <b>500 грн</b> і хоче витратити його рівно, без решти. Які набори поїздок зі списку <code>[230, 150, 270, 180, 120, 410]</code> дають рівно 500? <b>Перебір з поверненням</b> (backtracking) будує набір по одному елементу: <b>спробувати</b> поїздку → рекурсивно добрати решту → <b>прибрати</b> її і спробувати наступну. Кожен вузол дерева — один виклик <code>explore</code>. Увімкніть <b>відсікання</b>: якщо список відсортовано, а наступна поїздка вже перевищує ваучер, то всі подальші ще дорожчі — гілку можна не досліджувати.</p>
+  <details class="predict"><summary>🔮 Прогноз: у скільки разів відсікання зменшить кількість викликів для 500 грн?</summary><p>Без відсікання — 56 викликів, з відсіканням — 19, утричі менше. Знайдені набори ті самі: [230, 150, 120] і [230, 270]. Чим більше поїздок, тим сильніший ефект: без відсікання кількість вузлів росте як 2ⁿ.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="backtrack-controls"></div>
+        <div class="controls">
+          <label><input type="checkbox" id="backtrack-prune"> відсікання (сортуємо, <code>break</code>)</label>
+          <label>Ваучер <select id="backtrack-target"><option>400</option><option selected>500</option><option>600</option></select></label>
+        </div>
+        <div class="flow" id="backtrack-flow"></div>
+        <svg class="tree" id="backtrack-svg" viewBox="0 0 900 300" aria-label="Дерево перебору"></svg>
+        <div class="legend"><span><i style="background:var(--cur)"></i>поточний виклик</span><span><i style="background:var(--ok)"></i>рівно ваучер — знайдено</span><span><i style="background:var(--swap)"></i>відсічена гілка</span><span>число на вузлі — сума набору</span></div>
+        <div class="ds" id="backtrack-chosen" style="margin-top:10px"></div>
+        <div class="ds" id="backtrack-found" style="margin-top:6px"></div>
+        <div class="msg" id="backtrack-msg"></div>
+        <div class="stats"><span>Викликів explore: <b id="backtrack-calls">0</b></span><span>Без відсікання: <b id="backtrack-calls-off">—</b></span><span>З відсіканням: <b id="backtrack-calls-on">—</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">Без відсікання — O(2ⁿ): кожна поїздка або в наборі, або ні. Відсікання не змінює найгіршого випадку, але на практиці зрізає більшість гілок. Так розв'язують судоку, розклади з обмеженнями, задачу N ферзів, пошук комбінацій для бюджету, генерацію паролів за правилами. Якщо підзадачі повторюються (та сама сума з того самого місця), перебір замінюють динамічним програмуванням.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3 id="backtrack-code-title">voucher_sets</h3><pre class="code" id="backtrack-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="backtrack-course"></div>
+</section>
+
+<!-- ============ SORT RACE ============ -->
+<section class="lesson" id="sortrace" data-title="Перегони сортувань">
+  <h2>Перегони сортувань: ті самі дані, різна ціна</h2>
+  <p class="lead">Диспетчерській треба впорядкувати поїздки за вартістю. Сім алгоритмів отримують <b>однакову копію</b> даних, а ми рахуємо дві речі: скільки разів алгоритм <b>порівняв</b> два елементи і скільки разів <b>записав</b> значення в масив. Змінюйте n і характер даних: майже відсортовані дані Insertion Sort проходить майже за n кроків, а QuickSort з останнім елементом як pivot на відсортованих даних деградує до n².</p>
+  <details class="predict"><summary>🔮 Прогноз: n = 1000, дані в зворотному порядку. Хто програє найгірше і хто виграє?</summary><p>Bubble, Selection та Insertion — близько 500 000 порівнянь (n²/2), так само й QuickSort з pivot = останній: зворотний порядок для нього найгірший. Merge і Heap Sort лишаються в класі n·log₂n: близько 5 і 16 тисяч порівнянь (n·log₂n ≈ 10 000). Вбудоване сортування (Timsort) помічає один спадний «забіг» і розвертає його — майже n порівнянь.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls">
+          <label>Дані <select id="sortrace-data"><option value="random">випадкові</option><option value="nearly">майже відсортовані</option><option value="reversed">у зворотному порядку</option><option value="few">мало унікальних</option></select></label>
+          <label>n <input type="range" id="sortrace-n" min="10" max="2000" step="10" value="500"> <b id="sortrace-n-v" style="font-family:var(--mono)">500</b></label>
+          <label>Шкала <select id="sortrace-scale"><option value="log">логарифмічна</option><option value="lin">лінійна</option></select></label>
+          <button class="btn" id="sortrace-run">🏁 Нові дані і перегони</button>
+        </div>
+        <div id="sortrace-bars"></div>
+        <div class="tiles" style="margin-top:14px">
+          <div class="tile"><div class="v" id="sortrace-n2">—</div><div class="l">n² / 2 — орієнтир для O(n²)</div></div>
+          <div class="tile"><div class="v" id="sortrace-nlogn">—</div><div class="l">n · log₂n — орієнтир для O(n log n)</div></div>
+          <div class="tile"><div class="v" id="sortrace-ms">—</div><div class="l">час усіх перегонів у браузері</div></div>
+        </div>
+        <div class="msg" id="sortrace-msg"></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <div class="tablewrap"><table class="t">
+          <tr><th>Алгоритм</th><th>Найкращий</th><th>Середній</th><th>Найгірший</th><th>Стабільний</th></tr>
+          <tr><td>Bubble</td><td class="num">O(n)</td><td class="num">O(n²)</td><td class="num">O(n²)</td><td>так</td></tr>
+          <tr><td>Selection</td><td class="num">O(n²)</td><td class="num">O(n²)</td><td class="num">O(n²)</td><td>ні</td></tr>
+          <tr><td>Insertion</td><td class="num">O(n)</td><td class="num">O(n²)</td><td class="num">O(n²)</td><td>так</td></tr>
+          <tr><td>Merge</td><td class="num">O(n log n)</td><td class="num">O(n log n)</td><td class="num">O(n log n)</td><td>так</td></tr>
+          <tr><td>Quick (Lomuto)</td><td class="num">O(n log n)</td><td class="num">O(n log n)</td><td class="num">O(n²)</td><td>ні</td></tr>
+          <tr><td>Heap</td><td class="num">O(n log n)</td><td class="num">O(n log n)</td><td class="num">O(n log n)</td><td>ні</td></tr>
+          <tr><td>Timsort (<code>sorted</code>)</td><td class="num">O(n)</td><td class="num">O(n log n)</td><td class="num">O(n log n)</td><td>так</td></tr>
+        </table></div>
+        <p class="note">Висновок для практики: у Python пишіть <code>sorted()</code> / <code>list.sort()</code>. Власні сортування потрібні, щоб розуміти ціну операцій, пояснювати поведінку на співбесіді й розпізнавати ідеї (злиття, купа, розбиття) в інших алгоритмах.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>Як порахувати порівняння в Python</h3><pre class="code" id="sortrace-code"></pre></div>
+      <div class="card"><h3>heap_sort — новий учасник</h3><pre class="code" id="sortrace-code-heap"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="sortrace-course"></div>
+</section>
+
+<!-- ============ GREEDY INTERVALS ============ -->
+<section class="lesson" id="intervals" data-title="Жадібний розклад">
+  <h2>Жадібний розклад: найбільше замовлень за зміну</h2>
+  <p class="lead">Водій бачить замовлення як відрізки часу на зміні й хоче виконати <b>якомога більше</b>. Два замовлення сумісні, якщо не перетинаються (спільна межа — можна). <b>Жадібне правило</b>: щоразу брати замовлення, що <b>закінчується найраніше</b>, — воно залишає найбільше часу на решту. Перевірте інші «очевидні» правила: «найраніший початок» і «найкоротше» — і на спеціальних даних побачите, де вони програють.</p>
+  <details class="predict"><summary>🔮 Прогноз: дані «Ранок»: Л 8–12, М 9–10, Н 10–11. Скільки замовлень візьме правило «найраніший початок»?</summary><p>Одне: першим стартує Л (8:00), і воно займає весь ранок до 12:00. Правило «найраніше закінчення» бере М і Н — два. Жадібність працює, лише коли доведено, що локальний вибір не псує глобального результату; для «найранішого закінчення» це доведено, для інших правил — ні.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="intervals-controls"></div>
+        <div class="controls">
+          <label>Правило <select id="intervals-rule"><option value="end">найраніше закінчення ✔</option><option value="start">найраніший початок</option><option value="len">найкоротше</option></select></label>
+          <label>Дані <select id="intervals-data"><option value="shift">зміна (10 замовлень)</option><option value="early">ранок: Л, М, Н</option><option value="trap">пастка для «найкоротшого»</option></select></label>
+        </div>
+        <div class="flow" id="intervals-flow"></div>
+        <svg class="rd-tl" id="intervals-svg" viewBox="0 0 640 300" aria-label="Замовлення на шкалі часу"></svg>
+        <div class="legend"><span><i style="background:var(--cur)"></i>розглядаємо</span><span><i style="background:var(--ok)"></i>взяли</span><span><i style="background:var(--swap)"></i>перетинається — пропустили</span></div>
+        <div class="msg" id="intervals-msg"></div>
+        <div class="stats"><span>Взято: <b id="intervals-count">0</b></span><span>Найбільше можливо: <b id="intervals-best">—</b></span></div>
+        <div id="intervals-verdict"></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">O(n log n) на сортування + O(n) на один прохід. Задача «interval scheduling» лежить в основі бронювання переговорок і кортів, розкладу ефірів, планування задач на одному сервері. Якщо в замовлень різна <b>ціна</b>, жадібність уже не працює — потрібне динамічне програмування (наступна вкладка).</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>max_orders</h3><pre class="code" id="intervals-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="intervals-course"></div>
+</section>
+
+<!-- ============ WEIGHTED INTERVAL SCHEDULING ============ -->
+<section class="lesson" id="wis" data-title="ДП: найбільший заробіток">
+  <h2>Динамічне програмування: найбільший заробіток за зміну</h2>
+  <p class="lead">Тепер у кожного замовлення своя ціна, і мета — не кількість, а <b>гроші</b>. Жадібний розклад бере А, Б, Г (600 грн), хоча В + Г дають 750. Ідея ДП: відсортувати за кінцем і для кожного <code>i</code> вирішити одне: <b>не брати</b> замовлення (тоді найкраще — <code>dp[i−1]</code>) або <b>взяти</b> (тоді його ціна + найкраще серед замовлень, що закінчились до його початку, — <code>dp[p(i)]</code>). Таблиця заповнюється зліва направо, кожна клітинка — один раз. Потім йдемо від кінця й відновлюємо, які замовлення дали максимум.</p>
+  <details class="predict"><summary>🔮 Прогноз: для повної зміни з 10 замовлень жадібний розклад бере 6 замовлень. Скільки замовлень у найприбутковішому розкладі?</summary><p>П'ять: В, Г, Ґ, Є, З — 1880 грн. Менше замовлень, але більше грошей: дороге В (550) вигідніше за пару А + Б (400).</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="wis-controls"></div>
+        <div class="controls">
+          <label>Дані <select id="wis-data"><option value="four">4 замовлення: А, Б, В, Г</option><option value="shift">зміна (10 замовлень)</option></select></label>
+        </div>
+        <div class="flow" id="wis-flow"></div>
+        <svg class="rd-tl" id="wis-svg" viewBox="0 0 640 300" aria-label="Замовлення на шкалі часу"></svg>
+        <div class="tablewrap"><table class="t" id="wis-table"></table></div>
+        <div class="msg" id="wis-msg"></div>
+        <div class="stats"><span>Найбільший заробіток: <b id="wis-best">—</b></span><span>Жадібний за кількістю дав би: <b id="wis-greedy">—</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">Сортування O(n log n); <code>p(i)</code> простим пошуком назад — O(n²), через <code>bisect</code> — O(n log n); заповнення таблиці — O(n). Перебір усіх підмножин коштував би O(2ⁿ). Та сама схема «брати / не брати + готова відповідь меншої задачі» — у задачі рюкзака, плануванні рекламних слотів, виборі проєктів під бюджет.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>best_schedule</h3><pre class="code" id="wis-code"></pre></div>
+      <div class="card"><h3>prev_compatible: p(i)</h3><pre class="code" id="wis-code-p"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="wis-course"></div>
+</section>
+
+<!-- ============ COIN CHANGE DP ============ -->
+<section class="lesson" id="coindp" data-title="ДП: решта найменшою кількістю монет">
+  <h2>ДП знизу вгору: решта найменшою кількістю монет</h2>
+  <p class="lead">На вкладці <a href="#zhadibnyi" data-go="zhadibnyi">«Жадібний»</a> монети <code>[1, 3, 4]</code> і сума 6 зламали жадібну стратегію: 4 + 1 + 1 замість 3 + 3. Динамічне програмування не вгадує: воно розв'язує <b>усі менші суми</b> від 1 до потрібної. Для кожної суми <code>s</code> пробуємо кожну монету: «остання монета — <code>coin</code>, а решту <code>s − coin</code> уже вміємо видати за <code>dp[s − coin]</code> монет». Найкращий варіант записуємо в таблицю, а які саме монети — відновлюємо з кінця.</p>
+  <details class="predict"><summary>🔮 Прогноз: яке значення буде в <code>dp[5]</code> для монет [1, 3, 4]?</summary><p>2: 4 + 1 (або 1 + 4). Кандидати: монета 1 → dp[4] + 1 = 2; монета 3 → dp[2] + 1 = 3; монета 4 → dp[1] + 1 = 2. Перший знайдений мінімум — через монету 1, бо монети перебираються по порядку.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="coindp-controls"></div>
+        <div class="controls">
+          <label>Монети <input type="text" id="coindp-coins" value="1, 3, 4" size="12"></label>
+          <label>Сума <input type="number" id="coindp-amount" value="6" min="1" max="40" style="width:70px"></label>
+          <button class="btn" id="coindp-p1">[1, 3, 4] · 6</button>
+          <button class="btn" id="coindp-p2">[25, 10, 5, 1] · 30</button>
+          <button class="btn" id="coindp-p3">[5, 7] · 11 — неможливо?</button>
+        </div>
+        <div class="flow" id="coindp-flow"></div>
+        <div class="ds" id="coindp-cands" style="margin-bottom:24px"></div>
+        <div class="cells" id="coindp-cells"></div>
+        <div class="ds" id="coindp-result" style="margin-top:30px"></div>
+        <div class="msg" id="coindp-msg"></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">Час O(amount · k), де k — кількість номіналів; пам'ять O(amount). Таблиця «найкраща відповідь для кожної меншої величини» — основа задач про рюкзак, розрізання, найдовшу спільну підпослідовність (<code>diff</code>, git), відстань редагування (виправлення друкарських помилок).</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>min_coins</h3><pre class="code" id="coindp-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="coindp-course"></div>
+</section>

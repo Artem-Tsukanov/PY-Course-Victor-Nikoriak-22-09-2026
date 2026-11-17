@@ -1,0 +1,54 @@
+/* ===== guide additions ===== */
+nav.tabs .wrap.sub{border-top:1px solid var(--line);padding-block:6px}
+nav.tabs .sub button{font-size:14px;padding:6px 12px}
+nav.tabs .sub button[aria-selected="true"]{background:var(--cur);color:#1b1b1b}
+.kicker{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 4px;font-weight:600}
+details.predict{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--pivot);border-radius:0 10px 10px 0;padding:10px 14px;margin:0 0 18px;max-width:900px}
+details.predict summary{cursor:pointer;font-weight:600}
+details.predict p{margin:8px 0 0}
+details.predict code,.card code,.note code{font-family:var(--mono);font-size:.92em;background:var(--flowbg);padding:1px 5px;border-radius:4px}
+.course{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:18px 0 0;font-size:14px}
+.course .lab{color:var(--muted)}
+.course a{color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px 12px;text-decoration:none}
+.course a:hover{border-color:var(--ink)}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+.pager button{max-width:48%}
+.chip.dim{opacity:.35}
+.cell.swap{background:var(--swap);color:#fff;border-color:var(--swap)}
+.cell.pivot{background:var(--pivot);color:#fff;border-color:var(--pivot)}
+.cell.win{background:color-mix(in srgb,var(--cur) 28%,var(--panel));border-color:var(--cur)}
+.cell.bad{background:var(--swap);color:#fff;border-color:var(--swap)}
+svg.tree,svg.graph{width:100%;height:auto;display:block}
+svg.tree .e{stroke:var(--line);stroke-width:3}
+svg.tree .e.on{stroke:var(--ok)}
+svg.tree circle{fill:var(--panel);stroke:var(--ink);stroke-width:3}
+svg.tree text{font-family:var(--mono);font-weight:600;fill:var(--fg);text-anchor:middle;dominant-baseline:central}
+svg.tree text.empty{font-family:var(--sans);font-weight:400;fill:var(--muted)}
+svg.tree .v.ok circle{fill:var(--ok);stroke:var(--ok)}svg.tree .v.ok text{fill:#fff}
+svg.tree .v.cur circle{fill:var(--cur);stroke:var(--cur)}svg.tree .v.cur text{fill:#1b1b1b}
+svg.tree .v.bad circle{fill:var(--swap);stroke:var(--swap)}svg.tree .v.bad text{fill:#fff}
+svg.tree .v.front circle{stroke:var(--cur);stroke-dasharray:5 4}
+svg.tree .v.dim{opacity:.35}
+svg.tree .ord,svg.graph .ord{font-size:12px;fill:var(--muted);font-weight:500;text-anchor:start}
+svg.graph .e.cur{stroke:var(--cur)}
+svg.graph .v.bad circle{fill:var(--swap);stroke:var(--swap)}svg.graph .v.bad text{fill:#fff}
+svg.graph .ah{fill:var(--line)}
+svg.graph .w rect{fill:var(--panel);stroke:var(--line)}
+svg.graph .w text{font-size:12px;font-weight:600}
+svg.graph .w.on rect{stroke:var(--ok)}svg.graph .w.cur rect{stroke:var(--cur);fill:var(--cur)}svg.graph .w.cur text{fill:#1b1b1b}
+.mapgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.mapcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.mapcard h3{margin:0 0 6px;font-size:17px;color:var(--ink)}
+.mapcard p{margin:0 0 10px;color:var(--muted);font-size:14px}
+.mapcard ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.mapcard a{color:var(--fg);text-decoration:none;font-size:15px}
+.mapcard a:hover{color:var(--ink);text-decoration:underline}
+.mapcard a small{color:var(--muted);font-family:var(--mono);margin-left:6px}
+table.t td code{font-family:var(--mono);font-size:.9em}
+table.t a{color:var(--ink)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px}
+.kv b{font-family:var(--mono)}
+.timeline{position:relative}
+@media print{nav.tabs,.controls,.pager{display:none}section.lesson{display:block!important;break-after:page}}
+nav.tabs #tabbar{flex-wrap:wrap;overflow-x:visible}
+@media (max-width:700px){nav.tabs #tabbar{flex-wrap:nowrap;overflow-x:auto}}

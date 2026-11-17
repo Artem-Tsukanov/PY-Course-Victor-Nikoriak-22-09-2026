@@ -1,0 +1,88 @@
+<!-- ============ MAP ============ -->
+<section class="lesson" id="kart" data-title="Карта гайду">
+  <h2>Карта гайду</h2>
+  <p class="lead">Тут зібрано всі алгоритми й структури даних курсу — від практикумів П1–П6 до бонусних уроків модуля 3. Кожен розділ відповідає на одне питання: <b>як знайти</b>, <b>як упорядкувати</b>, <b>як зберігати</b>, <b>як обійти зв'язки</b>, <b>як обрати найкраще</b>. Обирай тему на карті або у верхньому меню.</p>
+  <div class="mapgrid" id="kart-map"></div>
+  <div class="grid" style="margin-top:20px">
+    <div class="card">
+      <h3>Як працювати з кожною темою</h3>
+      <ol style="margin:0;padding-left:20px">
+        <li><b>🔮 Прогноз.</b> Перш ніж запускати, дай відповідь на питання під заголовком. Розгорни відповідь лише після цього.</li>
+        <li><b>Крок за кроком.</b> Натискай «Крок →» і стеж за трьома шарами: схема кроків, дані, підсвічений рядок коду.</li>
+        <li><b>Зміни дані.</b> Інший вхід, інший розмір, найгірший випадок — де алгоритм ламається чи сповільнюється?</li>
+        <li><b>Повернись у курс.</b> Внизу кожної теми — посилання на урок, де цей алгоритм розв'язує задачу диспетчерської.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>Кольори в усіх демонстраціях</h3>
+      <div class="legend" style="margin:0">
+        <span><i style="background:var(--cur)"></i>поточний крок / порівняння</span>
+        <span><i style="background:var(--swap)"></i>запис, обмін, помилка</span>
+        <span><i style="background:var(--ok)"></i>готово / знайдено / відвідано</span>
+        <span><i style="background:var(--pivot)"></i>особливий елемент: pivot, вказівник</span>
+        <span><i style="background:var(--ink)"></i>звичайні дані</span>
+      </div>
+      <p class="note">Час на картках — для умовної машини, що виконує 10⁸ простих операцій за секунду. Важливі не секунди, а те, <b>як росте</b> робота, коли даних стає більше.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DUPLICATES ============ -->
+<section class="lesson" id="dupl" data-title="Дублікати: O(n²) проти O(n)">
+  <h2>Два правильні рішення, різна ціна</h2>
+  <p class="lead">Диспетчер перевіряє, чи не потрапив номер поїздки в журнал двічі. <b>Перше рішення</b> порівнює кожну пару номерів. <b>Друге</b> пам'ятає побачені номери в <code>set</code>. Обидва дають правильну відповідь — але при подвоєнні журналу перше робить учетверо більше роботи, а друге — лише вдвічі.</p>
+  <details class="predict"><summary>🔮 Прогноз: у журналі 50 номерів без повторів. У скільки разів більше порівнянь зробить кожне рішення, якщо номерів стане 500?</summary><p>Пари: 50·49/2 = 1 225 → 500·499/2 = 124 750, тобто приблизно <b>у 100 разів</b> більше (n²). З <code>set</code>: 50 перевірок → 500, тобто <b>у 10 разів</b> (n). Перевір нижче в таблиці подвоєння.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="dupl-controls"></div>
+        <div class="controls">
+          <label>Журнал <select id="dupl-kind">
+            <option value="late">повтор у самому кінці</option>
+            <option value="none">без повторів (найгірший випадок)</option>
+            <option value="early">повтор на початку</option>
+          </select></label>
+          <label>n <input type="range" id="dupl-n" min="5" max="14" value="10"> <b id="dupl-n-v" style="font-family:var(--mono)">10</b></label>
+        </div>
+        <div class="row">
+          <h4>has_duplicates_v1 — кожна пара <small>O(n²)</small></h4>
+          <div class="cells" id="dupl-v1"></div>
+          <div class="msg" id="dupl-msg1"></div>
+        </div>
+        <div class="row">
+          <h4>has_duplicates_v2 — пам'ять у set <small>O(n)</small></h4>
+          <div class="cells" id="dupl-v2"></div>
+          <div class="ds" id="dupl-seen" style="margin-top:22px"></div>
+          <div class="msg" id="dupl-msg2"></div>
+        </div>
+        <div class="stats"><span>Порівнянь v1: <b id="dupl-c1">0</b></span><span>Перевірок v2: <b id="dupl-c2">0</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Таблиця подвоєння (найгірший випадок, без повторів)</h3>
+        <div class="tablewrap"><table class="t" id="dupl-table"></table></div>
+        <p class="note">Подвоїли n → <b>O(n)</b> робить ×2, <b>O(n²)</b> — ×4. Саме цей «множник при подвоєнні» найшвидше показує клас складності на практиці: виміряй двічі, поділи.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>has_duplicates_v1</h3><pre class="code" id="dupl-code1"></pre></div>
+      <div class="card"><h3>has_duplicates_v2</h3><pre class="code" id="dupl-code2"></pre></div>
+      <div class="card"><h3>Ціна пришвидшення</h3><p style="margin:0">v2 платить <b>пам'яттю</b>: <code>set</code> тримає до n номерів. Це типовий обмін «час ↔ пам'ять». Для елементів, які не можна хешувати (наприклад, списків), v2 не працює — тоді допоможе сортування за O(n log n) і порівняння сусідів.</p></div>
+    </div>
+  </div>
+  <div class="course" id="dupl-course"></div>
+</section>
+
+<!-- ============ CHEAT SHEET ============ -->
+<section class="lesson" id="cheat" data-title="Шпаргалка">
+  <h2>Шпаргалка: що обрати</h2>
+  <p class="lead">Усі алгоритми гайду в одній таблиці. Назва в першій колонці веде до демонстрації. Складність — для типового (середнього) випадку; найгірший указано, якщо він відрізняється.</p>
+  <div class="card">
+    <h3>Почни з питання</h3>
+    <div class="tablewrap"><table class="t" id="cheat-q"></table></div>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h3>Усі алгоритми</h3>
+    <div class="controls"><label>Фільтр <input type="text" id="cheat-filter" placeholder="наприклад: черга, O(log n), граф" size="30"></label></div>
+    <div class="tablewrap"><table class="t" id="cheat-table"></table></div>
+  </div>
+</section>

@@ -1,0 +1,216 @@
+<!-- ============ BISECT ============ -->
+<section class="lesson" id="bisect" data-title="bisect і префікси">
+  <h2>Нижня межа: <code>bisect_left</code> і автодоповнення</h2>
+  <p class="lead">Диспетчер питає: <b>чи була поїздка о 18:40?</b> Часи початку поїздок відсортовані (хвилини від півночі). Звичайний бінарний пошук відповідає лише «так/ні». Його варіант <b>нижня межа</b> відповідає точніше: <b>де стоїть перша поїздка о 18:40 або пізніше</b>. Він не зупиняється на збігу, а звужує проміжок <code>[low, high)</code>, доки той не стане порожнім. Те саме робить <code>bisect_left</code> зі стандартної бібліотеки. Два виклики <code>bisect_left</code> дають і автодоповнення адреси: усі вулиці з потрібним префіксом лежать у відсортованому списку підряд.</p>
+  <details class="predict"><summary>🔮 Прогноз: що поверне пошук нижньої межі для 18:20, якщо такої поїздки немає?</summary><p>Не −1, а позицію, куди 18:20 треба було б вставити, — індекс першої поїздки, пізнішої за 18:20 (тут — 18:40, індекс 7). Тому одна функція відповідає і на «чи була?» (<code>times[i] == target</code>), і на «що далі?», і на «скільки раніше?» (<code>i</code> поїздок).</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="bisect-controls"></div>
+        <div class="controls">
+          <label>Час <input type="text" id="bisect-time" value="18:40" size="5"></label>
+          <button class="btn" data-t="18:40">18:40</button><button class="btn" data-t="18:20">18:20</button><button class="btn" data-t="23:30">23:30</button>
+          <label>Префікс <input type="text" id="bisect-prefix" value="Ве" size="6"></label>
+        </div>
+        <div class="flow" id="bisect-flow"></div>
+        <div class="row">
+          <h4>Часи початку поїздок <small>first_at_or_after(times, target)</small></h4>
+          <div class="cells" id="bisect-times"></div>
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <h4>Вулиці за алфавітом <small>suggest(streets, prefix)</small></h4>
+          <div class="bl-list" id="bisect-streets"></div>
+        </div>
+        <div class="msg" id="bisect-msg"></div>
+        <div class="stats"><span>Порівнянь (час): <b id="bisect-c1">0</b></span><span>Порівнянь (префікс): <b id="bisect-c2">0</b></span><span>Результат: <b id="bisect-res">—</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0 0 8px">Нижня межа — O(log n) порівнянь, як і бінарний пошук. <code>suggest</code> — два пошуки O(log n) плюс копіювання знайдених k рядків: O(log n + k), без перебору всього списку.</p>
+        <p style="margin:0">Індекси баз даних (діапазон <code>WHERE t BETWEEN …</code>), автодоповнення, вставка без порушення порядку (<code>insort</code>), «скільки подій до моменту t». <code>"\uffff"</code> — символ, більший за будь-яку літеру: <code>prefix + "\uffff"</code> стоїть одразу після всіх рядків, що починаються з <code>prefix</code>.</p>
+        <p class="note">Межі <code>[low, high)</code>: <code>high = len(times)</code>, а не <code>len − 1</code>, і в циклі <code>high = mid</code>, а не <code>mid − 1</code>. Так відповідь «після останнього елемента» теж можлива.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>first_at_or_after</h3><pre class="code" id="bisect-code"></pre></div>
+      <div class="card"><h3>suggest</h3><pre class="code" id="bisect-code2"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="bisect-course"></div>
+</section>
+
+<!-- ============ TWO POINTERS ============ -->
+<section class="lesson" id="twoptr" data-title="Два вказівники">
+  <h2>Два вказівники: ваучер на 500 грн</h2>
+  <p class="lead">Клієнт має ваучер на <b>500 грн</b> і хоче витратити його рівно на дві поїздки. Ціни відсортовані. Перебір усіх пар — n(n−1)/2 перевірок. <b>Два вказівники</b> стартують з обох кінців. Якщо сума замала, ліву (найменшу) ціну відкидаємо: навіть з найбільшою з решти вона не дає 500. Якщо завелика — відкидаємо праву. Кожна перевірка відкидає одну ціну, тому перевірок не більше ніж n − 1.</p>
+  <details class="predict"><summary>🔮 Прогноз: скільки перевірок знадобиться для цін [120, 150, 180, 230, 270, 320, 410] і цілі 500?</summary><p>Чотири: 120+410=530 (завелика), 120+320=440 (замала), 150+320=470 (замала), 180+320=500 — знайдено. Перебір пар до цієї знахідки зробив би 14 перевірок, а для 10 000 — усі 21.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="twoptr-controls"></div>
+        <div class="controls">
+          <label>Ціль <input type="number" id="twoptr-target" value="500" min="0" max="2000" step="10" style="width:90px"></label>
+          <button class="btn" id="twoptr-new">Нові ціни</button>
+          <button class="btn" id="twoptr-reset-data">Ціни з уроку</button>
+        </div>
+        <div class="flow" id="twoptr-flow"></div>
+        <div class="row"><div class="cells" id="twoptr-cells"></div></div>
+        <div class="msg" id="twoptr-msg"></div>
+        <div class="stats"><span>Перевірок двома вказівниками: <b id="twoptr-c">0</b></span><span>Перебір пар до відповіді: <b id="twoptr-b">0</b></span><span>Пар усього n(n−1)/2: <b id="twoptr-w">0</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">O(n) часу й O(1) пам'яті — але лише на <b>відсортованих</b> даних (інакше спершу сортування, O(n log n)). Варіації: злиття двох відсортованих списків, видалення дублікатів «на місці», паліндроми, задача 3Sum, порівняння двох змін водіїв.</p>
+        <p class="note">Невідсортовані дані й потрібні індекси з початкового списку? Тоді краще словник — розділ «Two Sum за один прохід».</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>pair_with_sum</h3><pre class="code" id="twoptr-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="twoptr-course"></div>
+</section>
+
+<!-- ============ SLIDING WINDOW ============ -->
+<section class="lesson" id="window" data-title="Ковзне вікно">
+  <h2>Ковзне вікно: пікові години</h2>
+  <p class="lead">Є кількість поїздок за кожну годину доби. Диспетчер шукає <b>k годин поспіль з найбільшою кількістю поїздок</b>, щоб вивести більше водіїв. Наївно — для кожного вікна заново рахувати <code>sum</code>: k додавань на вікно. <b>Ковзне вікно</b> рахує суму один раз, а далі при зсуві на годину <b>додає нову годину й віднімає ту, що випала</b>: дві операції замість k.</p>
+  <details class="predict"><summary>🔮 Прогноз: яке вікно з 3 годин найзавантаженіше і скільки операцій зекономить ковзне вікно?</summary><p>17:00–20:00, 135 поїздок (45 + 52 + 38). Наївно: 22 вікна × 3 = 66 додавань; ковзне вікно: 3 + 2 × 21 = 45. Що більше k, то більший виграш: при k = 12 — 156 проти 36.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="window-controls"></div>
+        <div class="controls"><label>k годин <input type="range" id="window-k" min="1" max="12" value="3"> <b id="window-k-v" style="font-family:var(--mono)">3</b></label></div>
+        <div class="flow" id="window-flow"></div>
+        <div class="bars" id="window-bars" style="height:180px"></div>
+        <div class="hours" id="window-hours"></div>
+        <div class="legend"><span><i style="background:var(--cur)"></i>у вікні</span><span><i style="background:var(--ok)"></i>щойно додана година</span><span><i style="background:var(--ink);opacity:.35"></i>година, що випала</span><span><i style="background:var(--pivot)"></i>найкраще вікно</span></div>
+        <div class="msg" id="window-msg"></div>
+        <div class="tiles" style="margin-top:12px">
+          <div class="tile"><div class="v" id="window-sum">0</div><div class="l">сума поточного вікна</div></div>
+          <div class="tile"><div class="v" id="window-best">—</div><div class="l">найкраще вікно</div></div>
+          <div class="tile"><div class="v" id="window-ops">0</div><div class="l">додавань/віднімань: ковзне вікно</div></div>
+          <div class="tile"><div class="v" id="window-naive">0</div><div class="l">додавань: наївно sum() для кожного вікна</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">O(n) замість O(n·k). Ковзні середні в аналітиці й на біржі, моніторинг «запитів за останні 5 хвилин», обмеження частоти запитів (rate limiting), пошук найдовшого підрядка без повторів (вікно змінної ширини).</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>busiest_window</h3><pre class="code" id="window-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="window-course"></div>
+</section>
+
+<!-- ============ HASH TABLE ============ -->
+<section class="lesson" id="hashtable" data-title="Хеш-таблиця">
+  <h2>Хеш-таблиця зсередини: слоти, колізії, надгробки</h2>
+  <p class="lead">Як <code>dict</code> знаходить ключ за O(1)? Ключ перетворюється на число (<b>хеш</b>), остача від ділення на розмір таблиці дає <b>номер слота</b>. Якщо слот зайнятий іншим ключем — це <b>колізія</b>, і таблиця пробує наступний слот (<b>лінійне зондування</b>). Видалений ключ лишає <b>надгробок</b> DUMMY, щоб пошук не обривався. Коли таблиця заповнена більше ніж на 2/3, вона <b>подвоюється</b> і всі ключі переносяться заново.</p>
+  <details class="predict"><summary>🔮 Прогноз: «Троєщину» видалили зі слота 3, а «Теремки» колись потрапили у слот 4 через колізію. Що станеться з пошуком «Теремків», якщо замість DUMMY записати у слот 3 None?</summary><p>Пошук почне зі слота 2, перейде до 3, побачить None і вирішить, що ключа немає, хоча «Теремки» лежать у слоті 4. Надгробок означає «тут був ключ, шукай далі». Нову пару в нього записати можна.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="hashtable-controls"></div>
+        <div class="controls">
+          <label>Сценарій <select id="hashtable-preset">
+            <option value="0">Колізії й зондування</option>
+            <option value="1">Видалення і надгробок</option>
+            <option value="2">Розширення ×2</option>
+          </select></label>
+        </div>
+        <div class="controls"><label style="flex:1">Операції <input type="text" id="hashtable-ops" style="flex:1;min-width:0"></label></div>
+        <div class="ds" id="hashtable-opsline" style="margin-bottom:12px"></div>
+        <div class="flow" id="hashtable-flow"></div>
+        <div class="ht" id="hashtable-slots"></div>
+        <div class="msg" id="hashtable-msg"></div>
+        <div class="tiles" style="margin-top:12px">
+          <div class="tile"><div class="v" id="hashtable-size">8</div><div class="l">слотів</div></div>
+          <div class="tile"><div class="v" id="hashtable-used">0</div><div class="l">used: ключі + надгробки</div></div>
+          <div class="tile"><div class="v" id="hashtable-load">0</div><div class="l">заповненість (поріг 2/3 ≈ 0.67)</div></div>
+          <div class="tile"><div class="v" id="hashtable-probes">0</div><div class="l">переглянуто слотів</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0 0 8px">Пошук, вставка, видалення — O(1) у середньому: при заповненості до 2/3 ланцюжки зондування короткі. Найгірший випадок — O(n), коли всі ключі мають один хеш. Розширення — O(n), але рідко, тому в середньому на вставку O(1) (амортизовано).</p>
+        <p style="margin:0">Так влаштовані <code>dict</code> і <code>set</code>, кеші, індекси, підрахунок частот (<code>Counter</code>). Ключ має бути <b>hashable</b> і незмінним: якщо ключ зміниться, його хеш укаже на інший слот.</p>
+        <p class="note">Хеш тут навчальний: сума кодів літер, щоб числа можна було перевірити вручну. Справжній <code>hash()</code> рядків у Python інший і випадковий для кожного запуску (захист від атак). CPython також перебирає слоти не по сусідству, а псевдовипадковою послідовністю. Ідеї — слоти, колізії, DUMMY, поріг 2/3 — ті самі.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>HashTable</h3><pre class="code" id="hashtable-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="hashtable-course"></div>
+</section>
+
+<!-- ============ TWO SUM ============ -->
+<section class="lesson" id="twosum" data-title="Two Sum за один прохід">
+  <h2>Two Sum за один прохід: словник замість другого циклу</h2>
+  <p class="lead">Знову ваучер на <b>500 грн</b>, але тепер ціни йдуть у порядку поїздок, невідсортовані, і треба повернути <b>номери поїздок</b>. Для кожної ціни питаємо: <b>чи траплялася вже її пара</b> <code>need = 500 − price</code>? Відповідь дає словник <code>seen</code> «ціна → індекс» за O(1). Один прохід, жодного сортування.</p>
+  <details class="predict"><summary>🔮 Прогноз: для [230, 410, 120, 270, 150, 320, 180] — на якому кроці знайдеться пара і яка?</summary><p>На четвертому: при ціні 270 шукаємо 230, а 230 уже лежить у <code>seen</code> з індексом 0. Відповідь — <code>(0, 3)</code>. Пару 180 + 320 алгоритм не побачить: він повертає першу знайдену.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="twosum-controls"></div>
+        <div class="controls">
+          <label>Ціль <input type="number" id="twosum-target" value="500" min="0" max="2000" step="10" style="width:90px"></label>
+          <button class="btn" id="twosum-shuffle">Перемішати ціни</button>
+          <button class="btn" id="twosum-orig">Ціни з уроку</button>
+        </div>
+        <div class="flow" id="twosum-flow"></div>
+        <div class="row"><div class="cells" id="twosum-cells"></div></div>
+        <div class="ds" id="twosum-seen" style="margin-bottom:6px"></div>
+        <div class="msg" id="twosum-msg"></div>
+        <div class="stats"><span>Переглянуто цін: <b id="twosum-c">0</b></span><span>Перебір пар до відповіді: <b id="twosum-b">0</b></span><span>Записів у seen: <b id="twosum-n">0</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <div class="tablewrap"><table class="t">
+          <tr><th>Підхід</th><th>Час</th><th>Пам'ять</th><th>Умова</th></tr>
+          <tr><td>Перебір пар</td><td class="num">O(n²)</td><td class="num">O(1)</td><td>будь-які дані</td></tr>
+          <tr><td>Два вказівники</td><td class="num">O(n log n)</td><td class="num">O(1)*</td><td>сортування губить початкові індекси</td></tr>
+          <tr><td>Словник seen</td><td class="num">O(n)</td><td class="num">O(n)</td><td>значення hashable</td></tr>
+        </table></div>
+        <p style="margin:10px 0 0">* якщо сортувати на місці. Типовий обмін: платимо пам'яттю (словник) за швидкість. Та сама ідея — «запам'ятати побачене» — у пошуку дублікатів, першого повтору, підрахунку частот.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>pair_with_sum_hash</h3><pre class="code" id="twosum-code"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="twosum-course"></div>
+</section>
+
+<!-- ============ ANAGRAMS ============ -->
+<section class="lesson" id="anagram" data-title="Канонічний ключ">
+  <h2>Канонічний ключ: групування анаграм</h2>
+  <p class="lead">«літо» і «тіло» складаються з тих самих літер. Як зібрати такі слова в групи без порівняння кожного з кожним? Дати кожному слову <b>канонічний ключ</b> — однаковий для всіх «рівних» слів. Тут це відсортовані літери: і <code>"літо"</code>, і <code>"тіло"</code> дають <code>"лоті"</code>. Далі словник «ключ → список слів» групує все за один прохід. Так само в уроці 17 маршрут Поділ→Оболонь і Оболонь→Поділ отримують один ключ <code>tuple(sorted((start, end)))</code>.</p>
+  <details class="predict"><summary>🔮 Прогноз: скільки груп вийде для «літо, клоун, тіло, таксі, уклон, кіт, тік, кит»?</summary><p>П'ять: [літо, тіло], [клоун, уклон], [таксі], [кіт, тік], [кит]. «кит» і «кіт» — різні слова: «и» і «і» — різні літери, тому й ключі різні.</p></details>
+  <div class="grid">
+    <div class="stack">
+      <div class="card">
+        <div class="controls" id="anagram-controls"></div>
+        <div class="controls"><label style="flex:1">Слова <input type="text" id="anagram-words" value="літо, клоун, тіло, таксі, уклон, кіт, тік, кит" style="flex:1;min-width:0"></label></div>
+        <div class="flow" id="anagram-flow"></div>
+        <div class="ds" id="anagram-wordsline" style="margin-bottom:10px"></div>
+        <div class="ds" id="anagram-key" style="margin-bottom:12px"></div>
+        <div class="tablewrap"><table class="t" id="anagram-groups"></table></div>
+        <div class="msg" id="anagram-msg"></div>
+        <div class="stats"><span>Слів оброблено: <b id="anagram-c">0</b></span><span>Груп: <b id="anagram-g">0</b></span><span>Попарних порівнянь заощаджено: <b id="anagram-p">0</b></span></div>
+      </div>
+      <div class="card">
+        <h3>Складність і де використовується</h3>
+        <p style="margin:0">n слів довжини m: n · O(m log m) на ключі + O(1) на кожну вставку в словник — замість O(n²) попарних порівнянь. Канонічний ключ — загальний прийом: нормалізувати дані так, щоб «однакове» стало <b>рівним</b>. Регістр (<code>email.lower()</code>), напрямок маршруту, порядок полів, пробіли в номерах телефонів. Потім — <code>dict</code>, <code>Counter</code> або <code>GROUP BY</code> у SQL.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>group_anagrams</h3><pre class="code" id="anagram-code"></pre></div>
+      <div class="card"><h3>Той самий прийом: route_key</h3><pre class="code" id="anagram-code2"></pre></div>
+    </div>
+  </div>
+  <div class="course" id="anagram-course"></div>
+</section>
