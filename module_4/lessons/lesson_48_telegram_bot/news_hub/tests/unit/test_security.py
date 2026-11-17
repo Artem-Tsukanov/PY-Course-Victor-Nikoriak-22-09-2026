@@ -1,4 +1,4 @@
-"""Урок 46: пароль, JWT і налаштування адміна — без бази й HTTP."""
+"""Урок 47: пароль, JWT і налаштування адміна — без бази й HTTP."""
 import base64
 import json
 from datetime import datetime, timedelta, timezone

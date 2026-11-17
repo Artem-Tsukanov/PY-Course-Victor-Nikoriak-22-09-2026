@@ -134,7 +134,7 @@ def anomaly_scatter(anomaly_data: dict) -> go.Figure:
 
 
 def feature_importance_bar(importance: dict) -> go.Figure:
-    # урок 42: сортуємо тут, а не покладаємось на порядок ключів JSON (Flask сортував їх за алфавітом)
+    # урок 43: сортуємо тут, а не покладаємось на порядок ключів JSON (Flask сортував їх за алфавітом)
     df = pd.DataFrame(
         {"Feature": list(importance.keys()), "Importance": list(importance.values())}
     ).sort_values("Importance", ascending=False).head(12).iloc[::-1]

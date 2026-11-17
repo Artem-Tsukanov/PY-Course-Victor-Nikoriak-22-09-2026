@@ -7,7 +7,7 @@ from rest_framework.routers import DefaultRouter
 
 from hello_app.api import NoteViewSet
 
-# REST API (урок 35): роутер будує /api/notes/ і /api/notes/<id>/ з NoteViewSet
+# REST API (урок 36): роутер будує /api/notes/ і /api/notes/<id>/ з NoteViewSet
 router = DefaultRouter()
 router.register("notes", NoteViewSet, basename="note")
 

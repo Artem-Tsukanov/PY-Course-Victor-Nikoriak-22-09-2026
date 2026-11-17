@@ -1,7 +1,7 @@
 """
 views.py — HTTP шар (тільки request/response).
 
-Урок 44 (крок 3 Django-книги: CRUD і архітектура) — рефакторинг views уроку 40:
+Урок 45 (крок 3 Django-книги: CRUD і архітектура) — рефакторинг views уроку 41:
   - нотатки, записники й теги — class-based views зі стартового `notes_project_cbv`
     (hello_app/views.py), адаптовані до цього проєкту:
     групи, `is_pinned`, «змінює лише автор»;

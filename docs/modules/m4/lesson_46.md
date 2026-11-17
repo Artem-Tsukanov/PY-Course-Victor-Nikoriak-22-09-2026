@@ -11,15 +11,15 @@ HTTP так не вміє: розмову завжди починає брауз
 
 | Урок | Django-гілка: застосунок нотаток | Проєкт |
 |---|---|---|
-| 33–35 | MVT, форми, DRF API | `crispy_notes_project` |
-| 40 | групи, паролі, JWT | + групи |
-| 44 | архітектура: правила доступу в selectors, CBV, PostgreSQL | + `tests_architecture.py` |
-| **45** | **груповий чат на WebSocket: ASGI, Channels, consumer, channel layer (Redis)** | **+ `consumers.py`, `asgi.py`, `ChatMessage`** |
-| 48–49 | Docker, деплой | — |
+| 34–36 | MVT, форми, DRF API | `crispy_notes_project` |
+| 41 | групи, паролі, JWT | + групи |
+| 45 | архітектура: правила доступу в selectors, CBV, PostgreSQL | + `tests_architecture.py` |
+| **46** | **груповий чат на WebSocket: ASGI, Channels, consumer, channel layer (Redis)** | **+ `consumers.py`, `asgi.py`, `ChatMessage`** |
+| 49–50 | Docker, деплой | — |
 
 Проєкт: [`crispy_notes_project`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_46_websocket_chat/crispy_notes_project).
 
-**Що потрібно з попередніх уроків:** `asyncio`, `await`, цикл подій (урок 28); WebSocket і SSE серед типів API (32); Redis (30, 39); групи й правило «бачить група, змінює автор» (40); selectors / services і тест архітектури (44).
+**Що потрібно з попередніх уроків:** `asyncio`, `await`, цикл подій (урок 28); WebSocket і SSE серед типів API (33); Redis (31, 40); групи й правило «бачить група, змінює автор» (41); selectors / services і тест архітектури (45).
 
 **Після уроку ти зможеш:**
 

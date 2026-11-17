@@ -44,12 +44,12 @@ flowchart TD
 |---|---|---|
 | 3–4 | типи, перетворення, умови | `float("540.00")`, перевірки сум і кількості гостей |
 | 5–6 | `NamedTuple`, списки, словники | `Order`, `Delivery`, лічильники |
-| 7 | функції з контрактом | кожна частина — набір маленьких функцій |
-| 8, 11, 16 | Big O, пошук, `dict` / `set` / `Counter` | пошук замовлення за номером, райони, ваучер |
-| 12 | модулі, `datetime`, `sys.argv` | шість файлів, дати, команди з термінала |
-| 13 | винятки, `raise` | зрозумілі помилки замість трасувань |
-| 14 | `with open`, JSON | стан у `data.json` між запусками |
-| 15 | Git, гілки, PR, тести | власний репозиторій, `check.py` |
+| 8 | функції з контрактом | кожна частина — набір маленьких функцій |
+| 9, 12, 17 | Big O, пошук, `dict` / `set` / `Counter` | пошук замовлення за номером, райони, ваучер |
+| 13 | модулі, `datetime`, `sys.argv` | шість файлів, дати, команди з термінала |
+| 14 | винятки, `raise` | зрозумілі помилки замість трасувань |
+| 15 | `with open`, JSON | стан у `data.json` між запусками |
+| 16 | Git, гілки, PR, тести | власний репозиторій, `check.py` |
 
 ## Десять ідей модуля
 
@@ -242,12 +242,12 @@ flowchart TD
 
 | № | Файл | Функції | Урок |
 |---|---|---|---|
-| 1 | `rules.py` | `meal_type`, `day_name` | 12 |
-| 2 | `parsing.py` | `parse_order`, `parse_delivery` | 13 |
-| 3 | `storage.py` | `save_state`, `load_state` | 14 |
-| 4 | `cafe.py` | `cafe_stats` | 6, 7, 12 |
-| 5 | `taxi.py` | `delivery_index`, `top_districts`, `voucher_pair` | 11, 16 |
-| 6 | `commands.py` | `add_order`, `import_kasa`, `add_delivery`, `find_order`, `report`, `voucher` | 7, 13 |
+| 1 | `rules.py` | `meal_type`, `day_name` | 13 |
+| 2 | `parsing.py` | `parse_order`, `parse_delivery` | 14 |
+| 3 | `storage.py` | `save_state`, `load_state` | 15 |
+| 4 | `cafe.py` | `cafe_stats` | 6, 8, 13 |
+| 5 | `taxi.py` | `delivery_index`, `top_districts`, `voucher_pair` | 12, 17 |
+| 6 | `commands.py` | `add_order`, `import_kasa`, `add_delivery`, `find_order`, `report`, `voucher` | 8, 14 |
 
 `commands.py` — місце, де кафе і таксі стають однією системою. Наприклад, `add_delivery` перевіряє, що замовлення **існує** (множина номерів, урок 17) і ще **не має** доставки (словник-індекс), і лише потім додає доставку.
 

@@ -14,18 +14,18 @@
 
 | Урок | Django-гілка: застосунок нотаток | Проєкт |
 |---|---|---|
-| 33 | MVT, ORM, admin | `hello_project` |
-| 34 | форми, Bootstrap, crispy | `crispy_notes_project` |
-| 35 | REST API на DRF | + `api.py` |
-| 40 | групи, паролі, JWT, налаштування безпеки | + групи, `/api/token/` |
-| **44** | **архітектура: CBV, правила доступу в selectors, PostgreSQL; каталог патернів обох проєктів** | **+ `tests_architecture.py`, `DATABASE_URL`** |
-| 45 | чат на WebSocket | — |
+| 34 | MVT, ORM, admin | `hello_project` |
+| 35 | форми, Bootstrap, crispy | `crispy_notes_project` |
+| 36 | REST API на DRF | + `api.py` |
+| 41 | групи, паролі, JWT, налаштування безпеки | + групи, `/api/token/` |
+| **45** | **архітектура: CBV, правила доступу в selectors, PostgreSQL; каталог патернів обох проєктів** | **+ `tests_architecture.py`, `DATABASE_URL`** |
+| 46 | чат на WebSocket | — |
 
 Проєкт: [`crispy_notes_project`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_45_architecture_patterns/crispy_notes_project). Друга половина уроку — патерни агрегатора [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_44_llm_api/news_hub) з уроку 44; його код не змінюється.
 
 Це **крок 3 Django-книги** — [«CRUD і архітектура»](https://nikoriakviktor.github.io/notes_chat_app/tutorials/03_crud_and_architecture/): services і selectors, class-based views, PostgreSQL. Теорію кроку тут не переказуємо: лише зміни в коді, їхні причини і те, що знайшли дорогою.
 
-**Що потрібно з попередніх уроків:** `services` / `selectors` і тонкий view (33–35); групи і правило «змінює лише автор» (40); класи, успадкування, MRO (уроки 20–21); декоратори (урок 10); `Depends`, репозиторій і `LLMClient` у `news_hub` (37–43).
+**Що потрібно з попередніх уроків:** `services` / `selectors` і тонкий view (34–36); групи і правило «змінює лише автор» (41); класи, успадкування, MRO (уроки 20–21); декоратори (урок 10); `Depends`, репозиторій і `LLMClient` у `news_hub` (38–44).
 
 **Після уроку ти зможеш:**
 
@@ -39,7 +39,7 @@
 
 ## Пригадай
 
-1. Чим `selectors.py` відрізняється від `services.py` у проєкті нотаток (урок 34)?
+1. Чим `selectors.py` відрізняється від `services.py` у проєкті нотаток (урок 35)?
 2. Клас `C(A, B)`, у `A` і `B` є метод `run()`, обидва викликають `super().run()`. У якому порядку вони виконаються (урок 21)?
 3. Як у тестах `news_hub` підмінили справжню модель Gemini на фейкову, не змінюючи коду ендпоінта (урок 44)?
 

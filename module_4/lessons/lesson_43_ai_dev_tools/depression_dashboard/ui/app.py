@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# урок 42: папка pages/ поруч зі скриптом — це мультисторінковий режим Streamlit: у меню з'являлись
+# урок 43: папка pages/ поруч зі скриптом — це мультисторінковий режим Streamlit: у меню з'являлись
 # 5 зайвих порожніх сторінок. Модулі розділів тепер у views/.
 from ui.views import overview, correlations, clustering, anomalies, prediction  # noqa: E402
 

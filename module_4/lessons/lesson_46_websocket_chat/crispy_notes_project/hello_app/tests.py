@@ -1,6 +1,6 @@
 """Тести шару форм і шаблонів: login, crispy-форма, context processor, закріплення.
 
-Повне тестування проєкту (сервіси, selectors, Selenium) — урок 41.
+Повне тестування проєкту (сервіси, selectors, Selenium) — урок 42.
 
     python manage.py test
 """

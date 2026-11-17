@@ -48,7 +48,7 @@ def get_correlations() -> dict:
 
 
 def get_depression_by_group() -> dict:
-    # урок 42: копія — нижче додаємо колонку, а load_student_df() кешований і спільний для всіх запитів
+    # урок 43: копія — нижче додаємо колонку, а load_student_df() кешований і спільний для всіх запитів
     df = load_student_df().copy()
     result = {}
 

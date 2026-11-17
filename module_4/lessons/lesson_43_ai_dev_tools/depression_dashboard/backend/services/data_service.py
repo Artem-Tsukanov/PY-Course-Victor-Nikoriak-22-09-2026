@@ -28,7 +28,7 @@ def _encode_dietary(val: str) -> int:
 
 
 def add_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Похідні ознаки — ОДНА функція для навчання й для /api/predict (урок 42).
+    """Похідні ознаки — ОДНА функція для навчання й для /api/predict (урок 43).
 
     У старому коді ці формули були двічі: тут і в ui/pages/prediction.py, а сервер приймав готові
     значення від клієнта — їх можна було підробити (Risk_Score = -100) або розійтися з навчанням.
@@ -53,7 +53,7 @@ def add_features(df: pd.DataFrame) -> pd.DataFrame:
 
 @lru_cache(maxsize=1)
 def load_student_df() -> pd.DataFrame:
-    """Кешований DataFrame — спільний для всіх запитів: НЕ змінюй його, бери .copy() (урок 42)."""
+    """Кешований DataFrame — спільний для всіх запитів: НЕ змінюй його, бери .copy() (урок 43)."""
     log.info("Loading Student Depression Dataset …")
     df = pd.read_csv(config.STUDENT_DATASET)
     df.columns = df.columns.str.strip()

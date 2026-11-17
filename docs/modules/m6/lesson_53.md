@@ -16,7 +16,7 @@
 | [`example_news_digest_deck.md`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/lessons/lesson_53_graduation_pitch/example_news_digest_deck.md) і [PDF](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/lessons/lesson_53_graduation_pitch/example_news_digest_deck.pdf) | приклад: питч «Тема дня» на основі `news_hub` з повним текстом виступу |
 | [`pitch_check.py`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/lessons/lesson_53_graduation_pitch/pitch_check.py) | перевірка деку: кількість слайдів, текст на слайді, час виступу, обов'язкові розділи, забуті заготовки |
 
-**Що потрібно з попередніх уроків:** фінальний проєкт і план з уроку 52; Docker Compose (49) — для демо; вимірювання з уроку 52 — для технічного слайда.
+**Що потрібно з попередніх уроків:** фінальний проєкт і план з уроку 52; Docker Compose (50) — для демо; вимірювання з уроку 52 — для технічного слайда.
 
 **Після уроку ти зможеш:**
 

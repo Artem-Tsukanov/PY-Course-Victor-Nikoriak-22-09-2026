@@ -5,7 +5,7 @@ from .models import Note
 
 
 class NoteTests(TestCase):
-    """Тести Django: окрема тестова база, яка створюється й видаляється автоматично (урок 41)."""
+    """Тести Django: окрема тестова база, яка створюється й видаляється автоматично (урок 42)."""
 
     def test_pinned_notes_first(self):
         Note.objects.create(title="Стара закріплена", is_pinned=True)

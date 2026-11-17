@@ -1,1 +1,1 @@
-"""Telegram-бот агрегатора (урок 47): команди, підписки, сповіщення; polling — python -m news_hub.bot."""
+"""Telegram-бот агрегатора (урок 48): команди, підписки, сповіщення; polling — python -m news_hub.bot."""

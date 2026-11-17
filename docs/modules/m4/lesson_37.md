@@ -6,18 +6,18 @@
 
 | Урок | Крок агрегатора |
 |---|---|
-| **36** | **парсер з типами; `NewsItem` на Pydantic** |
-| 37 | FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman |
-| 38 | SQLAlchemy: новини в базі |
-| 39 | middleware, кеш і rate limit на Redis |
-| 41 | тести API |
-| 43 | Gemini: підсумок, категорія, тональність |
-| 47 | Telegram-бот |
-| 48–50 | Docker, Compose, CI/CD |
+| **37** | **парсер з типами; `NewsItem` на Pydantic** |
+| 38 | FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman |
+| 39 | SQLAlchemy: новини в базі |
+| 40 | middleware, кеш і rate limit на Redis |
+| 42 | тести API |
+| 44 | Gemini: підсумок, категорія, тональність |
+| 48 | Telegram-бот |
+| 49–51 | Docker, Compose, CI/CD |
 
 Проєкт: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_37_typing_pydantic/news_hub).
 
-**Що потрібно з попередніх уроків:** функції й словники (М1), класи й `@classmethod` (уроки 20–24), винятки (13), pytest (25), HTTP і парсинг відповіді (31), серіалізатори DRF (35) — Pydantic робить для FastAPI те саме.
+**Що потрібно з попередніх уроків:** функції й словники (М1), класи й `@classmethod` (уроки 20–24), винятки (14), pytest (26), HTTP і парсинг відповіді (32), серіалізатори DRF (36) — Pydantic робить для FastAPI те саме.
 
 **Після уроку ти зможеш:**
 
@@ -436,7 +436,7 @@ flowchart TD
 
 - **Межа довіри.** Усе, що прийшло ззовні (HTML, файл, тіло запиту), — «сире» (`RawNews`, лише рядки). Перевірка відбувається **один раз** — у `NewsItem`. Далі код працює з гарантіями: `url` — справжній URL з rbc.ua, `lang` — `"uk"` або `"ru"`, `published_time` — `time` або `None`.
 - **Два інструменти — два моменти.** `mypy` ловить помилки в *коді* до запуску; Pydantic — помилки в *даних* під час роботи. Одне не замінює інше.
-- **Модель — контракт.** API (37), база (38), Gemini (43) і бот (47) отримуватимуть `NewsItem`, а не словник: змінимо модель — mypy і тести покажуть усі місця, які це зачепило.
+- **Модель — контракт.** API (38), база (39), Gemini (44) і бот (48) отримуватимуть `NewsItem`, а не словник: змінимо модель — mypy і тести покажуть усі місця, які це зачепило.
 
 ### Тести і mypy
 

@@ -9,15 +9,15 @@
 
 | Урок | Крок агрегатора |
 |---|---|
-| 36–39 | парсер і модель, FastAPI, база, Redis |
-| 41 | тести: unit / integration, мок і фейк мережі, покриття |
-| **42** | **Claude Code у проєкті: CLAUDE.md, дозволи, hook; друге джерело (RSS) — написане AI за тестами** |
-| 43 | Gemini: підсумок, категорія, тональність |
-| 47 | Telegram-бот |
+| 37–40 | парсер і модель, FastAPI, база, Redis |
+| 42 | тести: unit / integration, мок і фейк мережі, покриття |
+| **43** | **Claude Code у проєкті: CLAUDE.md, дозволи, hook; друге джерело (RSS) — написане AI за тестами** |
+| 44 | Gemini: підсумок, категорія, тональність |
+| 48 | Telegram-бот |
 
 Проєкти: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_43_ai_dev_tools/news_hub), [`depression_dashboard`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_43_ai_dev_tools/depression_dashboard). Довідник: [Claude Code](ai/claude_code.md) — встановлення, CLAUDE.md, skills, MCP, hooks, дозволи.
 
-**Що потрібно з попередніх уроків:** чекліст валідації AI-коду й тести властивостей (урок 26); тест конвеєра, мок і фейк, покриття, мінімальні версії (41); Pydantic (36); FastAPI, `Depends` (37).
+**Що потрібно з попередніх уроків:** чекліст валідації AI-коду й тести властивостей (урок 26); тест конвеєра, мок і фейк, покриття, мінімальні версії (42); Pydantic (37); FastAPI, `Depends` (38).
 
 **Після уроку ти зможеш:**
 

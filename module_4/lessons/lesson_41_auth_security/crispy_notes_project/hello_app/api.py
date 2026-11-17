@@ -61,7 +61,7 @@ class NoteViewSet(viewsets.ViewSet):
     queryset = Note.objects.none()   # лише для схеми: тип {id} у шляху; дані беруть selectors
 
     def _get_note(self, request, pk):
-        """Читати: свою нотатку або нотатку своєї групи (урок 40). Чужа — 404, ніби її немає."""
+        """Читати: свою нотатку або нотатку своєї групи (урок 41). Чужа — 404, ніби її немає."""
         try:
             return selectors.get_note_detail(request.user, pk)
         except Note.DoesNotExist:
@@ -70,7 +70,7 @@ class NoteViewSet(viewsets.ViewSet):
     def _get_own_note(self, request, pk):
         """Змінювати й видаляти: лише автор. Нотатка групи видима учаснику, але не його — 403.
 
-        Урок 40: після спільного доступу через групи get_note_detail віддає і нотатки групи.
+        Урок 41: після спільного доступу через групи get_note_detail віддає і нотатки групи.
         HTML-views перевіряли автора, а API — ні: учасник групи через API міняв і видаляв чужі нотатки.
         """
         note = self._get_note(request, pk)

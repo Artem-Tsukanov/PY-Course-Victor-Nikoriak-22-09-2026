@@ -6,18 +6,18 @@
 
 | Урок | Крок агрегатора |
 |---|---|
-| 36 | парсер з типами; `NewsItem` на Pydantic |
-| **37** | **FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman** |
-| 38 | SQLAlchemy: новини в базі |
-| 39 | middleware, кеш і rate limit на Redis |
-| 41 | тести API |
-| 43 | Gemini: підсумок, категорія, тональність |
-| 47 | Telegram-бот |
-| 48–50 | Docker, Compose, CI/CD |
+| 37 | парсер з типами; `NewsItem` на Pydantic |
+| **38** | **FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman** |
+| 39 | SQLAlchemy: новини в базі |
+| 40 | middleware, кеш і rate limit на Redis |
+| 42 | тести API |
+| 44 | Gemini: підсумок, категорія, тональність |
+| 48 | Telegram-бот |
+| 49–51 | Docker, Compose, CI/CD |
 
 Проєкт: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_38_fastapi_basics/news_hub). Поруч — [`fastapi_demo`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_38_fastapi_basics/fastapi_demo) — стартовий код: шість ендпоінтів, на яких видно, що з сервером робить блокуючий код.
 
-**Що потрібно з попередніх уроків:** `async`/`await` і `asyncio.gather` (27, 31), REST — ресурси, методи, статус-коди, OpenAPI (32), FastAPI-версія API нотаток (35), `NewsItem` і `validate_news` (36).
+**Що потрібно з попередніх уроків:** `async`/`await` і `asyncio.gather` (28, 32), REST — ресурси, методи, статус-коди, OpenAPI (33), FastAPI-версія API нотаток (36), `NewsItem` і `validate_news` (37).
 
 **Після уроку ти зможеш:**
 
@@ -64,7 +64,7 @@
 FastAPI будує API з **анотацій типів**: параметр функції стає параметром запиту, його тип і `Query(...)` — правилами перевірки, `response_model` — формою відповіді. Той самий Pydantic, що в уроці 37, тільки тепер на вході й виході HTTP.
 
 ```python title="news_hub/api.py (фрагмент)"
-app = FastAPI(title="news_hub API", version="0.37.0", lifespan=lifespan, openapi_tags=[...])
+app = FastAPI(title="news_hub API", version="0.38.0", lifespan=lifespan, openapi_tags=[...])
 
 
 @app.get("/api/news", response_model=list[NewsItem], tags=["news"], summary="Список новин")
@@ -363,7 +363,7 @@ print(sorted(schema["components"]["schemas"]))
 ```
 
 ```text
-3.1.0 | news_hub API 0.37.0
+3.1.0 | news_hub API 0.38.0
 GET    /health            ['system'] Health
 GET    /api/news          ['news'] Список новин
 DELETE /api/news          ['news'] Delete All News

@@ -3,7 +3,7 @@
 #   export DATABASE_URL=postgresql+asyncpg://news:news@localhost:5432/news_hub
 #   export REDIS_URL=redis://localhost:6379/0
 #   alembic upgrade head && uvicorn news_hub.api:app --reload
-# Сам застосунок у контейнері — урок 48 (Docker).
+# Сам застосунок у контейнері — урок 49 (Docker).
 services:
   db:
     image: postgres:16-alpine

@@ -12,15 +12,15 @@
 
 | Урок | Крок агрегатора |
 |---|---|
-| 36–39 | парсер і модель, FastAPI, база, Redis |
-| 41–43 | тести; Claude Code і RSS; аналіз LLM |
-| 46 | безпека: адмін-JWT, SSRF, підписані webhook |
-| **47** | **Telegram-бот: `/news`, `/digest`, підписки й сповіщення, webhook у FastAPI** |
-| 48–50 | Docker, Compose, CI/CD |
+| 37–40 | парсер і модель, FastAPI, база, Redis |
+| 42–44 | тести; Claude Code і RSS; аналіз LLM |
+| 47 | безпека: адмін-JWT, SSRF, підписані webhook |
+| **48** | **Telegram-бот: `/news`, `/digest`, підписки й сповіщення, webhook у FastAPI** |
+| 49–51 | Docker, Compose, CI/CD |
 
 Проєкт: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_48_telegram_bot/news_hub).
 
-**Що потрібно з попередніх уроків:** HTTP-запит і JSON (урок 32); `async`/`await` (27); `Depends` і `BackgroundTasks` (37, 39); rate limit на Redis (39); тести з локальним aiohttp-сервером (41); `analyze_news` (43); секрет webhook і `compare_digest` (46).
+**Що потрібно з попередніх уроків:** HTTP-запит і JSON (урок 32); `async`/`await` (28); `Depends` і `BackgroundTasks` (38, 40); rate limit на Redis (40); тести з локальним aiohttp-сервером (42); `analyze_news` (44); секрет webhook і `compare_digest` (47).
 
 **Після уроку ти зможеш:**
 
@@ -638,4 +638,4 @@ async def test_start_greets_user():
 - Код: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_48_telegram_bot/news_hub) — `bot/` з `ai_bot/app/` і `echo_bot/`, `notify.py` з `production_bot/backend/workers/notifications.py`, webhook — з `production_bot/backend/api/webhook.py`.
 - Telegram: [Bot API](https://core.telegram.org/bots/api), [HTML style](https://core.telegram.org/bots/api#html-style), [setWebhook](https://core.telegram.org/bots/api#setwebhook), [webhooks](https://core.telegram.org/bots/webhooks), [Bots FAQ: ліміти](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this), [локальний Bot API server](https://github.com/tdlib/telegram-bot-api), [@BotFather](https://core.telegram.org/bots/features#botfather).
 - aiogram 3: [документація](https://docs.aiogram.dev/en/latest/), [Router](https://docs.aiogram.dev/en/latest/dispatcher/router.html), [Middlewares](https://docs.aiogram.dev/en/latest/dispatcher/middlewares.html), [Dependency injection](https://docs.aiogram.dev/en/latest/dispatcher/dependency_injection.html), [webhook](https://docs.aiogram.dev/en/latest/dispatcher/webhook.html).
-- Уроки курсу: [39 — Redis і rate limit](lesson_40.md), [43 — LLM API](lesson_44.md), [46 — Security advanced](lesson_47.md).
+- Уроки курсу: [40 — Redis і rate limit](lesson_40.md), [44 — LLM API](lesson_44.md), [47 — Security advanced](lesson_47.md).

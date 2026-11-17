@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     # ── Crispy Forms ────────────────────────────────────────────────────────────
     "crispy_forms",       # core: FormHelper, Layout objects
     "crispy_bootstrap5",  # Bootstrap5 template pack
-    # ── REST API (урок 35) ─────────────────────────────────────────────────────────
+    # ── REST API (урок 36) ─────────────────────────────────────────────────────────
     "rest_framework",     # Django REST Framework: серіалізатори, ViewSet, роутер
     "drf_spectacular",    # OpenAPI-схема з ViewSet і серіалізаторів
     # ── Debug ────────────────────────────────────────────────────────────────────
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# ── Django REST Framework (урок 35) ──────────────────────────────────────────────
+# ── Django REST Framework (урок 36) ──────────────────────────────────────────────
 # Вхід — ті самі сесії, що й у HTML-частини (+ Basic для curl/скриптів).
 # Без входу API не віддає нічого: нотатки приватні.
 REST_FRAMEWORK = {

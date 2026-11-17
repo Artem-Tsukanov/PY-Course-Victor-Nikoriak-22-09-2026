@@ -8,16 +8,16 @@
 
 | Урок | Крок агрегатора |
 |---|---|
-| 36–39 | парсер і модель, FastAPI, база, Redis |
-| 41–43 | тести; Claude Code і RSS; аналіз LLM |
-| 46–47 | безпека; Telegram-бот |
-| **48** | **Docker: образ застосунку, тести образу** |
-| 49 | Compose: API, міграції, PostgreSQL, Redis, nginx, бот — однією командою; деплой |
-| 50 | CI/CD: тести й збірка образу на кожен PR |
+| 37–40 | парсер і модель, FastAPI, база, Redis |
+| 42–44 | тести; Claude Code і RSS; аналіз LLM |
+| 47–48 | безпека; Telegram-бот |
+| **49** | **Docker: образ застосунку, тести образу** |
+| 50 | Compose: API, міграції, PostgreSQL, Redis, nginx, бот — однією командою; деплой |
+| 51 | CI/CD: тести й збірка образу на кожен PR |
 
 Проєкт: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_49_docker/news_hub).
 
-**Що потрібно з попередніх уроків:** змінні середовища і секрети (уроки 44, 47); Alembic (38); Redis (39); `/health` і lifespan FastAPI (37, 47). Процеси, сигнали й права файлів — у [бонус-уроці Linux](bonus_linux.md): контейнер — це процес Linux.
+**Що потрібно з попередніх уроків:** змінні середовища і секрети (уроки 44, 47); Alembic (39); Redis (40); `/health` і lifespan FastAPI (38, 48). Процеси, сигнали й права файлів — у [бонус-уроці Linux](bonus_linux.md): контейнер — це процес Linux.
 
 **Після уроку ти зможеш:**
 

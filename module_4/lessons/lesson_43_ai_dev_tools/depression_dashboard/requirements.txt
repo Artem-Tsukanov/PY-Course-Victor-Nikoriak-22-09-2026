@@ -1,4 +1,4 @@
-# Урок 42: було — жорсткі == під Python 3.11 (pandas 2.2.2, numpy 1.26.4, scikit-learn 1.5.0 не мають
+# Урок 43: було — жорсткі == під Python 3.11 (pandas 2.2.2, numpy 1.26.4, scikit-learn 1.5.0 не мають
 # колес для Python 3.13 — pip збирав би їх з вихідного коду). Тепер — мінімальні версії, перевірено на 3.10–3.13.
 
 # Web frameworks
@@ -19,8 +19,8 @@ matplotlib>=3.9.2          # не імпортується напряму, ал�
 # HTTP client (Streamlit → Flask)
 requests>=2.32.3
 
-# Validation (урок 42: анкета /api/predict)
+# Validation (урок 43: анкета /api/predict)
 pydantic>=2.9
 
-# Tests (урок 42)
+# Tests (урок 43)
 pytest>=8

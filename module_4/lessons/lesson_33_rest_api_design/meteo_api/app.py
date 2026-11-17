@@ -1,4 +1,4 @@
-"""Meteo API v2 — REST-версія метео-API викладача (урок 32).
+"""Meteo API v2 — REST-версія метео-API викладача (урок 33).
 
 Було (legacy/main.py): /download_telegrams, POST /filter_telegrams/, /telegram/{collection}/{id}.
 Стало: ресурси «станції» і «спостереження», методи HTTP за призначенням, чесні статус-коди.
@@ -68,7 +68,7 @@ def create_app(repo=None, with_api_types=True):
     repo = repo or MeteoRepository.default()
     imports = {}                                    # id → стан фонового імпорту
     app = FastAPI(title="Meteo API", version="2.0.0",
-                  description="REST API метеостанцій України — навчальний приклад уроку 32")
+                  description="REST API метеостанцій України — навчальний приклад уроку 33")
     app.state.repo = repo
 
     @app.exception_handler(NotFoundError)

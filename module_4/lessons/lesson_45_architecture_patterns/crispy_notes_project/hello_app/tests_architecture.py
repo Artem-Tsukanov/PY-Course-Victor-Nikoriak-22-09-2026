@@ -1,4 +1,4 @@
-"""Урок 44: тести архітектури — шари, правила доступу, CBV, кількість запитів, DATABASE_URL.
+"""Урок 45: тести архітектури — шари, правила доступу, CBV, кількість запитів, DATABASE_URL.
 
     python manage.py test hello_app.tests_architecture
     DATABASE_URL=postgres://notes_user:notes_pass@localhost:5432/notes_db python manage.py test   # на PostgreSQL
@@ -54,7 +54,7 @@ class ThinTransportLayerTests(TestCase):
                 self.assertEqual(orm_in_transport_layer(APP / name), [])
 
     def test_checker_finds_violations(self):
-        """Перевірка перевірки: на коді уроку 40 правило знайшло б порушення."""
+        """Перевірка перевірки: на коді уроку 41 правило знайшло б порушення."""
         sample = Path(tempfile.mkdtemp()) / "tests_architecture_sample.py"
         sample.write_text("def v(request, pk):\n"
                           "    get_object_or_404(Note, pk=pk)\n"

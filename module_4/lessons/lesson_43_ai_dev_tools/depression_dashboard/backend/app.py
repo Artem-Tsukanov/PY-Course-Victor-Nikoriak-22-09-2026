@@ -23,7 +23,7 @@ def _finite(value: Any) -> Any:
 
 
 class StrictJSONProvider(DefaultJSONProvider):
-    """Урок 42: порядок ключів — як у словнику (сервіси сортують за важливістю), і лише валідний JSON."""
+    """Урок 43: порядок ключів — як у словнику (сервіси сортують за важливістю), і лише валідний JSON."""
     sort_keys = False                     # Flask за замовчуванням сортує ключі за алфавітом
 
     def dumps(self, obj: Any, **kwargs: Any) -> str:

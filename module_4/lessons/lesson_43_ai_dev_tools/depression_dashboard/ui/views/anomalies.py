@@ -16,7 +16,7 @@ def render():
     col3.metric(
         "Depression in Anomalies",
         f"{data['depression_in_anomalies']:.1%}",
-        # урок 42: було delta="vs overall" — підпис без порівняння; тепер справжня різниця
+        # урок 43: було delta="vs overall" — підпис без порівняння; тепер справжня різниця
         delta=f"{data['depression_in_anomalies'] - data['depression_overall']:+.1%} vs overall",
     )
 

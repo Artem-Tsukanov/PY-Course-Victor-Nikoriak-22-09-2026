@@ -614,7 +614,7 @@ from django.contrib.auth.models import User
 admin_user = User.objects.get(username="admin")
 print(admin_user.is_superuser, admin_user.is_staff)
 print(admin_user.password.split("$")[0])
-print(admin_user.check_password("lesson33-pass"), admin_user.check_password("qwerty"))
+print(admin_user.check_password("lesson34-pass"), admin_user.check_password("qwerty"))
 ```
 
 ```text

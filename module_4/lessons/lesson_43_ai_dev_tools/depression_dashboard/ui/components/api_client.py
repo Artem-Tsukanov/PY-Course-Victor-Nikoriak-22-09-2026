@@ -23,7 +23,7 @@ def _post(endpoint: str, payload: dict, headers: dict | None = None) -> dict:
     url = f"{BACKEND}{endpoint}"
     try:
         r = requests.post(url, json=payload, headers=headers, timeout=120)
-        if r.status_code == 422:                  # урок 42: бекенд пояснює, яке поле не так
+        if r.status_code == 422:                  # урок 43: бекенд пояснює, яке поле не так
             fields = ", ".join(e["field"] for e in r.json().get("errors", []))
             st.error(f"Неправильні дані анкети: {fields}")
             st.stop()

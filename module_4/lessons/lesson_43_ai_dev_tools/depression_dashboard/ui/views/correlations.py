@@ -18,7 +18,7 @@ def render():
     st.subheader("Top Predictors of Depression")
     st.plotly_chart(depression_correlation_bar(corr), use_container_width=True)
 
-    # урок 42: явне сортування — було «перші 3 ключі JSON», тобто за алфавітом (Academic Pressure, Age, CGPA)
+    # урок 43: явне сортування — було «перші 3 ключі JSON», тобто за алфавітом (Academic Pressure, Age, CGPA)
     positive = sorted(((k, v) for k, v in corr["with_depression"].items() if v and v > 0),
                       key=lambda kv: kv[1], reverse=True)[:3]
     st.info(

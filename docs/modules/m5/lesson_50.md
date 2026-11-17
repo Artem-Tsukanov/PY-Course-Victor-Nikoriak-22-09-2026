@@ -13,13 +13,13 @@
 
 | Урок | Крок |
 |---|---|
-| 48 | образ `news_hub`: `Dockerfile`, `.dockerignore`, `/health/ready`, тести образу |
-| **49** | **Compose для обох проєктів; nginx; реальний IP клієнта; деплой і бекап** |
-| 50 | CI/CD: тести й збірка образу на кожен PR |
+| 49 | образ `news_hub`: `Dockerfile`, `.dockerignore`, `/health/ready`, тести образу |
+| **50** | **Compose для обох проєктів; nginx; реальний IP клієнта; деплой і бекап** |
+| 51 | CI/CD: тести й збірка образу на кожен PR |
 
 Проєкти: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_50_compose_deploy/news_hub), [`crispy_notes_project`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_50_compose_deploy/crispy_notes_project).
 
-**Що потрібно з попередніх уроків:** образ, том, мережа, `/health` і `/health/ready` (48); rate limit входу (39, 46); webhook Telegram (47); чат на WebSocket і channel layer (45); `set -euo pipefail` ([бонус Linux](bonus_linux.md#pipes)).
+**Що потрібно з попередніх уроків:** образ, том, мережа, `/health` і `/health/ready` (49); rate limit входу (40, 47); webhook Telegram (48); чат на WebSocket і channel layer (46); `set -euo pipefail` ([бонус Linux](bonus_linux.md#pipes)).
 
 **Після уроку ти зможеш:**
 

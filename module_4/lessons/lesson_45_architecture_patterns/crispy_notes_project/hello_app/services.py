@@ -43,7 +43,7 @@ def update_note(note, *, title=None, content=None, priority=None,
         note.group = group
         changed_fields.append('group')
     if changed_fields:
-        # auto_now оновлюється лише тоді, коли поле є в update_fields (урок 35, «Знайди помилку»)
+        # auto_now оновлюється лише тоді, коли поле є в update_fields (урок 36, «Знайди помилку»)
         note.save(update_fields=changed_fields + ['updated_at'])
     if tag_ids is not None:
         valid_tags = Tag.objects.filter(id__in=tag_ids, user=note.user)

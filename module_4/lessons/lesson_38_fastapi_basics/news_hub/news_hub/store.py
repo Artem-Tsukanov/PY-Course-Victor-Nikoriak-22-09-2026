@@ -1,9 +1,9 @@
 """Сховище новин у пам'яті процесу.
 
-Рефакторинг уроку 37: у прототипі `news_dashboard` ендпоінти самі ходили в MongoDB
+Рефакторинг уроку 38: у прототипі `news_dashboard` ендпоінти самі ходили в MongoDB
 (`db.news.update_one(..., upsert=True)`, `db.news.find(query)`). Тут той самий контракт
 винесено в клас `NewsStore`, а ендпоінти отримують його через `Depends`.
-Урок 38 замінить цей клас на SQLAlchemy — з тими самими методами.
+Урок 39 замінить цей клас на SQLAlchemy — з тими самими методами.
 """
 from collections import Counter
 from collections.abc import Iterable

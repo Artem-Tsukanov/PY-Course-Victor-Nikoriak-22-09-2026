@@ -1,12 +1,12 @@
 """
 tests_consumers.py — unit тести WebSocket Consumer (GroupChatConsumer)
 
-Урок 45: notes_app/tests/test_consumers.py з notes_chat_app без змін (лише імпорти hello_app).
+Урок 46: notes_app/tests/test_consumers.py з notes_chat_app без змін (лише імпорти hello_app).
 Нові тести уроку — tests_chat.py.
 
 РІВЕНЬ ТЕСТУВАННЯ:
   Unit (цей файл) → Django Channels WebsocketCommunicator, без реального браузера
-  E2E             → у цьому проєкті: Playwright-перевірка сторінки чату (урок 45)
+  E2E             → у цьому проєкті: Playwright-перевірка сторінки чату (урок 46)
 
 ЧИМ ВІДРІЗНЯЄТЬСЯ ВІД SELENIUM ТЕСТІВ:
   Selenium:             реальний браузер → HTTP → WSGI (StaticLiveServerTestCase)

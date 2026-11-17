@@ -6,18 +6,18 @@
 
 | Урок | Крок агрегатора |
 |---|---|
-| 36 | парсер з типами; `NewsItem` на Pydantic |
-| 37 | FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman |
-| **38** | **SQLAlchemy: новини в базі, унікальний `url`, повний CRUD, Alembic** |
-| 39 | middleware, кеш і rate limit на Redis |
-| 41 | тести API |
-| 43 | Gemini: підсумок, категорія, тональність |
-| 47 | Telegram-бот |
-| 48–50 | Docker, Compose, CI/CD |
+| 37 | парсер з типами; `NewsItem` на Pydantic |
+| 38 | FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman |
+| **39** | **SQLAlchemy: новини в базі, унікальний `url`, повний CRUD, Alembic** |
+| 40 | middleware, кеш і rate limit на Redis |
+| 42 | тести API |
+| 44 | Gemini: підсумок, категорія, тональність |
+| 48 | Telegram-бот |
+| 49–51 | Docker, Compose, CI/CD |
 
 Проєкт: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_39_fastapi_sqlalchemy/news_hub).
 
-**Що потрібно з попередніх уроків:** SQL — таблиці, `UNIQUE`, `GROUP BY`, транзакції, параметри замість f-рядків (урок 30); `async`/`await` (27); FastAPI, `Depends`, `lifespan`, `TestClient` (37); `NewsItem` (36).
+**Що потрібно з попередніх уроків:** SQL — таблиці, `UNIQUE`, `GROUP BY`, транзакції, параметри замість f-рядків (урок 30); `async`/`await` (28); FastAPI, `Depends`, `lifespan`, `TestClient` (38); `NewsItem` (37).
 
 **Після уроку ти зможеш:**
 
@@ -149,7 +149,7 @@ CREATE INDEX ix_news_source ON news (source)
 
 `NewsRepository` має **ті самі методи**, що `NewsStore` з уроку 38: `add_many`, `find`, `count`, `stats`, `clear`. Тому ендпоінти майже не змінилися:
 
-```diff title="news_hub/api.py: було (37) → стало (38)"
+```diff title="news_hub/api.py: було (38) → стало (39)"
 -StoreDep = Annotated[NewsStore, Depends(get_store)]
 +SessionDep = Annotated[AsyncSession, Depends(get_db, scope="function")]
 +

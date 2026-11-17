@@ -1,4 +1,4 @@
-"""Маршрути застосунку. Урок 44: нотатки, записники й теги — CBV (`.as_view()`), імена маршрутів ті самі."""
+"""Маршрути застосунку. Урок 45: нотатки, записники й теги — CBV (`.as_view()`), імена маршрутів ті самі."""
 from django.urls import path
 from . import views
 
@@ -57,5 +57,5 @@ urlpatterns = [
     path('groups/new/',              views.group_create,  name='group_create'),
     path('groups/<int:pk>/',         views.group_detail,  name='group_detail'),
     path('groups/<int:pk>/delete/',  views.group_delete,  name='group_delete'),
-    path('groups/<int:pk>/chat/',    views.group_chat,    name='group_chat'),   # урок 45: сторінка чату (WS — hello_project/routing.py)
+    path('groups/<int:pk>/chat/',    views.group_chat,    name='group_chat'),   # урок 46: сторінка чату (WS — hello_project/routing.py)
 ]

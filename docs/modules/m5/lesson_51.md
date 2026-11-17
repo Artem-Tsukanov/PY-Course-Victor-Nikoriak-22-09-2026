@@ -10,13 +10,13 @@
 
 | Урок | Крок |
 |---|---|
-| 48 | образ `news_hub`, тести образу |
-| 49 | Compose для обох проєктів; nginx; деплой і бекап |
-| **50** | **CI на кожен PR: тести ×2 версії Python, мінімальні версії, PostgreSQL, типи, образ + smoke; CD: образ у ghcr.io з `main`** |
+| 49 | образ `news_hub`, тести образу |
+| 50 | Compose для обох проєктів; nginx; деплой і бекап |
+| **51** | **CI на кожен PR: тести ×2 версії Python, мінімальні версії, PostgreSQL, типи, образ + smoke; CD: образ у ghcr.io з `main`** |
 
 Проєкти: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_51_ci_cd/news_hub), [`crispy_notes_project`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_51_ci_cd/crispy_notes_project). Workflows: [`.github/workflows/news_hub.yml`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/.github/workflows/news_hub.yml), [`.github/workflows/crispy_notes.yml`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/.github/workflows/crispy_notes.yml).
 
-**Що потрібно з попередніх уроків:** pytest, маркери й фікстури (25, 41); Git, гілки й pull request (15); тести образу (48); Compose, `.env`, smoke-перевірки (49); коди виходу ([бонус Linux](bonus_linux.md#pipes)).
+**Що потрібно з попередніх уроків:** pytest, маркери й фікстури (26, 42); Git, гілки й pull request (16); тести образу (49); Compose, `.env`, smoke-перевірки (50); коди виходу ([бонус Linux](bonus_linux.md#pipes)).
 
 **Після уроку ти зможеш:**
 
@@ -202,7 +202,7 @@ Ran 81 tests … OK
 | `makemigrations --check` (нотатки) | змінили модель і забули міграцію |
 | `mypy --strict` | помилки типів |
 | `check --deploy` (нотатки) | налаштування сервера: `DEBUG=0` без ключа не стартує, HTTPS-налаштування без помилок |
-| `образ і smoke-тест` | зібрана система працює: тести образу (48) + стек через nginx (49) |
+| `образ і smoke-тест` | зібрана система працює: тести образу (49) + стек через nginx (50) |
 
 **Мінімальні версії.** `requirements.txt` обіцяє: `djangorestframework-simplejwt>=5.3` — «працює з 5.3 і новішими». Але CI зазвичай ставить **найновіші** версії, тож нижню межу ніхто не перевіряє. `uv` уміє поставити саме найменші дозволені:
 

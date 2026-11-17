@@ -1,4 +1,4 @@
-"""Урок 46: POST /api/webhooks/scrape — зовнішній планувальник запускає збір, підписуючи запит HMAC."""
+"""Урок 47: POST /api/webhooks/scrape — зовнішній планувальник запускає збір, підписуючи запит HMAC."""
 import json
 import os
 import time

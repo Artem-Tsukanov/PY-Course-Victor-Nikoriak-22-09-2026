@@ -1,4 +1,4 @@
-"""Локальний двійник Telegram Bot API — для тестів, ноутбука й запуску без мережі. Урок 47.
+"""Локальний двійник Telegram Bot API — для тестів, ноутбука й запуску без мережі. Урок 48.
 
 Справжній Telegram — https://api.telegram.org/bot<TOKEN>/<method>. aiogram уміє ходити на інший сервер
 (`TelegramAPIServer.from_base(...)`) — так працює й офіційний локальний Bot API server. Двійник відповідає

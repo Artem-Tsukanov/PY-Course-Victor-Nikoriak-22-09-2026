@@ -18,10 +18,10 @@
 
 | Урок | Що робимо |
 |---|---|
-| **51** | **зріз курсу, аудит баз і застосунків, рекомендації; вибір і старт фінального проєкту** |
-| 52 | випускний: презентація фінального проєкту |
+| **52** | **зріз курсу, аудит баз і застосунків, рекомендації; вибір і старт фінального проєкту** |
+| 53 | випускний: презентація фінального проєкту |
 
-**Що потрібно з попередніх уроків:** увесь курс; найбільше — SQL та індекси (29), Redis (30), шари й патерни (44), Compose (49) і CI (50).
+**Що потрібно з попередніх уроків:** увесь курс; найбільше — SQL та індекси (30), Redis (31), шари й патерни (45), Compose (50) і CI (51).
 
 **Після уроку ти зможеш:**
 
@@ -57,27 +57,27 @@ flowchart TD
     classDef error    fill:#ffebee,stroke:#c62828,stroke-width:3px,color:#1a1a1a;
     classDef warning  fill:#fff8e1,stroke:#e65100,stroke-width:2px,color:#1a1a1a;
 
-    subgraph M1["М1. Python Core · 1–17"]
+    subgraph M1["М1. Python Core · 1–18"]
         direction LR
         A1["типи, умови, цикли,<br>функції, декоратори"] --> A2["генератори, модулі,<br>винятки, файли, Git"] --> A3["CLI-проєкт<br>(урок 18)"]
     end
-    subgraph M2["М2. Python Advanced · 18–28"]
+    subgraph M2["М2. Python Advanced · 19–29"]
         direction LR
         B1["класи, наслідування,<br>dunder, @property"] --> B2["pytest,<br>asyncio"] --> B3["ООП-пакет dispatch<br>(урок 29)"]
     end
-    subgraph M3["М3. Бази даних · 29–30"]
+    subgraph M3["М3. Бази даних · 30–31"]
         direction LR
         C0["бонус: pandas,<br>Dash"] --> C1["SQL,<br>PostgreSQL"] --> C2["Redis"]
     end
-    subgraph M4["М4. Веб · 31–47"]
+    subgraph M4["М4. Веб · 32–48"]
         direction LR
         D1["HTTP, REST,<br>Django, DRF"] --> D2["FastAPI, SQLAlchemy,<br>Redis, тести"] --> D3["LLM, WebSocket,<br>security, Telegram"]
     end
-    subgraph M5["М5. Production · 48–50"]
+    subgraph M5["М5. Production · 49–51"]
         direction LR
         E0["бонус:<br>Linux"] --> E1["Docker"] --> E2["Compose,<br>деплой"] --> E3["CI/CD"]
     end
-    subgraph M6["М6. Капстоун · 51–52"]
+    subgraph M6["М6. Капстоун · 52–53"]
         direction LR
         F1["аудит і план<br>(урок 52)"] --> F2["фінальний проєкт"] --> F3["презентація<br>(урок 53)"]
     end
@@ -106,26 +106,26 @@ flowchart TD
 
 | Урок | `news_hub`: що додано | рядків | тестів |
 |---|---|---:|---:|
-| 36 | `NewsItem` (Pydantic), парсер rbc.ua | 231 | 9 |
-| 37 | FastAPI, скрапер aiohttp | 527 | 17 |
-| 38 | SQLAlchemy async, Alembic, CRUD | 756 | 27 |
-| 39 | кеш Redis, middleware, rate limit, фонові задачі | 1092 | 36 |
-| 41 | тести: unit / integration, фікстури, фейкова мережа | 1122 | 61 |
-| 42 | RSS, написаний Claude Code за тестом-специфікацією | 1212 | 72 |
-| 43 | LLM: Gemini / Anthropic, circuit breaker | 1853 | 121 |
-| 46 | JWT адміна, захист від SSRF, підписані webhooks | 2481 | 159 |
-| 47 | бот aiogram, підписки, розсилка | 3140 | 189 |
-| 48–50 | образ, Compose, CI | 3220 | 202 функції → **351** зібраний тест |
+| 37 | `NewsItem` (Pydantic), парсер rbc.ua | 231 | 9 |
+| 38 | FastAPI, скрапер aiohttp | 527 | 17 |
+| 39 | SQLAlchemy async, Alembic, CRUD | 756 | 27 |
+| 40 | кеш Redis, middleware, rate limit, фонові задачі | 1092 | 36 |
+| 42 | тести: unit / integration, фікстури, фейкова мережа | 1122 | 61 |
+| 43 | RSS, написаний Claude Code за тестом-специфікацією | 1212 | 72 |
+| 44 | LLM: Gemini / Anthropic, circuit breaker | 1853 | 121 |
+| 47 | JWT адміна, захист від SSRF, підписані webhooks | 2481 | 159 |
+| 48 | бот aiogram, підписки, розсилка | 3140 | 189 |
+| 49–51 | образ, Compose, CI | 3220 | 202 функції → **351** зібраний тест |
 
 | Урок | Проєкт нотаток: що додано | рядків | тестів |
 |---|---|---:|---:|
-| 33 | `hello_project`: модель `Note`, admin | 249 | 3 |
-| 34 | форми, crispy, Bootstrap | 1863 | 6 |
-| 35 | DRF API над services/selectors | 1994 | 16 |
-| 40 | групи, скидання пароля, JWT, throttle | 2360 | 29 |
-| 44 | CBV, правила доступу лише в selectors, PostgreSQL | 2468 | 49 |
-| 45 | чат: Channels, consumers | 2912 | 59 |
-| 49–50 | Docker, health, `check --deploy` | 3008 | 64 функції → **81** тест (`manage.py test`) |
+| 34 | `hello_project`: модель `Note`, admin | 249 | 3 |
+| 35 | форми, crispy, Bootstrap | 1863 | 6 |
+| 36 | DRF API над services/selectors | 1994 | 16 |
+| 41 | групи, скидання пароля, JWT, throttle | 2360 | 29 |
+| 45 | CBV, правила доступу лише в selectors, PostgreSQL | 2468 | 49 |
+| 46 | чат: Channels, consumers | 2912 | 59 |
+| 50–51 | Docker, health, `check --deploy` | 3008 | 64 функції → **81** тест (`manage.py test`) |
 
 Тести росли швидше за код: у `news_hub` на кожні 10 рядків пакета — понад один тест. Це не випадковість: кожен урок М4 додавав функцію **разом** з тестами, які її фіксують, і жодна зміна не зливалась з червоним CI.
 
@@ -133,18 +133,18 @@ flowchart TD
 
 | Тема курсу | Де в проєктах |
 |---|---|
-| декоратори (9, 18) | `@app.get`, `@asynccontextmanager` (lifespan), `@login_required`, `@pytest.fixture` |
-| генератори, `yield` (10, 24) | `lifespan` FastAPI, `get_db` (сесія на запит), фікстури з прибиранням |
-| модулі й пакети (12) | `news_hub.bot`, `hello_app.selectors`; `python -m news_hub.bot` |
-| винятки (13) | `HTTPException`, `LLMError` → 502/503, повтор при 429 Telegram |
-| JSON (14) | Pydantic-моделі, `model_dump_json` у кеші Redis |
-| Git і PR (15) | кожен урок — гілка і PR з CI |
-| хешування (16) | ключі кешу `sha256` від параметрів, HMAC webhooks, bcrypt паролів |
-| класи, композиція (19–23) | репозиторії, `NewsCache`, `CircuitBreaker`, моделі Django, CBV з mixins |
-| pytest (25, 41) | 351 + 81 тест, маркери, фікстури, двійник Telegram |
-| asyncio (27) | скрапер aiohttp, async SQLAlchemy, бот, WebSocket |
-| SQL, індекси (29) | `UNIQUE (url)`, складені індекси, `INSERT … ON CONFLICT … RETURNING` |
-| Redis (30) | кеш, лічильники, статуси задач, channel layer чату |
+| декоратори (10, 19) | `@app.get`, `@asynccontextmanager` (lifespan), `@login_required`, `@pytest.fixture` |
+| генератори, `yield` (11, 25) | `lifespan` FastAPI, `get_db` (сесія на запит), фікстури з прибиранням |
+| модулі й пакети (13) | `news_hub.bot`, `hello_app.selectors`; `python -m news_hub.bot` |
+| винятки (14) | `HTTPException`, `LLMError` → 502/503, повтор при 429 Telegram |
+| JSON (15) | Pydantic-моделі, `model_dump_json` у кеші Redis |
+| Git і PR (16) | кожен урок — гілка і PR з CI |
+| хешування (17) | ключі кешу `sha256` від параметрів, HMAC webhooks, bcrypt паролів |
+| класи, композиція (20–24) | репозиторії, `NewsCache`, `CircuitBreaker`, моделі Django, CBV з mixins |
+| pytest (26, 42) | 351 + 81 тест, маркери, фікстури, двійник Telegram |
+| asyncio (28) | скрапер aiohttp, async SQLAlchemy, бот, WebSocket |
+| SQL, індекси (30) | `UNIQUE (url)`, складені індекси, `INSERT … ON CONFLICT … RETURNING` |
+| Redis (31) | кеш, лічильники, статуси задач, channel layer чату |
 
 ## Архітектура баз даних { #databases }
 
@@ -728,7 +728,7 @@ graph LR
     class CI,GHCR step
 ```
 
-Кожна частина цієї схеми — окремий урок: nginx і репліки (49), міграції одним сервісом (49), образ (48), CI (50). Фінальному проєкту не обов'язково мати їх усі — але мати `Dockerfile`, `docker-compose.yml` і CI варто з першого дня: додати їх у кінці завжди важче.
+Кожна частина цієї схеми — окремий урок: nginx і репліки (50), міграції одним сервісом (50), образ (49), CI (51). Фінальному проєкту не обов'язково мати їх усі — але мати `Dockerfile`, `docker-compose.yml` і CI варто з першого дня: додати їх у кінці завжди важче.
 
 ## Фінальний проєкт { #final-project }
 

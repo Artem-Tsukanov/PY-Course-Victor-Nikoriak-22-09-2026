@@ -1,7 +1,7 @@
 > **Урок 36 курсу — рефакторинг 3: + REST API.** Це `crispy_notes_project` з уроку 35 (туторіал нижче — без змін) плюс Django REST Framework:
 > `hello_app/api.py` (серіалізатори й `NoteViewSet` поверх `services`/`selectors`), `/api/notes/` і `/api/schema/` у `hello_project/urls.py`,
 > `REST_FRAMEWORK` у `settings.py`, тести `hello_app/tests_api.py`.
-> Розбір змін: [урок 36 у книзі курсу](https://nikoriakviktor.github.io/PY-Course-Victor-Nikoriak-22-09-2026/modules/m4/lesson_35/).
+> Розбір змін: [урок 36 у книзі курсу](https://nikoriakviktor.github.io/PY-Course-Victor-Nikoriak-22-09-2026/modules/m4/lesson_36/).
 >
 > ```bash
 > pip install -r requirements.txt

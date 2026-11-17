@@ -1,13 +1,13 @@
 """Pydantic-модель новини — межа між «сирим» HTML і рештою застосунку.
 
-Рефакторинг уроку 36: замість словника `{"title": ..., "url": ...}` без жодних гарантій —
+Рефакторинг уроку 37: замість словника `{"title": ..., "url": ...}` без жодних гарантій —
 `NewsItem`, який або перевірений, або не створений (`ValidationError`).
-Далі цю модель використовують FastAPI (урок 37), база (38) і Gemini (43).
+Далі цю модель використовують FastAPI (урок 38), база (39) і Gemini (44).
 
-Урок 41: тест конвеєра «парсер → модель» на збереженій розмітці знайшов, що новини з контейнерів
+Урок 42: тест конвеєра «парсер → модель» на збереженій розмітці знайшов, що новини з контейнерів
 (`<time datetime="2024-05-08T10:30:00">`) модель відхиляла: `published_time` приймав лише «HH:MM».
 Покриття гілок знайшло й друге: перевірка `host.endswith("rbc.ua")` пропускала `fakerbc.ua` → `is_rbc_host`.
-Урок 42: друге джерело — «Українська правда» (RSS): `is_allowed_host` (rbc.ua, pravda.com.ua, epravda.com.ua),
+Урок 43: друге джерело — «Українська правда» (RSS): `is_allowed_host` (rbc.ua, pravda.com.ua, epravda.com.ua),
 мова й категорія для URL без /ukr/ — зміни внесено Claude Code за специфікацією, категорію виправлено на рецензії.
 """
 from datetime import datetime, time
@@ -68,7 +68,7 @@ class NewsItem(BaseModel):
             derived["lang"] = LANGS[path[0]]
         elif not is_rbc_host(parts.hostname):
             derived["lang"] = "uk"          # pravda.com.ua / epravda.com.ua — завжди українською, без /ukr/
-        # rbc.ua: /ukr/news/… — розділ другий; pravda.com.ua: /news/2026/09/26/… — перший (рецензія, урок 42:
+        # rbc.ua: /ukr/news/… — розділ другий; pravda.com.ua: /news/2026/09/26/… — перший (рецензія, урок 43:
         # код асистента брав другий сегмент і для правди → категорія «2026», якщо в RSS немає <category>)
         section = path[1] if is_rbc_host(parts.hostname) and len(path) > 1 else (path[0] if path else "")
         if section:

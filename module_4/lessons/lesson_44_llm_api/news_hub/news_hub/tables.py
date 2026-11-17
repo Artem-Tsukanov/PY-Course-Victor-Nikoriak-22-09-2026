@@ -4,7 +4,7 @@
 - `NewsItem` (Pydantic, models.py) — **перевірка** даних з парсера й тіла запиту;
 - `NewsRow` (SQLAlchemy, тут) — **рядок таблиці**: id, унікальний url, час збору.
 
-Урок 43: результат аналізу LLM — у тих самих рядках (`summary` … `analyzed_at`, міграція 0002).
+Урок 44: результат аналізу LLM — у тих самих рядках (`summary` … `analyzed_at`, міграція 0002).
 Усі поля можуть бути NULL: новину зберігаємо одразу, аналізуємо пізніше (або ніколи).
 """
 from datetime import datetime, time
@@ -27,7 +27,7 @@ class NewsRow(Base):
     published_time: Mapped[time | None] = mapped_column(Time)
     scraped_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
-    # Аналіз LLM (урок 43): NULL — ще не аналізували
+    # Аналіз LLM (урок 44): NULL — ще не аналізували
     summary: Mapped[str | None] = mapped_column(String(300))
     ai_category: Mapped[str | None] = mapped_column(String(30), index=True)
     sentiment: Mapped[str | None] = mapped_column(String(10), index=True)

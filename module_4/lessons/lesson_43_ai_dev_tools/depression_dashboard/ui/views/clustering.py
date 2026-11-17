@@ -19,7 +19,7 @@ def render():
     st.divider()
     st.subheader("Cluster Profiles")
 
-    # урок 42: назви були вшиті в код (0 — «High Pressure», 1 — «Sleep Deprived»…), але номери KMeans
+    # урок 43: назви були вшиті в код (0 — «High Pressure», 1 — «Sleep Deprived»…), але номери KMeans
     # довільні: «Sleep Deprived» виявився кластером, що спить найбільше. Назву тепер дає профіль (бекенд).
     profiles = data["cluster_profiles"]
     names = data["cluster_names"]

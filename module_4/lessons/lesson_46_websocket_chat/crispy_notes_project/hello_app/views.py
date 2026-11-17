@@ -1,12 +1,12 @@
 """
 views.py — HTTP шар (тільки request/response).
 
-Урок 44 (крок 3 Django-книги: CRUD і архітектура) — рефакторинг views уроку 40:
+Урок 45 (крок 3 Django-книги: CRUD і архітектура) — рефакторинг views уроку 41:
   - нотатки, записники й теги — class-based views зі стартового `notes_project_cbv`
     (hello_app/views.py), адаптовані до цього проєкту:
     групи, `is_pinned`, «змінює лише автор»;
   - списки справ, покупок, нагадування й групи лишаються функціями — CBV не обов'язкові, обов'язкові тонкі views;
-  - урок 45: group_chat — сторінка чату; повідомлення йдуть через WebSocket (consumers.py);
+  - урок 46: group_chat — сторінка чату; повідомлення йдуть через WebSocket (consumers.py);
   - жодного `Model.objects` і жодного `Q(...)` у цьому файлі: «хто що бачить» і «хто що змінює» —
     функції selectors.*_visible_to / *_owned_by (одне правило для списку, сторінки, редагування й API).
     Перевіряє tests_architecture.py.
@@ -712,9 +712,9 @@ def group_delete(request, pk):
 
 @login_required
 def group_chat(request, pk):
-    """HTTP: сторінка чату групи (HTML + JS). Сам чат — WebSocket: hello_app/consumers.py (урок 45).
+    """HTTP: сторінка чату групи (HTML + JS). Сам чат — WebSocket: hello_app/consumers.py (урок 46).
 
-    З notes_chat_app; доступ — той самий selector, що в group_detail (урок 44): не учасник — 404.
+    З notes_chat_app; доступ — той самий selector, що в group_detail (урок 45): не учасник — 404.
     """
     group = selectors.get_group_with_members(pk, request.user)
     if group is None:

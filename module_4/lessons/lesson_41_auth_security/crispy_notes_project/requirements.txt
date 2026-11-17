@@ -4,4 +4,4 @@ crispy-bootstrap5>=2024.2
 django-debug-toolbar>=4.0
 djangorestframework>=3.16
 drf-spectacular>=0.28
-djangorestframework-simplejwt>=5.3   # урок 40: JWT для API
+djangorestframework-simplejwt>=5.3   # урок 41: JWT для API

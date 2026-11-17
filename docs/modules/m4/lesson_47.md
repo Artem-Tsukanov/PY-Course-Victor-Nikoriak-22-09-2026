@@ -21,15 +21,15 @@ $ curl -X POST http://127.0.0.1:8000/api/analyze/jobs -d '{"limit": 200}'       
 
 | Урок | Крок агрегатора |
 |---|---|
-| 36–39 | парсер і модель, FastAPI, база, Redis |
-| 41–43 | тести; Claude Code і RSS-джерело; аналіз LLM |
-| **46** | **безпека: запис лише адміну з JWT, RSS-джерела за URL без SSRF, підписані webhook** |
-| 47 | Telegram-бот: `/news`, `/digest`, webhook Telegram |
-| 48–50 | Docker, Compose, CI/CD |
+| 37–40 | парсер і модель, FastAPI, база, Redis |
+| 42–44 | тести; Claude Code і RSS-джерело; аналіз LLM |
+| **47** | **безпека: запис лише адміну з JWT, RSS-джерела за URL без SSRF, підписані webhook** |
+| 48 | Telegram-бот: `/news`, `/digest`, webhook Telegram |
+| 49–51 | Docker, Compose, CI/CD |
 
 Проєкт: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_47_security_advanced/news_hub).
 
-**Що потрібно з попередніх уроків:** JWT — будова, підпис, `exp` (урок 41); `Depends` і `dependency_overrides` (37); Alembic (38); Redis, `SET NX`, rate limit (39); тести API й локальний aiohttp-сервер замість мережі (41); HTTP-перенаправлення й DNS (31).
+**Що потрібно з попередніх уроків:** JWT — будова, підпис, `exp` (урок 41); `Depends` і `dependency_overrides` (38); Alembic (39); Redis, `SET NX`, rate limit (40); тести API й локальний aiohttp-сервер замість мережі (42); HTTP-перенаправлення й DNS (32).
 
 **Після уроку ти зможеш:**
 
@@ -738,4 +738,4 @@ is_safe_url: True
 - Бібліотеки: [PyJWT](https://pyjwt.readthedocs.io/en/stable/usage.html), [bcrypt](https://github.com/pyca/bcrypt), [aiohttp — client reference](https://docs.aiohttp.org/en/stable/client_reference.html), Python — [`hmac`](https://docs.python.org/3/library/hmac.html), [`ipaddress`](https://docs.python.org/3/library/ipaddress.html), [`secrets`](https://docs.python.org/3/library/secrets.html).
 - FastAPI: [Security](https://fastapi.tiangolo.com/tutorial/security/), [OAuth2 з JWT](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/).
 - Webhook: [GitHub — Validating webhook deliveries](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries), [Telegram Bot API — setWebhook (`secret_token`)](https://core.telegram.org/bots/api#setwebhook).
-- Уроки курсу: [40 — автентифікація та security basics](lesson_41.md), [39 — Redis і rate limit](lesson_40.md), [41 — тести, мок і фейк](lesson_42.md), [43 — LLM API](lesson_44.md).
+- Уроки курсу: [41 — автентифікація та security basics](lesson_41.md), [40 — Redis і rate limit](lesson_40.md), [42 — тести, мок і фейк](lesson_42.md), [44 — LLM API](lesson_44.md).

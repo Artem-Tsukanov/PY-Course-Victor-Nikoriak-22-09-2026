@@ -7,8 +7,8 @@ services:
     ports:
       - "5050:5050"
     volumes:
-      - models:/app/models      # урок 42: іменований том (був оголошений, але не використовувався)
-      - ../data:/data:ro        # урок 42: було ../data:/app/../data — працювало випадково (/app/.. = /)
+      - models:/app/models      # урок 43: іменований том (був оголошений, але не використовувався)
+      - ../data:/data:ro        # урок 43: було ../data:/app/../data — працювало випадково (/app/.. = /)
     environment:
       FLASK_DEBUG: "false"
       FLASK_HOST: "0.0.0.0"

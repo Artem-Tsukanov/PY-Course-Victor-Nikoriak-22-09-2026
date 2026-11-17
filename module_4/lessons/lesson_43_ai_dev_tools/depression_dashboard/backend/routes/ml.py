@@ -23,7 +23,7 @@ def predict():
     try:
         profile = StudentProfile.model_validate(request.get_json(silent=True))
     except ValidationError as e:
-        # урок 42: 422 з переліком полів; без тексту винятків pandas і без значень, які надіслав клієнт
+        # урок 43: 422 з переліком полів; без тексту винятків pandas і без значень, які надіслав клієнт
         errors = [{"field": ".".join(map(str, err["loc"])) or "body", "message": err["msg"]}
                   for err in e.errors()]
         return jsonify({"error": "invalid input", "errors": errors}), 422
@@ -47,7 +47,7 @@ def feature_importance():
 
 @ml_bp.post("/train")
 def train():
-    """Re-train all models. Урок 42: лише з X-Admin-Token == ADMIN_TOKEN; без ADMIN_TOKEN — вимкнено."""
+    """Re-train all models. Урок 43: лише з X-Admin-Token == ADMIN_TOKEN; без ADMIN_TOKEN — вимкнено."""
     token = request.headers.get("X-Admin-Token", "")
     if not config.ADMIN_TOKEN or not hmac.compare_digest(token.encode(), config.ADMIN_TOKEN.encode()):
         return jsonify({"error": "forbidden"}), 403

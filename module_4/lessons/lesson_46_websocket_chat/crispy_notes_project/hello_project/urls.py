@@ -9,7 +9,7 @@ from hello_app.api import NoteViewSet
 from hello_app.auth_api import ThrottledTokenObtainPairView
 from rest_framework_simplejwt.views import TokenRefreshView
 
-# REST API (урок 35): роутер будує /api/notes/ і /api/notes/<id>/ з NoteViewSet
+# REST API (урок 36): роутер будує /api/notes/ і /api/notes/<id>/ з NoteViewSet
 router = DefaultRouter()
 router.register("notes", NoteViewSet, basename="note")
 
@@ -17,7 +17,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # Django built-in auth: login, logout, password change
     path("accounts/", include("django.contrib.auth.urls")),
-    path("api/token/", ThrottledTokenObtainPairView.as_view(), name="token_obtain_pair"),   # урок 40: JWT
+    path("api/token/", ThrottledTokenObtainPairView.as_view(), name="token_obtain_pair"),   # урок 41: JWT
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/", include(router.urls)),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),

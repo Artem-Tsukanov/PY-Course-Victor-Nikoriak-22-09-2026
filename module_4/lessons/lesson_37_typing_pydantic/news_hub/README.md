@@ -4,14 +4,14 @@
 
 | Урок | Крок |
 |---|---|
-| **36** | **стартовий парсер з анотаціями типів; `NewsItem` на Pydantic** ← ти тут |
-| 37 | FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman |
-| 38 | SQLAlchemy: новини в базі, унікальний `url` |
-| 39 | middleware, кеш і rate limit на Redis |
-| 41 | тести API (pytest + httpx) |
-| 43 | Gemini: підсумок, категорія, тональність |
-| 47 | Telegram-бот: `/news`, `/digest` |
-| 48–50 | Docker, Compose, CI/CD |
+| **37** | **стартовий парсер з анотаціями типів; `NewsItem` на Pydantic** ← ти тут |
+| 38 | FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman |
+| 39 | SQLAlchemy: новини в базі, унікальний `url` |
+| 40 | middleware, кеш і rate limit на Redis |
+| 42 | тести API (pytest + httpx) |
+| 44 | Gemini: підсумок, категорія, тональність |
+| 48 | Telegram-бот: `/news`, `/digest` |
+| 49–51 | Docker, Compose, CI/CD |
 
 ## Що тут
 
@@ -26,7 +26,7 @@ news_hub/
 └── tests/            ← pytest: моделі, парсер, знімок
 ```
 
-Джерела коду: `parse_rbc_news` — ноутбук про веб-скрапінг `note_lesson_32_web_scraping.ipynb`; словник категорій — `news_dashboard/app/scraper.py`. Знімок — `rbc_news.json` поруч із тим самим ноутбуком.
+Джерела коду: `parse_rbc_news` — ноутбук про веб-скрапінг `module_4/bonus/lesson_http_requests/note_lesson_31_web_scraping.ipynb`; словник категорій — `news_dashboard/app/scraper.py`. Знімок — `rbc_news.json` поруч із тим самим ноутбуком.
 
 ## Запуск
 
@@ -48,4 +48,4 @@ html = requests.get("https://www.rbc.ua/ukr/news/", headers={"User-Agent": "EduS
 valid, rejected = validate_news(parse_rbc_news(html))
 ```
 
-Розбір змін — [урок 37 у книзі курсу](https://nikoriakviktor.github.io/PY-Course-Victor-Nikoriak-22-09-2026/modules/m4/lesson_36/).
+Розбір змін — [урок 37 у книзі курсу](https://nikoriakviktor.github.io/PY-Course-Victor-Nikoriak-22-09-2026/modules/m4/lesson_37/).

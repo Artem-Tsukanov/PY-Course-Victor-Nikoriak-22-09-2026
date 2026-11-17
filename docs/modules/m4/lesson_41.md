@@ -1,6 +1,6 @@
 # Урок 41. Автентифікація та security basics (JWT, hashing, OWASP)
 
-Django-гілка курсу веде той самий застосунок нотаток з уроку 34: сторінки з формами (34), JSON API на DRF (35). Вхід на сайт і правило «кожен бачить лише свої нотатки» вже є — `login_required`, `user=request.user`, чужа нотатка → `404`. Сьогодні **рефакторинг 4** — безпека:
+Django-гілка курсу веде той самий застосунок нотаток з уроку 34: сторінки з формами (35), JSON API на DRF (36). Вхід на сайт і правило «кожен бачить лише свої нотатки» вже є — `login_required`, `user=request.user`, чужа нотатка → `404`. Сьогодні **рефакторинг 4** — безпека:
 
 - **спільний доступ**: нотатка належить групі («Сім'я», «Команда») — і тоді вже не можна просто писати `user=request.user`;
 - **паролі**: як Django їх зберігає, зміна й скидання пароля листом;
@@ -11,16 +11,16 @@ Django-гілка курсу веде той самий застосунок н�
 
 | Урок | Django-гілка: застосунок нотаток | Проєкт |
 |---|---|---|
-| 33 | MVT, ORM, admin | `hello_project` |
-| 34 | форми, Bootstrap, crispy | `crispy_notes_project` |
-| 35 | REST API на DRF | + `api.py` |
-| **40** | **групи, паролі, JWT, налаштування безпеки** | **+ групи, `/api/token/`** |
-| 44 | архітектура: services і selectors | — |
-| 45 | чат на WebSocket | — |
+| 34 | MVT, ORM, admin | `hello_project` |
+| 35 | форми, Bootstrap, crispy | `crispy_notes_project` |
+| 36 | REST API на DRF | + `api.py` |
+| **41** | **групи, паролі, JWT, налаштування безпеки** | **+ групи, `/api/token/`** |
+| 45 | архітектура: services і selectors | — |
+| 46 | чат на WebSocket | — |
 
 Проєкт: [`crispy_notes_project`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_41_auth_security/crispy_notes_project).
 
-**Що потрібно з попередніх уроків:** застосунок нотаток і його `services`/`selectors` (33–35), DRF-серіалізатори й `ViewSet` (35), HTTP-заголовки й статус-коди (31–32), хеш-функції (урок 17).
+**Що потрібно з попередніх уроків:** застосунок нотаток і його `services`/`selectors` (34–36), DRF-серіалізатори й `ViewSet` (36), HTTP-заголовки й статус-коди (32–33), хеш-функції (урок 17).
 
 **Після уроку ти зможеш:**
 
@@ -493,7 +493,7 @@ System check identified 4 issues (0 silenced).
 
 | Ризик | Де в проєкті | Що захищає |
 |---|---|---|
-| **A01** Broken Access Control | чужа нотатка; нотатка групи в API | `404` для чужих (35), `_get_own_note` → `403` для учасників (40), групи у формі — лише свої |
+| **A01** Broken Access Control | чужа нотатка; нотатка групи в API | `404` для чужих (36), `_get_own_note` → `403` для учасників (41), групи у формі — лише свої |
 | **A02** Cryptographic Failures | паролі, `SECRET_KEY` | PBKDF2 з сіллю; ключ зі змінної середовища |
 | **A03** Injection | фільтри й пошук | ORM передає значення параметрами (урок 30); автоекранування шаблонів |
 | **A05** Security Misconfiguration | `DEBUG`, `ALLOWED_HOSTS`, заголовки | `check --deploy`, блок налаштувань безпеки |

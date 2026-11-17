@@ -4,14 +4,14 @@
 
 | Урок | Крок |
 |---|---|
-| 36 | стартовий парсер з анотаціями типів; `NewsItem` на Pydantic |
-| 37 | FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman |
-| 38 | SQLAlchemy: новини в базі, унікальний `url`, повний CRUD, Alembic |
-| 39 | middleware, кеш і rate limit на Redis, фоновий збір |
-| **41** | **тести: unit / integration, HTML-фікстури, мок і фейк мережі, httpx, покриття** ← ти тут |
-| 43 | Gemini: підсумок, категорія, тональність |
-| 47 | Telegram-бот: `/news`, `/digest` |
-| 48–50 | Docker, Compose, CI/CD |
+| 37 | стартовий парсер з анотаціями типів; `NewsItem` на Pydantic |
+| 38 | FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman |
+| 39 | SQLAlchemy: новини в базі, унікальний `url`, повний CRUD, Alembic |
+| 40 | middleware, кеш і rate limit на Redis, фоновий збір |
+| **42** | **тести: unit / integration, HTML-фікстури, мок і фейк мережі, httpx, покриття** ← ти тут |
+| 44 | Gemini: підсумок, категорія, тональність |
+| 48 | Telegram-бот: `/news`, `/digest` |
+| 49–51 | Docker, Compose, CI/CD |
 
 ## Що тут
 
@@ -46,7 +46,7 @@ news_hub/
                         скрапер проти локального aiohttp-сервера
 ```
 
-Джерела коду: Redis-клієнт — `production_bot/backend/core/redis.py`, rate limit — `ai_bot/app/middlewares/rate_limit.py` і `repositories/rate_limit_repo.py`, фоновий збір — `/api/scrape/archive` з `news_dashboard`; база й репозиторій — стартовий `production_bot/backend/core/database.py`, `repositories/base.py`, `migrations/`; API і скрапер — прототип `news_dashboard/app/main.py` і `scraper.py`; `parse_rbc_news` — ноутбук про веб-скрапінг `note_lesson_32_web_scraping.ipynb`; словник категорій — `news_dashboard/app/scraper.py`. Знімок — `rbc_news.json` поруч із тим самим ноутбуком.
+Джерела коду: Redis-клієнт — `production_bot/backend/core/redis.py`, rate limit — `ai_bot/app/middlewares/rate_limit.py` і `repositories/rate_limit_repo.py`, фоновий збір — `/api/scrape/archive` з `news_dashboard`; база й репозиторій — стартовий `production_bot/backend/core/database.py`, `repositories/base.py`, `migrations/`; API і скрапер — прототип `news_dashboard/app/main.py` і `scraper.py`; `parse_rbc_news` — ноутбук про веб-скрапінг `module_4/bonus/lesson_http_requests/note_lesson_31_web_scraping.ipynb`; словник категорій — `news_dashboard/app/scraper.py`. Знімок — `rbc_news.json` поруч із тим самим ноутбуком.
 
 ## Запуск
 
@@ -75,4 +75,4 @@ uvicorn news_hub.api:app --reload
 Свіжа стрічка (коли `www.rbc.ua` доступний з мережі) — `POST /api/scrape` з `{}` або
 `{"mode": "sequential"}`; у відповіді — час кожної сторінки й помилки, якщо сторінка не завантажилась.
 
-Розбір змін — [урок 42 у книзі курсу](https://nikoriakviktor.github.io/PY-Course-Victor-Nikoriak-22-09-2026/modules/m4/lesson_41/).
+Розбір змін — [урок 42 у книзі курсу](https://nikoriakviktor.github.io/PY-Course-Victor-Nikoriak-22-09-2026/modules/m4/lesson_42/).

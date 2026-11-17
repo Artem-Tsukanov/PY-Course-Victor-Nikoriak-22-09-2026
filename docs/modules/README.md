@@ -2,14 +2,14 @@
 
 Програма v5.0 складається з 6 модулів (М6 — капстоун) і самостійного бонусного треку з AI: 52 заняття — 46 уроків і 6 класних практикумів (≈134 год. аудиторно), плюс ≈14 год. самостійного AI-треку. Окремо — бонусні уроки поза нумерацією: pandas (М3), Linux (М5), CV розробника (М6).
 
-| Модуль | Уроки (за v5.0) | Сторінка |
+| Модуль | Уроки | Сторінка |
 |---|---|---|
-| М1. Основи Python | 1–17 | [m1/index.md](m1/index.md) |
-| М2. Python Advanced | 18–28 | [m2_python_advanced.md](m2_python_advanced.md) |
-| М3. Бази даних | 29–30 | [m3_databases.md](m3_databases.md) |
-| М4. Web (+ Web Advanced) | 31–47 | [m4_web.md](m4_web.md) |
-| М5. Production | 48–50 | [m5_production.md](m5_production.md) |
-| М6. Капстоун | 51–52 | [m6_capstone.md](m6_capstone.md) |
+| М1. Основи Python | 1–18 (без 7) | [m1/index.md](m1/index.md) |
+| М2. Python Advanced | 19–29 | [m2_python_advanced.md](m2_python_advanced.md) |
+| М3. Бази даних | 30–31 | [m3_databases.md](m3_databases.md) |
+| М4. Web (+ Web Advanced) | 32–48 | [m4_web.md](m4_web.md) |
+| М5. Production | 49–51 | [m5_production.md](m5_production.md) |
+| М6. Капстоун | 52–53 | [m6_capstone.md](m6_capstone.md) |
 | Self-paced. AI для розробників (бонус) | поза наскрізною нумерацією | [bonus_ai.md](bonus_ai.md) |
 
-Номери уроків — номери з навігаційної таблиці v5.0. Папки уроків мають ту саму нумерацію: `module_N/lessons/lesson_NN_<тема>/`, де `NN` — номер уроку v5.0 (наприклад, урок 5 → `module_1/lessons/lesson_05_lists_tuples_sets/`). Як відкривати ноутбуки — [Ноутбуки в Google Colab](../00_getting_started/colab.md).
+Нумерація уроків курсу пропускає номер 7: після уроку 6 іде урок 8 «Функції». Тому від уроку 8 і далі номер у курсі на одиницю більший, ніж у навігаційній таблиці v5.0 (урок 8 курсу — № 7 у таблиці, урок 53 — № 52). Папки уроків мають нумерацію курсу: `module_N/lessons/lesson_NN_<тема>/`, де `NN` — номер уроку в курсі (наприклад, урок 5 → `module_1/lessons/lesson_05_lists_tuples_sets/`). Як відкривати ноутбуки — [Ноутбуки в Google Colab](../00_getting_started/colab.md).

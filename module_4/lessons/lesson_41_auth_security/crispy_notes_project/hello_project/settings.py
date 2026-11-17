@@ -1,11 +1,11 @@
 """
-Django settings — урок 40: автентифікація й безпека.
+Django settings — урок 41: автентифікація й безпека.
 
 Зі стартового коду (автентифікація й безпека):
   + password reset/change flows   → EMAIL_BACKEND (console), /accounts/password_*/
   + security settings block       → SESSION_COOKIE_HTTPONLY, X_FRAME_OPTIONS, ...
   + Group-based sharing           → Django built-in Group model used in Note/ShoppingList
-Урок 40 курсу додає:
+Урок 41 курсу додає:
   + JWT для API (djangorestframework-simplejwt) → /api/token/, /api/token/refresh/
   + throttle на видачу токена (перебір паролів) → 5 спроб за хвилину
   + SECRET_KEY і DEBUG зі змінних середовища    → ключ підпису JWT не лежить у git для production
@@ -18,7 +18,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Цим ключем підписуються сесії, токени скидання пароля і JWT. Хто його знає — підробить будь-який токен.
-# Для навчання — значення за замовчуванням; на сервері — лише змінна середовища (урок 49).
+# Для навчання — значення за замовчуванням; на сервері — лише змінна середовища (урок 50).
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-crispy-notes-dev-key-change-in-production")
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     # ── Crispy Forms ────────────────────────────────────────────────────────────
     "crispy_forms",       # core: FormHelper, Layout objects
     "crispy_bootstrap5",  # Bootstrap5 template pack
-    # ── REST API (урок 35) ─────────────────────────────────────────────────────────
+    # ── REST API (урок 36) ─────────────────────────────────────────────────────────
     "rest_framework",     # Django REST Framework: серіалізатори, ViewSet, роутер
     "drf_spectacular",    # OpenAPI-схема з ViewSet і серіалізаторів
     # ── Debug ────────────────────────────────────────────────────────────────────
@@ -49,19 +49,19 @@ INSTALLED_APPS = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# ── Django REST Framework (урок 35) ──────────────────────────────────────────────
+# ── Django REST Framework (урок 36) ──────────────────────────────────────────────
 # Вхід — ті самі сесії, що й у HTML-частини (+ Basic для curl/скриптів).
 # Без входу API не віддає нічого: нотатки приватні.
 REST_FRAMEWORK = {
     # Порядок важливий: без облікових даних DRF відповідає за ПЕРШИМ класом. JWT першим → 401 з
     # WWW-Authenticate: Bearer; сесія першою → 403 (у неї немає заголовка WWW-Authenticate).
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework_simplejwt.authentication.JWTAuthentication",     # урок 40: інші клієнти, Bearer
+        "rest_framework_simplejwt.authentication.JWTAuthentication",     # урок 41: інші клієнти, Bearer
         "rest_framework.authentication.SessionAuthentication",           # браузер (cookie + CSRF)
     ],                                                                   # BasicAuthentication прибрано: пароль у кожному запиті
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-    "DEFAULT_THROTTLE_RATES": {"login": "5/min"},                        # урок 40: перебір паролів на /api/token/
+    "DEFAULT_THROTTLE_RATES": {"login": "5/min"},                        # урок 41: перебір паролів на /api/token/
 }
 
 SIMPLE_JWT = {

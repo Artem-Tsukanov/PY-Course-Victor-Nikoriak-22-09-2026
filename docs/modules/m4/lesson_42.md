@@ -11,18 +11,18 @@
 
 | Урок | Крок агрегатора |
 |---|---|
-| 36 | парсер з типами; `NewsItem` на Pydantic |
-| 37 | FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman |
-| 38 | SQLAlchemy: новини в базі, повний CRUD, Alembic |
-| 39 | middleware, кеш і rate limit на Redis, фоновий збір |
-| **41** | **тести: unit / integration, HTML-фікстури, мок і фейк мережі, httpx, покриття** |
-| 43 | Gemini: підсумок, категорія, тональність |
-| 47 | Telegram-бот |
-| 48–50 | Docker, Compose, CI/CD |
+| 37 | парсер з типами; `NewsItem` на Pydantic |
+| 38 | FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman |
+| 39 | SQLAlchemy: новини в базі, повний CRUD, Alembic |
+| 40 | middleware, кеш і rate limit на Redis, фоновий збір |
+| **42** | **тести: unit / integration, HTML-фікстури, мок і фейк мережі, httpx, покриття** |
+| 44 | Gemini: підсумок, категорія, тональність |
+| 48 | Telegram-бот |
+| 49–51 | Docker, Compose, CI/CD |
 
 Проєкт: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_42_api_testing/news_hub).
 
-**Що потрібно з попередніх уроків:** pytest, fixtures, `parametrize`, mock і правило «patch where used», покриття, піраміда тестів (урок 26); `asyncio.gather` (27); `TestClient` і `dependency_overrides` (37); `get_db` і COMMIT (38); `fakeredis` і rate limit (39).
+**Що потрібно з попередніх уроків:** pytest, fixtures, `parametrize`, mock і правило «patch where used», покриття, піраміда тестів (урок 26); `asyncio.gather` (28); `TestClient` і `dependency_overrides` (38); `get_db` і COMMIT (39); `fakeredis` і rate limit (40).
 
 **Після уроку ти зможеш:**
 
@@ -62,7 +62,7 @@
 
 Було — три файли поруч: `test_models.py`, `test_api.py`, `test_redis.py`. Щоб перевірити одну функцію парсера, pytest однаково збирав тести, які піднімають застосунок, базу й Redis.
 
-```text title="tests/: було (39) → стало (41)"
+```text title="tests/: було (40) → стало (42)"
 tests/                              tests/
 ├── conftest.py                     ├── conftest.py        ← фікстура html(), маркер за папкою
 ├── test_models.py                  ├── factories.py       ← make_raw(**зміни)
@@ -392,7 +392,7 @@ Redis-сервер:  naive, atomic = ('2', '10')
 
 `TestClient` синхронний: застосунок крутиться в окремому потоці, запити йдуть по одному, а до Redis чи бази тест дістається через `client.portal.call(...)`. `httpx.AsyncClient` з `ASGITransport` викликає застосунок **напряму**, в тому ж циклі подій, що й тест:
 
-```diff title="tests/integration/conftest.py: client (39) → client + aclient (41)"
+```diff title="tests/integration/conftest.py: client (40) → client + aclient (42)"
 -@pytest.fixture
 -def client() -> Iterator[TestClient]:
 -    extra = {"poolclass": StaticPool} if TEST_DATABASE_URL.startswith("sqlite") else {}
@@ -749,7 +749,7 @@ from pydantic import BaseModel, ValidationError
 from news_hub.parser import parse_rbc_news
 
 
-class NewsTime39(BaseModel):                  # поле published_time моделі уроків 37–40
+class NewsTime40(BaseModel):                  # поле published_time моделі уроків 37–40
     published_time: time | None = None
 
 
@@ -760,7 +760,7 @@ def test_parser_reads_time_attribute() -> None:
 
 
 def test_model_parses_time() -> None:
-    assert NewsTime39(published_time="14:19").published_time == time(14, 19)
+    assert NewsTime40(published_time="14:19").published_time == time(14, 19)
 
 
 test_parser_reads_time_attribute()
@@ -770,7 +770,7 @@ print("обидва тести зелені")
 raw = parse_rbc_news(Path("tests/fixtures/demo_newsline.html").read_text(encoding="utf-8"))
 for item in raw:
     try:
-        NewsTime39(published_time=item["datetime"])
+        NewsTime40(published_time=item["datetime"])
     except ValidationError as error:
         print(f"{item['datetime']!r} → {error.errors()[0]['msg']}")
 ```

@@ -47,7 +47,7 @@ def update_note(note, *, title=None, content=None, priority=None,
         note.group = group
         changed_fields.append('group')
     if changed_fields:
-        # auto_now оновлюється лише тоді, коли поле є в update_fields (урок 35, «Знайди помилку»)
+        # auto_now оновлюється лише тоді, коли поле є в update_fields (урок 36, «Знайди помилку»)
         note.save(update_fields=changed_fields + ['updated_at'])
     if tag_ids is not None:
         valid_tags = Tag.objects.filter(id__in=tag_ids, user=note.user)
@@ -271,19 +271,19 @@ def add_user_to_group(group, username):
 
 
 def remove_user_from_group(group, user):
-    """Removes user from group. Урок 45: відкритий чат цього користувача в групі закривається."""
+    """Removes user from group. Урок 46: відкритий чат цього користувача в групі закривається."""
     group.user_set.remove(user)
     notify_chat(group.pk, {'type': 'member.removed', 'user_id': user.pk})
 
 
 def delete_group(group):
-    """Deletes the group. Notes/lists become personal (group=None via SET_NULL). Урок 45: чат закривається."""
+    """Deletes the group. Notes/lists become personal (group=None via SET_NULL). Урок 46: чат закривається."""
     group_pk = group.pk
     group.delete()
     notify_chat(group_pk, {'type': 'group.deleted'})
 
 
-# ─── Chat (урок 45) ──────────────────────────────────────────────────────────
+# ─── Chat (урок 46) ──────────────────────────────────────────────────────────
 
 CHAT_MESSAGE_MAX_LENGTH = 2000
 

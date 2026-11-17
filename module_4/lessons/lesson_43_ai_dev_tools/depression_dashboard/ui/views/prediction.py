@@ -4,7 +4,7 @@ from ui.components.api_client import post_predict, post_train
 
 
 def _gauge(prob: float, label: str) -> go.Figure:
-    # урок 42: пороги — як у бекенді (_risk_label: 0.5 і 0.75); було 0.3/0.5 і смуги 30/60
+    # урок 43: пороги — як у бекенді (_risk_label: 0.5 і 0.75); було 0.3/0.5 і смуги 30/60
     color = "#E53935" if prob >= 0.75 else "#FFA726" if prob >= 0.5 else "#4CAF50"
     fig = go.Figure(go.Indicator(
         mode="gauge+number+delta",
@@ -35,7 +35,7 @@ _DIETARY_OPTIONS = ["Unhealthy", "Moderate", "Healthy"]
 def render():
     st.header("🤖 Depression Risk Prediction")
     st.caption("RandomForest classifier trained on 27,901 student records")
-    # урок 42: застосунок оцінює ризик депресії й питає про суїцидальні думки — без застереження не можна
+    # урок 43: застосунок оцінює ризик депресії й питає про суїцидальні думки — без застереження не можна
     st.warning("Навчальна модель на відкритому датасеті, а не діагноз. Якщо вам зараз важко — "
                "зверніться до фахівця; в Україні безкоштовна лінія психологічної підтримки: 7333 (Lifeline Ukraine).")
 
@@ -49,13 +49,13 @@ def render():
         st.subheader("Academic & Work")
         c4, c5, c6 = st.columns(3)
         academic_pressure = c4.slider("Academic Pressure (0-5)", 0.0, 5.0, 3.0, 0.5)
-        # урок 42: у датасеті (студенти) Work Pressure і Job Satisfaction майже завжди 0 —
+        # урок 43: у датасеті (студенти) Work Pressure і Job Satisfaction майже завжди 0 —
         # старі значення за замовчуванням 1.0 і 3.0 були поза навчальними даними
         work_pressure = c5.slider("Work Pressure (0-5)", 0.0, 5.0, 0.0, 0.5)
         work_hours = c6.slider("Work/Study Hours per day", 0.0, 16.0, 6.0, 0.5)
 
         st.subheader("Lifestyle & Wellbeing")
-        # урок 42: повзунок CGPA прибрано — CGPA не входить в ознаки моделі й ні на що не впливав
+        # урок 43: повзунок CGPA прибрано — CGPA не входить в ознаки моделі й ні на що не впливав
         c8, c9 = st.columns(2)
         study_sat = c8.slider("Study Satisfaction (0-5)", 0.0, 5.0, 3.0, 0.5)
         job_sat = c9.slider("Job Satisfaction (0-5)", 0.0, 5.0, 0.0, 0.5)
@@ -69,7 +69,7 @@ def render():
         submitted = st.form_submit_button("🔮 Predict Depression Risk", type="primary")
 
     if submitted:
-        # урок 42: лише анкета; похідні ознаки (Risk_Score, Pressure_Sum…) рахує сервер
+        # урок 43: лише анкета; похідні ознаки (Risk_Score, Pressure_Sum…) рахує сервер
         payload = {
             "age": age,
             "gender": gender,
@@ -116,7 +116,7 @@ def render():
 
     st.divider()
     with st.expander("🔄 Re-train Models (admin)"):
-        # урок 42: навчання перезаписує модель — лише з токеном адміністратора (ADMIN_TOKEN бекенду)
+        # урок 43: навчання перезаписує модель — лише з токеном адміністратора (ADMIN_TOKEN бекенду)
         token = st.text_input("Admin token", type="password")
         if st.button("Train all models (takes ~30s)", type="secondary", disabled=not token):
             with st.spinner("Training RandomForest, KMeans, IsolationForest …"):

@@ -10,18 +10,18 @@
 
 | Урок | Крок агрегатора |
 |---|---|
-| 36 | парсер з типами; `NewsItem` на Pydantic |
-| 37 | FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman |
-| 38 | SQLAlchemy: новини в базі, повний CRUD, Alembic |
-| **39** | **middleware, кеш і rate limit на Redis, фоновий збір** |
-| 41 | тести API |
-| 43 | Gemini: підсумок, категорія, тональність |
-| 47 | Telegram-бот |
-| 48–50 | Docker, Compose, CI/CD |
+| 37 | парсер з типами; `NewsItem` на Pydantic |
+| 38 | FastAPI: `GET /api/news`, `POST /api/scrape`, `/docs`, Postman |
+| 39 | SQLAlchemy: новини в базі, повний CRUD, Alembic |
+| **40** | **middleware, кеш і rate limit на Redis, фоновий збір** |
+| 42 | тести API |
+| 44 | Gemini: підсумок, категорія, тональність |
+| 48 | Telegram-бот |
+| 49–51 | Docker, Compose, CI/CD |
 
 Проєкт: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_40_middleware_redis/news_hub).
 
-**Що потрібно з попередніх уроків:** Redis — ключі, `INCR`, `EXPIRE`/`TTL`, hash, pipeline, cache-aside (урок 31); декоратори й функції як значення (9, 18); FastAPI, `Depends`, `lifespan` (37); `get_db` і COMMIT до відповіді (38).
+**Що потрібно з попередніх уроків:** Redis — ключі, `INCR`, `EXPIRE`/`TTL`, hash, pipeline, cache-aside (урок 31); декоратори й функції як значення (10, 19); FastAPI, `Depends`, `lifespan` (38); `get_db` і COMMIT до відповіді (39).
 
 **Після уроку ти зможеш:**
 
@@ -150,7 +150,7 @@ for headers in ({}, {"X-Request-ID": "lesson-39"}):
 
 `GET /api/news` і `/api/news/stats` читають однакові дані сотні разів, а змінюються вони лише під час збору. Це cache-aside з уроку 31:
 
-```diff title="news_hub/api.py: GET /api/news, було (38) → стало (39)"
+```diff title="news_hub/api.py: GET /api/news, було (39) → стало (40)"
 -async def list_news(repo: RepoDep, skip: int = ..., ...) -> list[NewsRow]:
 -    return await repo.find(skip=skip, limit=limit, category=category, source=source, lang=lang or "")
 +async def list_news(repo: RepoDep, cache: CacheDep, skip: int = ..., ...) -> Response:

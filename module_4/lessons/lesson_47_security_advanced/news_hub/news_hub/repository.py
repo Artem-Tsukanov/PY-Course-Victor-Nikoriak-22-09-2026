@@ -1,13 +1,13 @@
 """Репозиторій новин: увесь SQL агрегатора в одному місці.
 
 `BaseRepository` — `backend/repositories/base.py` зі стартового `production_bot` (загальний CRUD
-для будь-якої моделі). `NewsRepository` має **ті самі методи, що `NewsStore` з уроку 37**
+для будь-якої моделі). `NewsRepository` має **ті самі методи, що `NewsStore` з уроку 38**
 (`add_many`, `find`, `count`, `stats`, `clear`) — тому ендпоінти майже не змінились:
 лише `store.find(...)` → `await repo.find(...)`.
 
-Урок 43: аналіз LLM — `save_analysis`, `find_unanalyzed` (для пакетної задачі), фільтри й статистика
+Урок 44: аналіз LLM — `save_analysis`, `find_unanalyzed` (для пакетної задачі), фільтри й статистика
 за темою (`ai_category`) і тональністю.
-Урок 46: `SourceRepository` — RSS-джерела адміна.
+Урок 47: `SourceRepository` — RSS-джерела адміна.
 """
 from collections.abc import Iterable
 from datetime import datetime, timezone
@@ -88,7 +88,7 @@ class NewsRepository(BaseRepository[NewsRow]):
     async def search(self, q: str, limit: int = 20) -> list[NewsRow]:
         """Заголовки, що містять q без урахування регістру: WHERE lower(title) LIKE lower('%' || :q || '%').
 
-        q — параметр запиту, а не частина SQL (урок 29); autoescape: % і _ у q — звичайні символи.
+        q — параметр запиту, а не частина SQL (урок 30); autoescape: % і _ у q — звичайні символи.
         """
         stmt = select(NewsRow).where(NewsRow.title.icontains(q, autoescape=True)).order_by(NewsRow.id).limit(limit)
         return list((await self._session.scalars(stmt)).all())
