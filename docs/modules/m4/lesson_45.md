@@ -35,7 +35,7 @@
 - підключити PostgreSQL через одну змінну середовища, не ламаючи SQLite для тестів і Colab;
 - впізнати в коді патерни Repository, Service layer, Strategy, Decorator, Factory, Dependency Injection, Unit of Work — і пояснити, яку проблему кожен розв'язує.
 
-**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_45_architecture_patterns/note_lesson_45_architecture_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_45_architecture_patterns/note_lesson_45_architecture.ipynb){ .solutions-link } — selectors без HTTP, життєвий цикл CBV, кількість SQL-запитів, патерни `news_hub`.
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_45_architecture_patterns/note_lesson_45_architecture_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_45_architecture_patterns/note_lesson_45_architecture.ipynb){ .solutions-link } — selectors без HTTP (M2M і `distinct()`, лінивий QuerySet), тест архітектури на `ast`, життєвий цикл і MRO CBV, `?next=`, кількість SQL-запитів і `DATABASE_URL`, патерни `news_hub` (Strategy, Decorator, Factory, DI, репозиторій); 38 розібраних прикладів з повним кодом (визначення й запуск — в окремих клітинках) і 3 задачі з перевірками.
 
 ## Пригадай
 

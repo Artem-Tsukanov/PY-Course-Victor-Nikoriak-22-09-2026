@@ -21,7 +21,7 @@
 - перенести розмітку форми з шаблону в `FormHelper` + `Layout` (`{% crispy form %}`);
 - пояснити, навіщо context processor і що таке CSRF.
 
-**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_35_django_forms/note_lesson_35_forms_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_35_django_forms/note_lesson_35_forms.ipynb){ .solutions-link } — форми, CRUD і PRG на `django_bootstrap_project` з перевірками.
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_35_django_forms/note_lesson_35_forms_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_35_django_forms/note_lesson_35_forms.ipynb){ .solutions-link } — форми, CRUD, PRG і CSRF на `django_bootstrap_project`, рефакторинг 2 на `crispy_notes_project`; 3 задачі з перевірками.
 
 ## Пригадай
 

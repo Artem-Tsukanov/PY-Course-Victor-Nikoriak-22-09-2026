@@ -24,7 +24,7 @@
 - отримати OpenAPI-схему API;
 - порівняти Django + DRF і FastAPI і обрати інструмент під задачу.
 
-**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_36_drf_fastapi/note_lesson_36_drf_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_36_drf_fastapi/note_lesson_36_drf.ipynb){ .solutions-link } — серіалізатори й API з перевірками.
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_36_drf_fastapi/note_lesson_36_drf_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_36_drf_fastapi/note_lesson_36_drf.ipynb){ .solutions-link } — серіалізатори, API через `APIClient`, IDOR, OpenAPI-схема і той самий API на FastAPI; 3 задачі з перевірками.
 
 ## Пригадай
 

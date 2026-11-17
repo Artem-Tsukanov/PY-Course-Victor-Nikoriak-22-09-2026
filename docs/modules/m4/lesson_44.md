@@ -39,7 +39,7 @@
 - рахувати й економити токени: база, кеш за хешем тексту, rate limit;
 - тестувати код з LLM без мережі й ключа — і перевіряти контракт зі справжнім API.
 
-**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_44_llm_api/note_lesson_44_llm_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_44_llm_api/note_lesson_44_llm.ipynb){ .solutions-link } — вправи на `FakeLLM`, ключ не потрібен; з ключем Gemini — ще й справжні виклики.
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_44_llm_api/note_lesson_44_llm_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_44_llm_api/note_lesson_44_llm.ipynb){ .solutions-link } — правила проти моделі, вартість виклику, `FakeLLM` і `make_llm`, перевірка відповіді `NewsAnalysis` (повтор, обрізаний JSON, нормалізація), промпт-ін'єкція, пул моделей Gemini і Anthropic з підміненим HTTP-викликом, circuit breaker (TTL, Redis недоступний, `INCR`), API: база → кеш → модель, 502/503, `force`, фонова задача; 39 розібраних прикладів з повним кодом (визначення й запуск — в окремих клітинках) і 3 задачі з перевірками. Ключ не потрібен; з ключем Gemini чи Anthropic — ще й справжні виклики.
 
 ## Пригадай
 

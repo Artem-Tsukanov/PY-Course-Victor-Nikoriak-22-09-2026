@@ -27,7 +27,7 @@
 - відділити «сирі» дані з інтернету від перевірених і не губити відхилені мовчки;
 - отримати з моделі JSON і JSON Schema.
 
-**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_37_typing_pydantic/note_lesson_37_pydantic_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_37_typing_pydantic/note_lesson_37_pydantic.ipynb){ .solutions-link } — типи й моделі на справжніх новинах з перевірками.
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_37_typing_pydantic/note_lesson_37_pydantic_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_37_typing_pydantic/note_lesson_37_pydantic.ipynb){ .solutions-link } — анотації й mypy, `NewsItem` і власні Pydantic-моделі на справжніх новинах; 3 задачі з перевірками.
 
 !!! note "Звідки дані"
     Сайт `www.rbc.ua` зараз недоступний із середовища, де збирався курс, тому агрегатор працює на **знімку** — 168 новинах, які `parse_rbc_news` зібрала раніше (`data/rbc_news_snapshot.json`). Код парсера той самий; як запустити його на свіжій сторінці — у [`README.md`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_37_typing_pydantic/news_hub/README.md) проєкту.

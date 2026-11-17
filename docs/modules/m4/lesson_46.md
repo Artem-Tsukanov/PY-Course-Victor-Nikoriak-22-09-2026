@@ -30,7 +30,7 @@ HTTP так не вміє: розмову завжди починає брауз
 - захистити WebSocket: автентифікація, права на кожне повідомлення, перевірка `Origin`;
 - тестувати consumer без браузера і сервера — `WebsocketCommunicator`.
 
-**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_46_websocket_chat/note_lesson_46_chat_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_46_websocket_chat/note_lesson_46_chat.ipynb){ .solutions-link } — чат з кількома «браузерами» прямо в ноутбуці, без сервера.
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_46_websocket_chat/note_lesson_46_chat_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_46_websocket_chat/note_lesson_46_chat.ipynb){ .solutions-link } — чат з кількома «браузерами» прямо в ноутбуці, без сервера: ASGI `scope`, стек `websocket_application()`, історія й `database_sync_to_async`, channel layer і групи, події після COMMIT і код 4403, `Origin`, екранування; 37 розібраних прикладів з повним кодом (визначення й запуск — в окремих клітинках) і 3 задачі з перевірками.
 
 ## Пригадай
 
