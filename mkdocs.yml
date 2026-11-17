@@ -124,6 +124,8 @@ nav:
       - "27. П5. Динамічне програмування + greedy (вступ)": modules/m2/lesson_27.md
       - "28. Потоки, multiprocessing, asyncio: вступ": modules/m2/lesson_28.md
       - "29. П6. Stack, Queue, Heap, Trie + LRU → ООП-пакет": modules/m2/lesson_29.md
+      - "Бонус. Патерни програмування":
+          - "Урок": modules/m2/bonus_patterns.md
     - "М3. Бази даних":
       - Огляд модуля: modules/m3_databases.md
       - "Бонус. Pandas: аналіз даних, графіки і Dash":
