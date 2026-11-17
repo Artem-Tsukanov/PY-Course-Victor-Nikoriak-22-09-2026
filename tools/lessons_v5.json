@@ -57,6 +57,12 @@
       "title": "Бонус. Теорія графів, BFS/DFS, Dijkstra та Neo4j",
       "type": "Урок (бонус)"
     },
+    "duckdb_data_lake": {
+      "module": 3,
+      "after": 30,
+      "title": "Бонус. DuckDB і data lake: патерни зберігання та аналізу даних",
+      "type": "Урок (бонус)"
+    },
     "lesson_networking_base": {
       "module": 4,
       "after": 32,

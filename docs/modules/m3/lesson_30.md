@@ -1107,6 +1107,9 @@ ORDER BY c.name;
 - Наступний урок — 31, Redis: база в пам'яті для кешу, черг і лічильників — ті самі структури з уроку 29, але спільні для багатьох програм.
 - У модулі 4 до бази під'єднаються веб-застосунки: ORM у Django (урок 34) і SQLAlchemy / SQLModel у FastAPI (урок 39) пишуть SQL за тебе — але читати й перевіряти його доведеться самому.
 
+!!! tip "OLTP проти OLAP: бонус «DuckDB і data lake»"
+    Сьогодні PostgreSQL працював як **OLTP**-база: короткі транзакції над окремими рядками. Аналітика по мільйонах рядків, якій потрібні лише кілька стовпців, краще працює у **стовпцевих** рушіях. Як влаштовані DuckDB, Parquet, data lake і шари medallion — у бонусі [«DuckDB і data lake»](bonus_duckdb.md).
+
 ## Документація і джерела
 
 - PostgreSQL: [Tutorial](https://www.postgresql.org/docs/current/tutorial.html) — розділи «The SQL Language» і «Advanced Features» (зовнішні ключі, транзакції); [Data Types](https://www.postgresql.org/docs/current/datatype.html); [Constraints](https://www.postgresql.org/docs/current/ddl-constraints.html); [Queries](https://www.postgresql.org/docs/current/queries.html) (JOIN, GROUP BY, `WITH`); [Using EXPLAIN](https://www.postgresql.org/docs/current/using-explain.html); [psql](https://www.postgresql.org/docs/current/app-psql.html)

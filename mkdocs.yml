@@ -133,6 +133,7 @@ nav:
           - "Довідник: аналіз даних": modules/m3/pandas/data_analytics.md
           - "Довідник: архітектура Dash": modules/m3/pandas/dash_architecture.md
       - "30. Основи SQL (PostgreSQL)": modules/m3/lesson_30.md
+      - "Бонус. DuckDB і data lake: патерни зберігання та аналізу даних": modules/m3/bonus_duckdb.md
       - "31. Redis overview": modules/m3/lesson_31.md
     - "М4. Web (+ Web Advanced)":
       - Огляд модуля: modules/m4_web.md
