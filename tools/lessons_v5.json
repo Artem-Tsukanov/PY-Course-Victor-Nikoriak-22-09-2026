@@ -57,6 +57,36 @@
       "title": "Бонус. Теорія графів, BFS/DFS, Dijkstra та Neo4j",
       "type": "Урок (бонус)"
     },
+    "lesson_networking_base": {
+      "module": 4,
+      "after": 32,
+      "title": "Бонус. Мережа: сокети, TCP і протоколи",
+      "type": "Урок (бонус)"
+    },
+    "lesson_http_requests": {
+      "module": 4,
+      "after": 32,
+      "title": "Бонус. HTTP-запити і веб-скрейпінг",
+      "type": "Урок (бонус)"
+    },
+    "lesson_threading_concurrency": {
+      "module": 4,
+      "after": 32,
+      "title": "Бонус. Threading: потоки і конкурентність",
+      "type": "Урок (бонус)"
+    },
+    "lesson_multiprocessing": {
+      "module": 4,
+      "after": 32,
+      "title": "Бонус. Multiprocessing: паралельні обчислення",
+      "type": "Урок (бонус)"
+    },
+    "lesson_asyncio": {
+      "module": 4,
+      "after": 32,
+      "title": "Бонус. Asyncio: асинхронний Python і FastAPI",
+      "type": "Урок (бонус)"
+    },
     "linux_devops": {
       "module": 5,
       "after": 48,
