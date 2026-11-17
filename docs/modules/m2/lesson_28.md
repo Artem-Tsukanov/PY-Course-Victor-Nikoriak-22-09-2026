@@ -282,6 +282,53 @@ print("Очікували 4000, на рахунку:", balance)
 
 Тепер каса 2 не може прочитати `balance`, поки каса 1 не закінчила запис. Ціна — черга біля замка: частина роботи знову йде по одному. Тому найкраще — **взагалі не ділити змінні між потоками**: нехай кожен потік **повертає** результат, а збирає їх головна програма. Саме так працює `pool.map` — там жодного `Lock` не потрібно.
 
+### Перевірив — і вже запізно
+
+Інша форма гонитви — **check-then-act** («перевір, потім дій»). Диспетчерська імпортує меню й веде список `imported`, щоб не записати ресторан двічі. Деякі назви приходять у завдання кілька разів:
+
+```python
+TASKS = ["Борщ і Ко", "Піца Поділ"] * 4      # 8 завдань, 2 ресторани
+imported = []
+
+
+def save_menu(name):
+    time.sleep(0.01)                         # пишемо меню в базу
+
+
+def import_menu(name):
+    check_restaurant(name)                   # завантаження: 0,5 с мережі
+    if name not in imported:                 # 1. перевірити
+        save_menu(name)
+        imported.append(name)                # 2. дописати
+
+
+with ThreadPoolExecutor(max_workers=8) as pool:
+    list(pool.map(import_menu, TASKS))
+print(len(imported), "записів")
+```
+
+```text
+8 записів
+```
+
+Вісім потоків разом прокидаються після мережі, усі бачать «ще немає» — і всі дописують. **GIL тут не рятує:** він не робить операцію з кількох кроків атомарною, між `if` і `append` інший потік встигає своє. Не покладайся на те, що окремі операції байт-коду атомарні, — це не гарантія безпеки потоків.
+
+Ліки — тримати перевірку й запис **під одним замком**, а повільне завантаження — **поза** ним:
+
+```python
+imported_lock = threading.Lock()
+
+
+def import_menu_safe(name):
+    check_restaurant(name)                   # повільне — поза замком
+    with imported_lock:
+        if name not in imported:
+            save_menu(name)
+            imported.append(name)
+```
+
+Якби під замок потрапило й завантаження, вісім запитів пішли б по черзі (4 с замість 0,5 с). Зауваж: замок прибрав дублікати **в списку**, але «Борщ і Ко» все одно **завантажили** чотири рази. Щоб не качати двічі, треба до завантаження позначати ресторан як «вже в роботі» і окремо обробляти збої — це вже інша задача.
+
 ## GIL: чому потоки не рахують швидше
 
 Спробуємо потоки на задачі, що рахує: чотири райони, для кожного — `count_primes(150_000)`.
@@ -310,8 +357,12 @@ with ThreadPoolExecutor(max_workers=4) as pool:
 
 Чотири потоки — не швидше, а часто й трохи повільніше. Причина — **GIL** (Global Interpreter Lock): у стандартному Python байт-код у кожен момент виконує **лише один потік** програми. Потоки чергуються, а не рахують одночасно. Для задач, що чекають, це не заважає: під час `time.sleep` чи мережевого запиту потік відпускає GIL, і працюють інші. Для задач, що рахують, чергування лише додає витрати на перемикання.
 
+Бібліотеки, написані на C (наприклад, NumPy), можуть відпускати GIL і під час обчислень — для них потоки інколи прискорюють і рахунок. Правило «потоки не рахують швидше» — про чистий Python.
+
 !!! note "Python без GIL"
-    Починаючи з Python 3.13 існує окрема експериментальна збірка інтерпретатора без GIL ([PEP 703](https://peps.python.org/pep-0703/)), де потоки можуть рахувати паралельно. Звичайний Python, який встановлюють за замовчуванням, поки що з GIL, тому правила цього уроку для нього чинні.
+    Окрема збірка інтерпретатора без GIL (free-threaded, [PEP 703](https://peps.python.org/pep-0703/)) з'явилась у Python 3.13 як експериментальна, а з **Python 3.14** має статус офіційно підтримуваної ([PEP 779](https://peps.python.org/pep-0779/)). У ній потоки можуть рахувати паралельно. Звичайний Python, який встановлюють за замовчуванням, — з GIL, і цей урок про нього.
+
+    Як перевірити свою збірку: `python -VV` для free-threaded збірки містить `free-threading build`; у коді `sys._is_gil_enabled()` (Python 3.13+) повертає, чи увімкнений GIL зараз.
 
 ## Процеси: рахувати на кількох ядрах
 
@@ -332,7 +383,7 @@ if __name__ == "__main__":
 Утричі-вчетверо швидше: кожен район рахує окреме ядро.
 
 !!! warning "`if __name__ == '__main__':` обов'язковий"
-    На Windows і macOS кожен процес-працівник **заново імпортує** твій файл, щоб знайти `count_primes`. Без перевірки `__name__` кожен працівник знову створив би пул, а той — нових працівників. Python зупиняє це з помилкою `RuntimeError`. Тому код, що створює процеси, завжди стоїть під `if __name__ == "__main__":` — ось навіщо цей рядок з уроку 4.
+    Python запускає працівників одним зі **способів старту**: на Windows і macOS — `spawn`, на Linux з Python 3.14 — `forkserver` (до 3.14 — `fork`). `spawn` і `forkserver` стартують чистий інтерпретатор, і кожен процес-працівник **заново імпортує** твій файл, щоб знайти `count_primes`. Без перевірки `__name__` кожен працівник знову створив би пул, а той — нових працівників. Python зупиняє це з помилкою `RuntimeError` про «bootstrapping phase». Поточний спосіб показує `multiprocessing.get_start_method()`. Тому код, що створює процеси, завжди стоїть під `if __name__ == "__main__":` — ось навіщо цей рядок з уроку 4.
 
     З тієї ж причини функції для процесів мають бути визначені у **файлі**, а не лише в клітинці ноутбука. У ноутбуці заняття ми записуємо їх у `district_stats.py` і імпортуємо.
 
@@ -376,6 +427,19 @@ graph LR
     class M step
     class W warning
 ```
+
+Звідси правило: **усе, що йде в процес і назад, має пакуватися `pickle`**. Функція — лише визначена на верхньому рівні модуля: lambda чи функцію всередині іншої функції `pickle` не запакує.
+
+```python
+with ProcessPoolExecutor(max_workers=1) as pool:
+    list(pool.map(lambda n: n * 2, [1, 2, 3]))
+```
+
+```text
+PicklingError: Can't pickle <function <lambda> at 0x...>: attribute lookup <lambda> on __main__ failed
+```
+
+Відкритий файл чи з'єднання з базою теж не передаси: передавай шлях або параметри, а відкривай уже в працівнику.
 
 ### Процеси не безкоштовні
 
@@ -425,7 +489,29 @@ asyncio: 0.5 с
 
 - `asyncio.run(...)` — створює цикл подій, виконує корутину до кінця й закриває цикл. Викликають **один раз**, на вході в програму.
 - `asyncio.gather(...)` — запускає кілька корутин разом і чекає всі; результати — в порядку аргументів.
-- `await` можна писати лише всередині `async def`.
+- `await` можна писати лише всередині `async def`. Він позначає місце, де корутина **може** стати на паузу: пауза буде, лише якщо операції справді треба чекати.
+
+Без `gather` корутини йдуть **по черзі**, навіть з `await`:
+
+```python
+async def check_one_by_one(names):
+    results = []
+    for name in names:
+        results.append(await check_restaurant_async(name))   # чекаємо цю, потім наступну
+    return results
+```
+
+```text
+await у циклі: 2.5 с
+```
+
+`await` чекає, поки закінчиться **ця** корутина, і лише потім `for` бере наступний ресторан. Одночасно корутини йдуть, коли їх запущено разом — через `gather` або `asyncio.create_task`.
+
+А корутина, яку створили й забули (ні `await`, ні `gather`), не виконається зовсім. Прибираючи її, Python попереджає:
+
+```text
+RuntimeWarning: coroutine 'check_restaurant_async' was never awaited
+```
 
 !!! note "У Jupyter і Colab"
     Ноутбук уже має запущений цикл подій, тому `asyncio.run()` там дає `RuntimeError: asyncio.run() cannot be called from a running event loop`. У клітинці пиши просто `await morning_check()`.
@@ -497,6 +583,61 @@ asyncio.run(morning_check_blocking())
 !!! tip "Звідки `await`"
     Корутини виросли з генераторів: у ранніх версіях `asyncio` паузу ставили через `yield from` (урок 25). `async def` і `await` — окремий, зрозуміліший синтаксис для тієї самої ідеї: функція на паузі, яку продовжують ззовні.
 
+### Блокуючий код, який не можна переписати: `to_thread`
+
+Буває, що блокуючу функцію не замінити: стара бібліотека, `requests.get`, синхронний драйвер бази, читання великого файлу. Тоді її виконують в окремому потоці, а корутина чекає результат, не блокуючи цикл подій:
+
+```python
+async def morning_check_to_thread():
+    start = time.perf_counter()
+    statuses = await asyncio.gather(
+        *(asyncio.to_thread(check_restaurant, n) for n in RESTAURANTS)
+    )
+    print(f"to_thread: {time.perf_counter() - start:.1f} с")
+
+
+asyncio.run(morning_check_to_thread())
+```
+
+```text
+to_thread: 0.5 с
+```
+
+`check_restaurant` — та сама звичайна функція з `time.sleep`, яку ми не чіпали. `to_thread` бере потоки зі стандартного пулу циклу подій (`min(32, кількість ядер + 4)`), тож на тисячах викликів час упреться в цей розмір. Для **обчислень** на чистому Python `to_thread` не допоможе — GIL той самий; їх відправляють у пул процесів.
+
+### Обмежити одночасність: `Semaphore`
+
+`gather` запускає **все одразу**: 5 ресторанів — 5 запитів, 5000 — 5000. Сервер може такого не витримати або заблокувати клієнта. У пулі потоків межу задає `max_workers`, в `asyncio` — **семафор**: `asyncio.Semaphore(2)` пускає в блок `async with` не більше двох корутин одночасно, решта чекають біля входу.
+
+```python
+async def check_limited(names, limit):
+    semaphore = asyncio.Semaphore(limit)
+
+    async def one(name):
+        async with semaphore:                 # не більше limit одночасно
+            return await check_restaurant_async(name)
+
+    return await asyncio.gather(*(one(n) for n in names))
+
+
+async def main():
+    start = time.perf_counter()
+    await check_limited(RESTAURANTS, limit=2)
+    print(f"межа 2: {time.perf_counter() - start:.1f} с")
+
+
+asyncio.run(main())
+```
+
+```text
+межа 2: 1.5 с
+```
+
+Три «хвилі»: 2 + 2 + 1 ресторан по 0,5 с.
+
+!!! warning "Одночасно ≠ за секунду"
+    Семафор обмежує, скільки запитів **у польоті одночасно**, а не скільки їх **за секунду**. Ліміти API («не більше 10 запитів за секунду») дотримують окремо: паузами між запитами. Якщо сервер відповів `429 Too Many Requests`, він часто додає заголовок `Retry-After` — скільки секунд почекати. Тоді чекають і повторюють, щоразу довше (**backoff**). На практиці це — в уроці 32.
+
 ## Архітектура: що обрати { #architecture }
 
 ```mermaid
@@ -530,6 +671,15 @@ flowchart TD
 | Спільна пам'ять | так → ризик гонитви, `Lock` | ні → лише аргументи й результати | так, але перемикання лише на `await` |
 | Ціна одного виконавця | помірна | висока: окремий інтерпретатор | мала: об'єкт-корутина |
 | Що потрібно від коду | нічого особливого | функції у файлі, `__main__` | `async def`, асинхронні бібліотеки |
+
+З чого почати:
+
+| Робота | Стартовий інструмент |
+|---|---|
+| Чекає, десятки задач, звичайний (синхронний) код | `ThreadPoolExecutor` з невеликим `max_workers` |
+| Чекає, багато одночасних з'єднань, асинхронні бібліотеки | `asyncio` + `Semaphore` |
+| Рахує на чистому Python, GIL увімкнено | `ProcessPoolExecutor` — після виміру накладних витрат |
+| Чекає **і** рахує | завантажити потоками чи `asyncio`, потім рахувати в пулі процесів |
 
 Три архітектурні правила, які роблять паралельний код простим:
 
@@ -660,12 +810,14 @@ async def report():
 | IO-bound / CPU-bound | чекає (мережа, диск) / рахує (процесор) — від цього залежить вибір |
 | Конкурентність / паралелізм | один виконавець перемикається / кілька працюють одночасно |
 | `ThreadPoolExecutor` | потоки для задач, що чекають; `pool.map` у порядку даних |
-| Стан гонитви | «прочитати-записати» перервали між кроками; `Lock` або без спільних змінних |
-| GIL | у звичайному Python байт-код виконує один потік за раз; потоки не рахують швидше |
-| `ProcessPoolExecutor` | процеси рахують на різних ядрах; окрема пам'ять; `__main__` обов'язковий |
-| `async def` / `await` | корутина стає на паузу на `await`; цикл подій запускає інші |
-| `asyncio.run` / `gather` | запуск циклу подій / кілька корутин разом |
-| Блокуючий виклик | `time.sleep`, `requests` в `async def` зупиняють усі корутини |
+| Стан гонитви | результат залежить від того, як перемежувались потоки: «прочитати-записати», «перевірити-дописати»; `Lock` на всі кроки разом або без спільних змінних |
+| GIL | у звичайному Python байт-код виконує один потік за раз; потоки не рахують швидше; з 3.14 є підтримувана збірка без GIL |
+| `ProcessPoolExecutor` | процеси рахують на різних ядрах; окрема пам'ять; усе через `pickle`; `__main__` обов'язковий; дрібні задачі — повільніше |
+| Цикл подій | диспетчер `asyncio`: виконує задачі в одному потоці, перемикається, коли задача чекає |
+| `async def` / `await` | виклик дає об'єкт-корутину; на `await` вона може стати на паузу; `await` у циклі — по черзі |
+| `asyncio.run` / `gather` | запуск циклу подій / кілька корутин разом, результати в порядку аргументів |
+| Блокуючий виклик | `time.sleep`, `requests` в `async def` зупиняють усі корутини; не переписати — `asyncio.to_thread` |
+| `Semaphore` / `max_workers` | межа одночасних задач; не те саме, що ліміт запитів за секунду |
 
 ### Самоперевірка
 
@@ -675,6 +827,9 @@ async def report():
 4. Чому список `orders` у головній програмі лишився порожнім після роботи процесу?
 5. Що поверне виклик `async def`-функції без `await`?
 6. Чому `time.sleep` в `async def` зводить нанівець увесь `asyncio`?
+7. Чому в `import_menu_safe` перевірка й `append` — під одним замком, а завантаження — поза ним?
+8. Коли пул процесів повільніший за звичайний цикл? Чому в нього не можна передати lambda?
+9. Як викликати блокуючий `requests.get` з асинхронного коду? Що обмежує `asyncio.Semaphore(3)`, а чого — ні?
 
 ??? success "Відповіді"
 
@@ -684,14 +839,32 @@ async def report():
     4. Кожен процес має власну копію пам'яті; процес-працівник змінював свою копію. Дані між процесами ходять лише аргументами й результатами.
     5. Об'єкт-корутину; тіло функції ще не виконувалось. Запускає її `await` або цикл подій (`asyncio.run`, `gather`).
     6. `time.sleep` не віддає керування циклу подій і блокує весь потік — інші корутини стоять, поки він спить.
+    7. Якщо замок охоплює лише частину, два потоки обидва побачать «ще немає» і обидва допишуть (check-then-act). Завантаження під замком пішли б по черзі — потоки втратили б сенс.
+    8. Коли задачі дрібні: старт працівників і пересилання даних дорожчі за саму роботу. Усе, що йде в процес, пакується `pickle`, а він пакує лише функції верхнього рівня модуля.
+    9. `await asyncio.to_thread(requests.get, url)`. Семафор обмежує, скільки корутин одночасно в захищеному блоці; кількість запитів за секунду він не обмежує — це паузи, `Retry-After`, backoff.
 
 ### Що далі
 
-- Ноутбук заняття: [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_2/lessons/lesson_28_concurrency_intro/note_lesson_28_concurrency_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_2/lessons/lesson_28_concurrency_intro/note_lesson_28_concurrency.ipynb){ .solutions-link } — вимірювання, стан гонитви і `Lock`, процеси з файлу-модуля, корутини в Jupyter, вправи з перевірками.
+- Ноутбук заняття: [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_2/lessons/lesson_28_concurrency_intro/note_lesson_28_concurrency_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_2/lessons/lesson_28_concurrency_intro/note_lesson_28_concurrency.ipynb){ .solutions-link } — вимірювання, `max_workers`, стан гонитви і `Lock` (зокрема check-then-act), процеси з файлу-модуля, ціна процесів і `pickle`, корутини в Jupyter, `to_thread`, `Semaphore`; 11 вправ з перевірками.
+- **Поглиблений рівень — бонусні уроки модуля 4** (`module_4/bonus/`). Там ці самі теми розписано значно детальніше, на реальних проєктах: [потоки й конкурентність](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_threading_concurrency/note_lesson_32_threading_concurrency.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_threading_concurrency/note_lesson_32_threading_concurrency.ipynb) і [багатопотоковий скрейпер](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_threading_concurrency/note_lesson_32_multithreaded_scraper.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_threading_concurrency/note_lesson_32_multithreaded_scraper.ipynb); [multiprocessing](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_multiprocessing/note_lesson_33_multiprocessing.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_multiprocessing/note_lesson_33_multiprocessing.ipynb) і [лабораторна: паралельний конвеєр обробки даних](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_multiprocessing/lab_lesson_33_flood_pipeline.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_multiprocessing/lab_lesson_33_flood_pipeline.ipynb); [asyncio](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_asyncio/lesson_34_asyncio.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_asyncio/lesson_34_asyncio.ipynb) з асинхронним FastAPI-демо й новинним дашбордом. Перед ними корисні [мережа: сокети й TCP](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_networking_base/note_lesson_30_networking_base.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_networking_base/note_lesson_30_networking_base.ipynb) і [HTTP-запити](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_http_requests/note_lesson_31_http_requests.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/bonus/lesson_http_requests/note_lesson_31_http_requests.ipynb).
 - Наступне заняття — урок 29, практикум П6: стек, черга, купа, префіксне дерево й LRU-кеш.
 - Далі в курсі: асинхронні HTTP-запити з `httpx` і `aiohttp` (урок 32), асинхронний FastAPI (уроки 38–39), WebSockets (урок 46).
 
 ## Документація і джерела
+
+Основне:
+
+- [Real Python — Speed Up Your Python Program With Concurrency](https://realpython.com/python-concurrency/) — огляд усього уроку з тим самим поділом на I/O-bound і CPU-bound; прочитати повністю, ≈40 хв.
+- [Python docs — Coroutines and Tasks](https://docs.python.org/3/library/asyncio-task.html) — розділи «Coroutines», «Awaitables», «Running Tasks Concurrently», «Running in Threads».
+- [Python docs — `concurrent.futures`](https://docs.python.org/3/library/concurrent.futures.html) — «Executor Objects», «ThreadPoolExecutor», «ProcessPoolExecutor», зокрема попередження про взаємні блокування (deadlocks).
+
+Додатково:
+
+- [Python docs — Python support for free threading](https://docs.python.org/3/howto/free-threading-python.html) — що змінюється в збірці без GIL і які обмеження.
+- [PEP 779 — Criteria for supported status for free-threaded Python](https://peps.python.org/pep-0779/) — чому з 3.14 збірка без GIL офіційно підтримується.
+- [SuperFastPython — Choose the Right Python Concurrency API](https://superfastpython.com/python-concurrency-choose-api/) — покроковий вибір між трьома інструментами.
+
+Довідка:
 
 - Python: [`concurrent.futures`](https://docs.python.org/3/library/concurrent.futures.html), [`threading`](https://docs.python.org/3/library/threading.html) (зокрема [Lock Objects](https://docs.python.org/3/library/threading.html#lock-objects)), [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html) і [Programming guidelines](https://docs.python.org/3/library/multiprocessing.html#multiprocessing-programming) (розділ «Safe importing of main module»)
 - `asyncio`: [Coroutines and Tasks](https://docs.python.org/3/library/asyncio-task.html) — `asyncio.run`, `gather`, `wait_for`; [Developing with asyncio](https://docs.python.org/3/library/asyncio-dev.html) — про блокуючий код
