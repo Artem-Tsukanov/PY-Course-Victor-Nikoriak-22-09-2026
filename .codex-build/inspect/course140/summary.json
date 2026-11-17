@@ -1,0 +1,13 @@
+{
+  "slideCount": 12,
+  "masters": [
+    {
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2"
+    },
+    {
+      "id": "/ppt/slideMasters/slideMaster2.xml",
+      "name": "simple-light-2"
+    }
+  ]
+}

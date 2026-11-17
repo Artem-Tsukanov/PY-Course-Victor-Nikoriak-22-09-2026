@@ -1,0 +1,236 @@
+{
+  "schemaVersion": "presentation-finalization.v1",
+  "finalSha256": "6f4a069298579f9d5f7cadc5a940e27aed687c12e66c37ea4cc6a64a2fbf8ab6",
+  "byteCount": 12336153,
+  "packageIntegrity": {
+    "chart_count": 0,
+    "claim_boundary": "Structural package checks only; no slide text, notes, formulas, chart values, or native PowerPoint execution were inspected.",
+    "finding_count": 0,
+    "findings": [],
+    "notes_parts_skipped": 12,
+    "relationship_part_count": 29,
+    "slide_count": 12,
+    "status": "pass",
+    "exitCode": 0,
+    "findingCount": 0,
+    "warnings": []
+  },
+  "presentationLayout": {
+    "finding_count": 0,
+    "findings": [],
+    "font_policy": {
+      "checked_text_script_count": 104,
+      "native_font_rendering_verified": false,
+      "observed_font_families": [
+        "Nunito Sans"
+      ],
+      "observed_font_use_counts": {
+        "Nunito Sans": 104
+      },
+      "passed": true,
+      "performed": true
+    },
+    "slide_count": 12,
+    "slide_size_in": [
+      20,
+      11.25
+    ],
+    "warning_count": 13,
+    "warnings": [
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "16",
+        "object_kind": "pic",
+        "slide": 1
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "18",
+        "object_kind": "sp",
+        "slide": 1
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "24",
+        "object_kind": "sp",
+        "slide": 2
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "47",
+        "object_kind": "sp",
+        "slide": 3
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "48",
+        "object_kind": "sp",
+        "slide": 3
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "72",
+        "object_kind": "sp",
+        "slide": 3
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "78",
+        "object_kind": "sp",
+        "slide": 4
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "145",
+        "object_kind": "sp",
+        "slide": 7
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "175",
+        "object_kind": "sp",
+        "slide": 8
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "220",
+        "object_kind": "sp",
+        "slide": 10
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "246",
+        "object_kind": "sp",
+        "slide": 11
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "252",
+        "object_kind": "pic",
+        "slide": 12
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "254",
+        "object_kind": "sp",
+        "slide": 12
+      }
+    ],
+    "exitCode": 0,
+    "findingCount": 0,
+    "fontPolicy": {
+      "checked_text_script_count": 104,
+      "native_font_rendering_verified": false,
+      "observed_font_families": [
+        "Nunito Sans"
+      ],
+      "observed_font_use_counts": {
+        "Nunito Sans": 104
+      },
+      "passed": true,
+      "performed": true
+    }
+  },
+  "fontSelection": {
+    "basis": "reference",
+    "approvedFamilies": [
+      "Nunito Sans"
+    ],
+    "scriptFonts": {},
+    "referenceSha256": "14749b5dcc6b9b150c6c1e2b205bb8b39e420b59c43786ab354422849594661b",
+    "referenceFontsVerifiedInEncodedText": true,
+    "checked_text_script_count": 104,
+    "native_font_rendering_verified": false,
+    "observed_font_families": [
+      "Nunito Sans"
+    ],
+    "observed_font_use_counts": {
+      "Nunito Sans": 104
+    },
+    "passed": true,
+    "performed": true
+  },
+  "firstPartyImport": {
+    "performed": true,
+    "passed": true,
+    "slideCount": 12,
+    "sha256": "6f4a069298579f9d5f7cadc5a940e27aed687c12e66c37ea4cc6a64a2fbf8ab6",
+    "runtimeNodeModules": "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1110-973-0_26.1110.973.0_x64__3k8sg7r9htsxt/dependencies/node/node_modules",
+    "nodeExecutable": "C:\\Program Files\\WindowsApps\\OpenAI.CodexPrimaryRuntime.v26-1110-973-0_26.1110.973.0_x64__3k8sg7r9htsxt\\dependencies\\node\\bin\\node.exe"
+  },
+  "nativeTableArithmetic": {
+    "performed": true,
+    "checked_column_count": 0,
+    "checks": [],
+    "claim_boundary": "Displayed-value arithmetic with rounding tolerance; not source-data verification.",
+    "eligible_table_count": 0,
+    "finding_count": 0,
+    "findings": [],
+    "native_table_count": 0,
+    "passed": true,
+    "schema_version": "presentation-native-table-arithmetic.v1",
+    "skipped_tables": [],
+    "slide_count": 12,
+    "warning_count": 0,
+    "warnings": []
+  },
+  "nativeChartTitles": {
+    "performed": true,
+    "checks": [],
+    "finding_count": 0,
+    "findings": [],
+    "native_chart_count": 0,
+    "native_powerpoint_verified": false,
+    "passed": true,
+    "presentation_sha256": "6f4a069298579f9d5f7cadc5a940e27aed687c12e66c37ea4cc6a64a2fbf8ab6",
+    "schema_version": "presentation-native-chart-titles.v1",
+    "slide_count": 12,
+    "source_text_emitted": false,
+    "unresolved_linked_title_count": 0
+  },
+  "sourceDerivedPolicyFlags": [
+    "--expected-slide-size-emu",
+    "18288000,10287000",
+    "--validate-bullet-geometry",
+    "--validate-heading-fit",
+    "--cover-role",
+    "none",
+    "--expected-slide-count",
+    "12",
+    "--approved-font-family",
+    "Nunito Sans"
+  ],
+  "nativeChartValidation": {
+    "detectedOwnerSlides": [],
+    "detectedChartCount": 0,
+    "targetApplication": "portable",
+    "sourceChartOwnersExplicitlyDeclared": true,
+    "validatorRan": false,
+    "passed": true
+  },
+  "sourceTemplateFidelity": {
+    "report": {
+      "coverage_ratio": 1,
+      "dimensions_match": null,
+      "generated_slide_count": 12,
+      "geometry_match": null,
+      "issue_codes": [],
+      "matched_family_count": 1,
+      "matched_generated_slide_count": 12,
+      "minimum_coverage_ratio": 1,
+      "passed": true,
+      "photographic_background_matched": null,
+      "photographic_background_required": false,
+      "prompt_or_slide_text_included": false,
+      "reference_family_count": 1,
+      "schema_version": "template_source_fidelity.v1",
+      "status": "passed"
+    },
+    "exitCode": 0,
+    "referenceFamilyCount": 1,
+    "matchedFamilyCount": 1,
+    "coverageRatio": 1,
+    "minimumCoverageRatio": 1,
+    "sourceSha256": "14749b5dcc6b9b150c6c1e2b205bb8b39e420b59c43786ab354422849594661b"
+  }
+}
