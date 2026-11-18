@@ -1,4 +1,4 @@
-"""Перевірка питч-деку в Markdown для Marp перед уроком 52.
+"""Перевірка питч-деку в Markdown для Marp перед уроком 53.
 
     python pitch_check.py мій_дек.md
 
@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 WORDS_PER_MINUTE = 130            # темп виступу: спокійна мова, 120–150 слів за хвилину
-MAX_MINUTES = 7.0                 # регламент уроку 52: 5–7 хвилин
+MAX_MINUTES = 7.0                 # регламент уроку 53: 5–7 хвилин
 MIN_MINUTES = 4.0
 MIN_SLIDES, MAX_SLIDES = 8, 12    # правило 10/20/30 Гая Кавасакі: близько десяти слайдів
 MAX_WORDS_ON_SLIDE = 45           # слайд читають за секунди; решта — у нотатках

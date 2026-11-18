@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Smoke-тест стеку нотаток у Compose: так його запускає CI (урок 50), так само можна локально.
+# Smoke-тест стеку нотаток у Compose: так його запускає CI (урок 51), так само можна локально.
 #   python scripts/make_env.py && ./scripts/smoke.sh
 # Піднімає стек, проходить шлях користувача через nginx і завжди прибирає за собою (docker compose down -v).
 set -euo pipefail
@@ -38,7 +38,7 @@ check "DEBUG вимкнено (404 без трасування)" 0 "$(curl -s "$
 docker compose exec -T -e DJANGO_SUPERUSER_USERNAME=smoke -e DJANGO_SUPERUSER_PASSWORD=smoke-pass-12345 \
     -e DJANGO_SUPERUSER_EMAIL=smoke@example.com web python manage.py createsuperuser --noinput > /dev/null
 
-# вхід формою: CSRF-токен зі сторінки, cookie — у jar, Origin — як у браузера (урок 49: $http_host)
+# вхід формою: CSRF-токен зі сторінки, cookie — у jar, Origin — як у браузера (урок 50: $http_host)
 csrf="$(curl -s -c "$jar" "$base/accounts/login/" | sed -n 's/.*name="csrfmiddlewaretoken" value="\([^"]*\)".*/\1/p' | head -1)"
 login="$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' -b "$jar" -c "$jar" -X POST "$base/accounts/login/" \
     -H "Origin: $base" -H "Referer: $base/accounts/login/" \

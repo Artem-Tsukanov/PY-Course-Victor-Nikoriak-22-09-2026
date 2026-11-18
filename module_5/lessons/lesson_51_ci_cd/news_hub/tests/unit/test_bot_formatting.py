@@ -1,4 +1,4 @@
-"""Урок 47: текст для Telegram (HTML, 4096), ключові слова, налаштування бота — без мережі."""
+"""Урок 48: текст для Telegram (HTML, 4096), ключові слова, налаштування бота — без мережі."""
 import pytest
 
 from news_hub.bot.formatting import esc, link, matches, normalize_keyword, split_message

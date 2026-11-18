@@ -1,4 +1,4 @@
-"""Сповіщення підписників про нові новини. Урок 47.
+"""Сповіщення підписників про нові новини. Урок 48.
 
 Основа — `backend/workers/notifications.py` зі стартового `production_bot`: `while True` → вибірка
 з бази → `bot.send_message` кожному → `except Exception: logger.warning`. Рефакторинг:

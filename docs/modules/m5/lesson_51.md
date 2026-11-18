@@ -26,7 +26,7 @@
 - давати workflow лише потрібні права й не світити секрети в журналах;
 - публікувати образ у реєстр з `main`.
 
-**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_51_ci_cd/note_lesson_51_ci_cd_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_51_ci_cd/note_lesson_51_ci_cd.ipynb){ .solutions-link } — workflow як дані: чи запуститься він на цей PR, у якому порядку підуть jobs, що розгорне matrix, які права отримає токен.
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_51_ci_cd/note_lesson_51_ci_cd_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_51_ci_cd/note_lesson_51_ci_cd.ipynb){ .solutions-link } — workflow як дані: чи запуститься він на цей PR (`branches`, `paths`, `concurrency`), у якому порядку й скільки часу підуть jobs, що буде, коли job упав, що розгорне matrix, ключі кешу, права токена; кроки CI локально — ruff і pytest на міні-проєкті, перевірки `Dockerfile`, маскування секретів і `$GITHUB_ENV`.
 
 ## Пригадай
 

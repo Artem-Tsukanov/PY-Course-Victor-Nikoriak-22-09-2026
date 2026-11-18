@@ -1,4 +1,4 @@
-"""Збирання бота: Bot, Dispatcher, middleware, роутер, меню команд. Урок 47.
+"""Збирання бота: Bot, Dispatcher, middleware, роутер, меню команд. Урок 48.
 
 Основа — `app/bot.py` з `ai_bot` (фабрики `create_bot` / `create_dispatcher`, `set_bot_commands`) і
 `backend/app.py` зі стартового `production_bot`. Рефакторинг:

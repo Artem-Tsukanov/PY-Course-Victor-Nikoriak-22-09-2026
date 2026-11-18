@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Бекап бази нотаток з контейнера PostgreSQL. Урок 49.
+# Бекап бази нотаток з контейнера PostgreSQL. Урок 50.
 #   ./scripts/backup.sh [папка]          → backups/crispy_notes-20260928-101500.sql.gz
 # На сервері — щоночі з cron:  15 3 * * *  cd /srv/crispy_notes && ./scripts/backup.sh >> backups/backup.log 2>&1
 set -euo pipefail        # pipefail: без нього впалий pg_dump дав би «успішний» порожній архів (бонус-урок Linux)

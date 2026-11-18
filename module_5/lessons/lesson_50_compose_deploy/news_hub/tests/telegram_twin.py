@@ -1,4 +1,4 @@
-"""Локальний двійник Telegram Bot API — для тестів, ноутбука й запуску без мережі. Урок 47.
+"""Локальний двійник Telegram Bot API — для тестів, ноутбука й запуску без мережі. Урок 48.
 
 Справжній Telegram — https://api.telegram.org/bot<TOKEN>/<method>. aiogram уміє ходити на інший сервер
 (`TelegramAPIServer.from_base(...)`) — так працює й офіційний локальний Bot API server. Двійник відповідає
@@ -16,7 +16,7 @@
   X-Telegram-Bot-Api-Secret-Token — як це робить Telegram.
 
 Запуск окремо: python -m tests.telegram_twin --port 8081 --token 123:TEST
-Для бота в контейнері (урок 48): --host 0.0.0.0 — на 127.0.0.1 двійника бачить лише сам комп'ютер
+Для бота в контейнері (урок 49): --host 0.0.0.0 — на 127.0.0.1 двійника бачить лише сам комп'ютер
 Керування ззовні (лише двійник, у Telegram такого немає):
     POST /_twin/say  {"text": "/news", "chat_id": 1001, "first_name": "Олена"}  → update боту
                      (webhook — одразу на його адресу; інакше — у чергу getUpdates)

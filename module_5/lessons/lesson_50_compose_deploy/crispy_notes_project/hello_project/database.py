@@ -1,9 +1,9 @@
-"""DATABASES з однієї змінної середовища DATABASE_URL (урок 44, крок 3 Django-книги: PostgreSQL).
+"""DATABASES з однієї змінної середовища DATABASE_URL (урок 45, крок 3 Django-книги: PostgreSQL).
 
     DATABASE_URL=postgres://notes_user:notes_pass@localhost:5432/notes_db   → PostgreSQL (docker compose up -d)
     без DATABASE_URL                                                        → SQLite db.sqlite3 поруч з manage.py
 
-Та сама ідея, що в news_hub (урок 38): застосунок не знає, яка база, — знає змінна середовища.
+Та сама ідея, що в news_hub (урок 39): застосунок не знає, яка база, — знає змінна середовища.
 Пакет dj-database-url робить те саме; тут — 20 рядків стандартної бібліотеки, щоб було видно, що всередині.
 """
 from pathlib import Path

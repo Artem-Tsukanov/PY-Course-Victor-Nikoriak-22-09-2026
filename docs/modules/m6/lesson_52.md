@@ -31,7 +31,7 @@
 - перевірити, де живе стан застосунку і чи переживе він кілька реплік;
 - обрати тему фінального проєкту й скласти його мінімальний план.
 
-**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/lessons/lesson_52_final_project/note_lesson_52_final_project_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/lessons/lesson_52_final_project/note_lesson_52_final_project.ipynb){ .solutions-link } — аудит архітектури власноруч: граф імпортів, цикли, keyset-пагінація і `EXPLAIN` на SQLite, чек-лист фінального проєкту.
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/lessons/lesson_52_final_project/note_lesson_52_final_project_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/lessons/lesson_52_final_project/note_lesson_52_final_project.ipynb){ .solutions-link } — аудит власноруч: граф імпортів і цикли, правило шарів і тест архітектури, індекси й trigram-пошук, keyset-пагінація, підрахунок запитів (N+1) на SQLite і SQLAlchemy, стан між репліками, чек-лист репозиторію (Compose, залежності, секрети); 3 задачі.
 
 ## Пригадай
 

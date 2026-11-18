@@ -29,7 +29,7 @@
 - розділити «випуск» (міграції, статика) і «роботу» (сервер) — щоб масштабувати без гонок;
 - розгорнути стек на сервері, оновити його, зробити бекап і відновитись з нього.
 
-**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_50_compose_deploy/note_lesson_50_compose_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_50_compose_deploy/note_lesson_50_compose.ipynb){ .solutions-link } — читаємо `docker-compose.yml` як дані: порядок запуску за `depends_on` (топологічне сортування), підстановка `${VAR}`, IP клієнта за `X-Forwarded-For`. Docker для ноутбука не потрібен.
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_50_compose_deploy/note_lesson_50_compose_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_50_compose_deploy/note_lesson_50_compose.ipynb){ .solutions-link } — `docker-compose.yml` обох проєктів як дані: порядок запуску за `depends_on` (хвилі, цикл, часова шкала старту), підстановка `${VAR}` і лапки в `.env`, IP клієнта за `X-Forwarded-For` і rate limit, гонка міграцій у двох репліках, бекап з `pipefail` і відновлення. Docker для ноутбука не потрібен; якщо він є — `docker compose config` і міні-стек `up --wait` запускаються наживо.
 
 ## Пригадай
 

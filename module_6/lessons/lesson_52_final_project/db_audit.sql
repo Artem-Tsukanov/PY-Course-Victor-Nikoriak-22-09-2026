@@ -1,4 +1,4 @@
--- Аудит індексів PostgreSQL (урок 51): psql "$DATABASE_URL" -f db_audit.sql
+-- Аудит індексів PostgreSQL (урок 52): psql "$DATABASE_URL" -f db_audit.sql
 -- Лише читання: pg_catalog і статистика, дані таблиць не змінює.
 
 \echo '== 1. Розмір таблиць та їхніх індексів'

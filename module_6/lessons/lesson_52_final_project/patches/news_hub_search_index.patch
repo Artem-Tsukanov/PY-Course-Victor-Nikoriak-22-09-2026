@@ -4,7 +4,7 @@ index 0000000..63e043d
 --- /dev/null
 +++ b/migrations/versions/0005_search_index.py
 @@ -0,0 +1,41 @@
-+"""Пошук за заголовком — trigram-індекс; прибрати зайвий індекс subscriptions.chat_id (урок 51)
++"""Пошук за заголовком — trigram-індекс; прибрати зайвий індекс subscriptions.chat_id (урок 52)
 +
 +`NewsRepository.search` робить `title.icontains(q)`; на PostgreSQL це `lower(title) LIKE '%q%'`.
 +Індекс має бути саме на `lower(title)` — індекс на `title` такий запит не використовує.
@@ -50,7 +50,7 @@ index 8fc17eb..a3fc524 100644
 --- a/news_hub/tables.py
 +++ b/news_hub/tables.py
 @@ -10,8 +10,9 @@
- Урок 47: таблиця `subscriptions` — ключові слова, на які чат Telegram підписався (міграція 0004).
+ Урок 48: таблиця `subscriptions` — ключові слова, на які чат Telegram підписався (міграція 0004).
  """
  from datetime import datetime, time
 +from typing import Any
@@ -64,7 +64,7 @@ index 8fc17eb..a3fc524 100644
      keywords: Mapped[list[str] | None] = mapped_column(JSON)
      analyzed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
  
-+    # Урок 51: пошук search() — lower(title) LIKE '%…%'; trigram-індекс саме на lower(title) (міграція 0005)
++    # Урок 52: пошук search() — lower(title) LIKE '%…%'; trigram-індекс саме на lower(title) (міграція 0005)
 +    __table_args__ = (Index("ix_news_title_lower_trgm", func.lower(title).label("title_lower"),
 +                            postgresql_using="gin", postgresql_ops={"title_lower": "gin_trgm_ops"}),)
 +

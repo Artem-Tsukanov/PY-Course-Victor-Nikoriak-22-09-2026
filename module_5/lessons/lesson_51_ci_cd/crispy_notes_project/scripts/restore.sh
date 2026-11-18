@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Відновити базу нотаток з бекапу. Урок 49.   ./scripts/restore.sh backups/crispy_notes-….sql.gz
+# Відновити базу нотаток з бекапу. Урок 50.   ./scripts/restore.sh backups/crispy_notes-….sql.gz
 # Поточні дані в базі буде ЗАМІНЕНО даними з бекапу.
 set -euo pipefail
 

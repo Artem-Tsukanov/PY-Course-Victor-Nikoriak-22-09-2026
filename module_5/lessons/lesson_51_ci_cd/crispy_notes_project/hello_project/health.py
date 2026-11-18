@@ -1,4 +1,4 @@
-"""GET /health/ — чи готовий застосунок приймати запити: база й Redis (channel layer чату). Урок 49.
+"""GET /health/ — чи готовий застосунок приймати запити: база й Redis (channel layer чату). Урок 50.
 
 Той самий підхід, що /health/ready у news_hub: назовні — лише «ok» чи назва винятку, подробиці — в журнал.
 Compose чекає цієї перевірки, перш ніж запустити nginx (depends_on: condition: service_healthy).
@@ -22,7 +22,7 @@ def health(request: HttpRequest) -> JsonResponse:
         logger.warning("health: база недоступна: %s", error)
         checks["database"] = type(error).__name__
     redis_url = os.environ.get("REDIS_URL")
-    if redis_url:                        # без REDIS_URL чат працює на InMemoryChannelLayer (урок 45)
+    if redis_url:                        # без REDIS_URL чат працює на InMemoryChannelLayer (урок 46)
         try:
             redis.Redis.from_url(redis_url, socket_connect_timeout=2).ping()
             checks["redis"] = "ok"

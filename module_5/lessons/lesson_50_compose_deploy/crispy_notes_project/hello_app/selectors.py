@@ -8,9 +8,9 @@ Auth lesson additions:
   - get_user_shopping_lists: includes group lists
   - get_user_groups, get_group_members: group management selectors
 
-Урок 45 — чат групи: is_group_member, recent_chat_messages (для consumer — готовий список, не QuerySet).
+Урок 46 — чат групи: is_group_member, recent_chat_messages (для consumer — готовий список, не QuerySet).
 
-Урок 44 — правила доступу в одному місці:
+Урок 45 — правила доступу в одному місці:
   - «хто що бачить» і «хто що змінює» — функції *_visible_to / *_owned_by, які повертають QuerySet;
     views (FBV і CBV) і API більше не будують свої фільтри `Q(user=...) | Q(...)` — лише беруть їх звідси;
   - M2M у фільтрі з OR (`shared_with`) дає по рядку на кожного, з ким поділено, → `.distinct()`;
@@ -236,7 +236,7 @@ def find_owned(queryset_fn, user, pk):
         return None
 
 
-# ── Чат групи (урок 45) ────────────────────────────────────────────────────────
+# ── Чат групи (урок 46) ────────────────────────────────────────────────────────
 
 def is_group_member(user, group_pk):
     """Те саме правило, що для сторінок групи: група є серед груп користувача."""

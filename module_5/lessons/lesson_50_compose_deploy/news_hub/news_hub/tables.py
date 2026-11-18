@@ -4,10 +4,10 @@
 - `NewsItem` (Pydantic, models.py) — **перевірка** даних з парсера й тіла запиту;
 - `NewsRow` (SQLAlchemy, тут) — **рядок таблиці**: id, унікальний url, час збору.
 
-Урок 43: результат аналізу LLM — у тих самих рядках (`summary` … `analyzed_at`, міграція 0002).
+Урок 44: результат аналізу LLM — у тих самих рядках (`summary` … `analyzed_at`, міграція 0002).
 Усі поля можуть бути NULL: новину зберігаємо одразу, аналізуємо пізніше (або ніколи).
-Урок 46: таблиця `sources` — RSS-джерела, які додає адмін (міграція 0003).
-Урок 47: таблиця `subscriptions` — ключові слова, на які чат Telegram підписався (міграція 0004).
+Урок 47: таблиця `sources` — RSS-джерела, які додає адмін (міграція 0003).
+Урок 48: таблиця `subscriptions` — ключові слова, на які чат Telegram підписався (міграція 0004).
 """
 from datetime import datetime, time
 
@@ -29,7 +29,7 @@ class NewsRow(Base):
     published_time: Mapped[time | None] = mapped_column(Time)
     scraped_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
-    # Аналіз LLM (урок 43): NULL — ще не аналізували
+    # Аналіз LLM (урок 44): NULL — ще не аналізували
     summary: Mapped[str | None] = mapped_column(String(300))
     ai_category: Mapped[str | None] = mapped_column(String(30), index=True)
     sentiment: Mapped[str | None] = mapped_column(String(10), index=True)
@@ -41,7 +41,7 @@ class NewsRow(Base):
 
 
 class SourceRow(Base):
-    """RSS-джерело, яке додав адмін (урок 46). Адресу перевіряє safe_fetch — і при додаванні, і при кожному збиранні."""
+    """RSS-джерело, яке додав адмін (урок 47). Адресу перевіряє safe_fetch — і при додаванні, і при кожному збиранні."""
     __tablename__ = "sources"
 
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -54,7 +54,7 @@ class SourceRow(Base):
 
 
 class SubscriptionRow(Base):
-    """Підписка чату Telegram на ключове слово (урок 47).
+    """Підписка чату Telegram на ключове слово (урок 48).
 
     Основа — `models/subscription.py` з `production_bot` (там підписка — тариф користувача); тут — пара
     «чат + слово». chat_id — BigInteger: id у Telegram бувають довшими за 32 біти (групи: -100…).

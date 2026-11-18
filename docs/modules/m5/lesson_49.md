@@ -28,7 +28,7 @@
 - пояснити, чому `docker stop` зупиняє один контейнер за секунду, а інший — за десять;
 - перевірити образ тестами.
 
-**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_49_docker/note_lesson_49_docker_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_49_docker/note_lesson_49_docker.ipynb){ .solutions-link }. У Colab немає Docker, тому в ноутбуці — те, що можна перевірити без нього: `.dockerignore`, кеш шарів, змінні середовища, сигнали. Команди Docker — з реальним виводом, щоб повторити локально.
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_49_docker/note_lesson_49_docker_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_49_docker/note_lesson_49_docker.ipynb){ .solutions-link }. 39 прикладів і 3 задачі: `Dockerfile` як дані, `.dockerignore`, кеш шарів, секрети в шарах і `--env-file`, сигнали й `docker stop`, `HEALTHCHECK`. У Colab Docker немає, тому все це відтворено чистим Python і bash; якщо Docker встановлений, розділ 8 перевіряє те саме на справжніх образах (без Docker — показує вивід справжнього запуску).
 
 ## Пригадай
 

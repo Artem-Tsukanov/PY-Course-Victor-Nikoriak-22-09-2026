@@ -1,4 +1,4 @@
-# news_hub повністю: nginx → api → PostgreSQL + Redis; міграції — окремим кроком перед API. Урок 49.
+# news_hub повністю: nginx → api → PostgreSQL + Redis; міграції — окремим кроком перед API. Урок 50.
 # Основа — docker-compose.yml стартового production_bot (bot, nginx, postgres, redis, migrate).
 #
 #   cp .env.example .env            # і заповнити
@@ -15,7 +15,7 @@ x-app: &app
   image: news_hub:49
   env_file: .env
   environment: &app-env
-    # Адреси сервісів — за іменами в мережі Compose, не localhost (урок 48)
+    # Адреси сервісів — за іменами в мережі Compose, не localhost (урок 49)
     DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-news}:${POSTGRES_PASSWORD:?задай POSTGRES_PASSWORD у .env}@postgres:5432/${POSTGRES_DB:-news_hub}
     REDIS_URL: redis://redis:6379/0
   networks: [backend]
@@ -111,7 +111,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
-  # Двійник Telegram Bot API (урок 47) — лише для заняття: docker compose --profile twin up -d
+  # Двійник Telegram Bot API (урок 48) — лише для заняття: docker compose --profile twin up -d
   # і в .env: BOT_TOKEN=123456:TEST-TOKEN, TELEGRAM_API_URL=http://twin:8081
   twin:
     image: news_hub:49

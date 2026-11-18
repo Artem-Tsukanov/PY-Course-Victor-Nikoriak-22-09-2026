@@ -1,19 +1,19 @@
 """
-Django settings — уроки 40 (автентифікація й безпека), 44 (PostgreSQL) і 45 (WebSocket-чат).
+Django settings — уроки 41 (автентифікація й безпека), 45 (PostgreSQL) і 46 (WebSocket-чат).
 
 Зі стартового коду (автентифікація й безпека):
   + password reset/change flows   → EMAIL_BACKEND (console), /accounts/password_*/
   + security settings block       → SESSION_COOKIE_HTTPONLY, X_FRAME_OPTIONS, ...
   + Group-based sharing           → Django built-in Group model used in Note/ShoppingList
-Урок 40 курсу додає:
+Урок 41 курсу додає:
   + JWT для API (djangorestframework-simplejwt) → /api/token/, /api/token/refresh/
   + throttle на видачу токена (перебір паролів) → 5 спроб за хвилину
   + SECRET_KEY і DEBUG зі змінних середовища    → ключ підпису JWT не лежить у git для production
-Урок 44 (крок 3 Django-книги):
+Урок 45 (крок 3 Django-книги):
   + DATABASES з DATABASE_URL (hello_project/database.py) → PostgreSQL 16 у docker-compose.yml; без змінної — SQLite
-Урок 45 (крок 7B Django-книги):
+Урок 46 (крок 7B Django-книги):
   + daphne, channels, ASGI_APPLICATION, CHANNEL_LAYERS (Redis за REDIS_URL або в пам'яті)
-Урок 49 (кроки 8–9 Django-книги: Docker, деплой):
+Урок 50 (кроки 8–9 Django-книги: Docker, деплой):
   + STATIC_ROOT → collectstatic у спільний том, статику віддає nginx
   + DEBUG=0 без DJANGO_SECRET_KEY → помилка при старті, а не робота з відомим усім ключем
   + DJANGO_HTTPS=1 (за nginx з TLS) → secure cookies, HSTS, SECURE_PROXY_SSL_HEADER; DJANGO_CSRF_TRUSTED_ORIGINS
@@ -30,13 +30,13 @@ from .database import database_from_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Цим ключем підписуються сесії, токени скидання пароля і JWT. Хто його знає — підробить будь-який токен.
-# Для навчання — значення за замовчуванням; на сервері — лише змінна середовища (урок 49).
+# Для навчання — значення за замовчуванням; на сервері — лише змінна середовища (урок 50).
 DEV_SECRET_KEY = "django-insecure-crispy-notes-dev-key-change-in-production"
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", DEV_SECRET_KEY)
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
 
-# Урок 49: на сервері (DEBUG=0) ключ за замовчуванням — у git, його знає кожен: сесії й JWT підробляються.
+# Урок 50: на сервері (DEBUG=0) ключ за замовчуванням — у git, його знає кожен: сесії й JWT підробляються.
 # Краще не стартувати зовсім, ніж працювати з ним (fail fast, як ADMIN_PASSWORD_HASH у news_hub).
 if not DEBUG and SECRET_KEY == DEV_SECRET_KEY:
     raise ImproperlyConfigured("DJANGO_DEBUG=0: задай DJANGO_SECRET_KEY (python -c \"from django.core.management.utils "
@@ -45,7 +45,7 @@ if not DEBUG and SECRET_KEY == DEV_SECRET_KEY:
 ALLOWED_HOSTS = [host for host in os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",") if host]
 
 INSTALLED_APPS = [
-    # Урок 45: daphne ПЕРШИМ — перевизначає runserver, щоб він запускався через ASGI (інакше WebSocket не працює)
+    # Урок 46: daphne ПЕРШИМ — перевизначає runserver, щоб він запускався через ASGI (інакше WebSocket не працює)
     "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -56,12 +56,12 @@ INSTALLED_APPS = [
     # ── Crispy Forms ────────────────────────────────────────────────────────────
     "crispy_forms",       # core: FormHelper, Layout objects
     "crispy_bootstrap5",  # Bootstrap5 template pack
-    # ── REST API (урок 35) ─────────────────────────────────────────────────────────
+    # ── REST API (урок 36) ─────────────────────────────────────────────────────────
     "rest_framework",     # Django REST Framework: серіалізатори, ViewSet, роутер
     "drf_spectacular",    # OpenAPI-схема з ViewSet і серіалізаторів
     # ── Debug ────────────────────────────────────────────────────────────────────
     "debug_toolbar",
-    "channels",                      # урок 45: WebSocket (consumers, channel layer)
+    "channels",                      # урок 46: WebSocket (consumers, channel layer)
     # ── Our app ──────────────────────────────────────────────────────────────────
     "hello_app",
 ]
@@ -71,19 +71,19 @@ INSTALLED_APPS = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# ── Django REST Framework (урок 35) ──────────────────────────────────────────────
+# ── Django REST Framework (урок 36) ──────────────────────────────────────────────
 # Вхід — ті самі сесії, що й у HTML-частини (+ Basic для curl/скриптів).
 # Без входу API не віддає нічого: нотатки приватні.
 REST_FRAMEWORK = {
     # Порядок важливий: без облікових даних DRF відповідає за ПЕРШИМ класом. JWT першим → 401 з
     # WWW-Authenticate: Bearer; сесія першою → 403 (у неї немає заголовка WWW-Authenticate).
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework_simplejwt.authentication.JWTAuthentication",     # урок 40: інші клієнти, Bearer
+        "rest_framework_simplejwt.authentication.JWTAuthentication",     # урок 41: інші клієнти, Bearer
         "rest_framework.authentication.SessionAuthentication",           # браузер (cookie + CSRF)
     ],                                                                   # BasicAuthentication прибрано: пароль у кожному запиті
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-    "DEFAULT_THROTTLE_RATES": {"login": "5/min"},                        # урок 40: перебір паролів на /api/token/
+    "DEFAULT_THROTTLE_RATES": {"login": "5/min"},                        # урок 41: перебір паролів на /api/token/
 }
 
 SIMPLE_JWT = {
@@ -131,9 +131,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "hello_project.wsgi.application"
-ASGI_APPLICATION = "hello_project.asgi.application"   # урок 45: HTTP + WebSocket (hello_project/asgi.py)
+ASGI_APPLICATION = "hello_project.asgi.application"   # урок 46: HTTP + WebSocket (hello_project/asgi.py)
 
-# ── Channel layer (урок 45): розсилка повідомлень чату між з'єднаннями ─────────────────────────────
+# ── Channel layer (урок 46): розсилка повідомлень чату між з'єднаннями ─────────────────────────────
 # REDIS_URL є (docker compose up -d redis) → RedisChannelLayer: кілька процесів сервера бачать одні групи.
 # REDIS_URL немає → InMemoryChannelLayer: у пам'яті ОДНОГО процесу — для навчання, тестів і Colab.
 # З notes_chat_app (settings.py).
@@ -159,7 +159,7 @@ MESSAGE_TAGS = {
     messages_constants.ERROR:   'danger',
 }
 
-# Урок 44: база — з DATABASE_URL (PostgreSQL у docker compose); без змінної — SQLite, як і раніше
+# Урок 45: база — з DATABASE_URL (PostgreSQL у docker compose); без змінної — SQLite, як і раніше
 DATABASES = {"default": database_from_url(os.environ.get("DATABASE_URL"), base_dir=BASE_DIR)}
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -179,7 +179,7 @@ STATIC_URL = "/static/"
 # STATICFILES_DIRS: project-level static/ (custom CSS overrides)
 # hello_app/static/ is found automatically via APP_DIRS
 STATICFILES_DIRS = [BASE_DIR / "static"]
-# Урок 49: куди collectstatic збирає всю статику (Django, admin, DRF, наша) — на сервері її віддає nginx
+# Урок 50: куди collectstatic збирає всю статику (Django, admin, DRF, наша) — на сервері її віддає nginx
 STATIC_ROOT = Path(os.environ.get("DJANGO_STATIC_ROOT", BASE_DIR / "staticfiles"))
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -214,7 +214,7 @@ X_FRAME_OPTIONS = "DENY"
 # Захищає від XSS через завантажені файли.
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
-# ── Production HTTPS (урок 49: вмикається змінною, а не правкою коду на сервері) ─────────
+# ── Production HTTPS (урок 50: вмикається змінною, а не правкою коду на сервері) ─────────
 # DJANGO_HTTPS=1 — сайт відкривається лише через https, TLS знімає nginx перед Django.
 if os.environ.get("DJANGO_HTTPS") == "1":
     SESSION_COOKIE_SECURE = True     # cookie тільки через HTTPS

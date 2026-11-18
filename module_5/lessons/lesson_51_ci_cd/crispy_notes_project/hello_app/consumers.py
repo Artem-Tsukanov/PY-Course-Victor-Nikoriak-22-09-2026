@@ -2,7 +2,7 @@
 consumers.py — WebSocket Consumer для групового чату.
 
 Код — notes_app/consumers.py з notes_chat_app = крок 7B Django-книги.
-Урок 45 курсу — consumer як ще один ТРАНСПОРТ над тими самими selectors і services (урок 44):
+Урок 46 курсу — consumer як ще один ТРАНСПОРТ над тими самими selectors і services (урок 45):
   - членство — selectors.is_group_member, історія — selectors.recent_chat_messages,
     запис — services.post_chat_message; у цьому файлі немає ORM (перевіряє tests_architecture.py);
   - право писати перевіряє service на КОЖНЕ повідомлення, а не лише connect();

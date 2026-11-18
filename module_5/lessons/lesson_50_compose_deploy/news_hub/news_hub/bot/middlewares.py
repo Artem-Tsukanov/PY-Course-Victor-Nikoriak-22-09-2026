@@ -1,4 +1,4 @@
-"""Middleware бота (урок 47) — з `app/middlewares/` стартового `ai_bot`.
+"""Middleware бота (урок 48) — з `app/middlewares/` стартового `ai_bot`.
 
 Update → [outer: RateLimitMiddleware] → роутери → [inner: InjectMiddleware] → handler.
 

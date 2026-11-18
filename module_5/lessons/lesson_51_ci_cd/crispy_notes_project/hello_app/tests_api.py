@@ -1,4 +1,4 @@
-"""Тести REST API (урок 35). Тести HTML-частини з уроку 34 — у tests.py — теж мають проходити:
+"""Тести REST API (урок 36). Тести HTML-частини з уроку 35 — у tests.py — теж мають проходити:
 рефакторинг додав API, не змінивши сторінок.
 
     python manage.py test
@@ -22,7 +22,7 @@ class NoteApiTests(APITestCase):
         self.client.force_authenticate(self.olena)
 
     def test_anonymous_gets_401(self):
-        # Урок 35: 403 (першою була SessionAuthentication). Урок 40: JWT першим → 401 + WWW-Authenticate
+        # Урок 36: 403 (першою була SessionAuthentication). Урок 41: JWT першим → 401 + WWW-Authenticate
         self.client.force_authenticate(None)
         self.assertEqual(self.client.get("/api/notes/").status_code, status.HTTP_401_UNAUTHORIZED)
 

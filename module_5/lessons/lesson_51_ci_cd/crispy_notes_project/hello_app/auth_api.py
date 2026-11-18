@@ -1,4 +1,4 @@
-"""JWT для API нотаток (урок 40): видача токенів з обмеженням спроб.
+"""JWT для API нотаток (урок 41): видача токенів з обмеженням спроб.
 
 `TokenObtainPairView` з djangorestframework-simplejwt: POST username + password → access і refresh.
 Без обмеження частоти цей ендпоінт — ідеальна ціль для перебору паролів (OWASP A07).

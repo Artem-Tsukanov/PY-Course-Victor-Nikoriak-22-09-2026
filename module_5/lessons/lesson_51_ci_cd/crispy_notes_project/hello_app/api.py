@@ -3,7 +3,7 @@
 Код — з Django-книги (notes_chat_app/notes_app/api.py), доповнений до повного CRUD.
 View не робить ORM-запитів сам: читання — selectors, зміни — services.
 Кожен запит бачить лише нотатки поточного користувача (захист від IDOR).
-Урок 44: записник для фільтра й поля `notebook` — теж через selectors (notebooks_owned_by, find_owned),
+Урок 45: записник для фільтра й поля `notebook` — теж через selectors (notebooks_owned_by, find_owned),
 а не `Notebook.objects.filter(user=...)` тут; `Model.objects.none()` лишились — вони не роблять запитів.
 Теорія: https://nikoriakviktor.github.io/notes_chat_app/06_application_architecture/drf_rest_api_full/
 """
@@ -63,7 +63,7 @@ class NoteViewSet(viewsets.ViewSet):
     queryset = Note.objects.none()   # лише для схеми: тип {id} у шляху; дані беруть selectors
 
     def _get_note(self, request, pk):
-        """Читати: свою нотатку або нотатку своєї групи (урок 40). Чужа — 404, ніби її немає."""
+        """Читати: свою нотатку або нотатку своєї групи (урок 41). Чужа — 404, ніби її немає."""
         try:
             return selectors.get_note_detail(request.user, pk)
         except Note.DoesNotExist:
@@ -72,7 +72,7 @@ class NoteViewSet(viewsets.ViewSet):
     def _get_own_note(self, request, pk):
         """Змінювати й видаляти: лише автор. Нотатка групи видима учаснику, але не його — 403.
 
-        Урок 40: після спільного доступу через групи get_note_detail віддає і нотатки групи.
+        Урок 41: після спільного доступу через групи get_note_detail віддає і нотатки групи.
         HTML-views перевіряли автора, а API — ні: учасник групи через API міняв і видаляв чужі нотатки.
         """
         note = self._get_note(request, pk)

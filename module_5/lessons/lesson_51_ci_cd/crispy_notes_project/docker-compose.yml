@@ -1,4 +1,4 @@
-# Проєкт нотаток повністю: nginx → daphne (HTTP + WebSocket чату) → PostgreSQL + Redis. Урок 49.
+# Проєкт нотаток повністю: nginx → daphne (HTTP + WebSocket чату) → PostgreSQL + Redis. Урок 50.
 # Основа — docker-compose.yml Django-книги notes_chat_app (db, redis, web, nginx).
 #
 #   cp .env.example .env            # і заповнити
@@ -7,7 +7,7 @@
 #
 # Порядок: db, redis (healthy) → release (міграції + статика, один раз) → web (healthy) → nginx.
 # Масштабування: docker compose up -d --scale web=2 — міграції не запускаються двічі (release окремо),
-# чат працює між процесами через Redis channel layer (урок 45).
+# чат працює між процесами через Redis channel layer (урок 46).
 name: crispy_notes
 
 x-app: &app

@@ -25,7 +25,7 @@
 - порахувати ринок знизу вгору і чесно позначити, що є фактом, а що — припущенням;
 - показати демо, яке не зламається на сцені, і відповісти на незручні питання.
 
-**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/lessons/lesson_53_graduation_pitch/note_lesson_53_pitch_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/lessons/lesson_53_graduation_pitch/note_lesson_53_pitch.ipynb){ .solutions-link } — 5 «чому» як дерево причин, питання за The Mom Test, ринок знизу вгору, розбір і перевірка деку, бюджет часу на слайди.
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/lessons/lesson_53_graduation_pitch/note_lesson_53_pitch_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/lessons/lesson_53_graduation_pitch/note_lesson_53_pitch.ipynb){ .solutions-link } — 5 «чому» як дерево причин, питання й відповіді за The Mom Test, ринок знизу вгору з чутливістю й економікою користувача, розбір і перевірка деку, бюджет і план часу, дек із шаблону, критерії оцінювання й репетиції; 3 задачі.
 
 ## Пригадай
 

@@ -1,4 +1,4 @@
-"""Текст для Telegram у режимі parse_mode=HTML. Урок 47.
+"""Текст для Telegram у режимі parse_mode=HTML. Урок 48.
 
 Основа — `app/utils/text.py` і `app/utils/formatter.py` зі стартового `ai_bot` (`escape_html`,
 `split_long_message`). Рефакторинг:

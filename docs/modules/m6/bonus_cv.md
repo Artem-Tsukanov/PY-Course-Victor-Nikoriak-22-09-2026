@@ -11,7 +11,7 @@
 |---|---|---|
 | 1 | [довідник «Сильне CV»](cv/cv_tutorial.md) | Professional Summary, формула пункту, сильні дієслова, чесні метрики, порядок проєктів, Skills, розриви сторінок, адаптація під вакансію, ATS |
 | 2 | [`cv_maker/`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_6/bonus/cv_maker) | `cv_template.html` — шаблон для свого CV; `generate_cv_pdf.py` і `generate_cv_pdf_chromium.py`; README |
-| 3 | [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/bonus/cv_maker/note_bonus_cv_maker_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/bonus/cv_maker/note_bonus_cv_maker.ipynb){ .solutions-link } | 6 вправ: перевірка пунктів CV, лише чесні числа, CV як дані → HTML з екрануванням, PDF |
+| 3 | [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/bonus/cv_maker/note_bonus_cv_maker_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_6/bonus/cv_maker/note_bonus_cv_maker.ipynb){ .solutions-link } | сильні пункти й Summary, чесні числа з коду, ATS і карта навичок, ключові слова вакансії, CV як дані → HTML з екрануванням, дві версії, чек-лист, PDF (або HTML, якщо генератора немає); 3 задачі |
 
 **Після уроку ти зможеш:**
 
