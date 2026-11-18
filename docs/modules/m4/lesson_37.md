@@ -189,7 +189,7 @@ print(type(item), item["title"], item["url"])
 Дані з інтернету не прочитали нашого коду — їх треба **перевіряти під час роботи**. Це робить Pydantic.
 
 !!! tip "Поглиблено"
-    [typing — Support for type hints](https://docs.python.org/3/library/typing.html), [mypy: Type hints cheat sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html), [TypedDict](https://docs.python.org/3/library/typing.html#typing.TypedDict), [PEP 604 (`X | None`)](https://peps.python.org/pep-0604/).
+    [typing — Support for type hints](https://docs.python.org/3/library/typing.html), [mypy: Type hints cheat sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html), [TypedDict](https://docs.python.org/3/library/typing.html#typing.TypedDict), [PEP 604 (`X | None`)](https://peps.python.org/pep-0604/). FastAPI-книга: [анотації і TypedDict](https://nikoriakviktor.github.io/news_hub/tutorials/01_typing_pydantic/type_hints_typeddict/), [анотації типів](https://nikoriakviktor.github.io/news_hub/02_typing_and_pydantic/type_hints/).
 
 ## Рефакторинг 2. Pydantic: модель `NewsItem` { #refactor-2 }
 
@@ -399,7 +399,7 @@ def load_snapshot(path: Path = SNAPSHOT) -> list[RawNews]:
 ```
 
 !!! tip "Поглиблено"
-    Pydantic: [Models](https://docs.pydantic.dev/latest/concepts/models/), [Fields](https://docs.pydantic.dev/latest/concepts/fields/), [Validators](https://docs.pydantic.dev/latest/concepts/validators/), [Type Adapter](https://docs.pydantic.dev/latest/concepts/type_adapter/), [JSON Schema](https://docs.pydantic.dev/latest/concepts/json_schema/). Pydantic-схеми в Django — глава книги [Django Ninja](https://nikoriakviktor.github.io/notes_chat_app/06_application_architecture/django_ninja_templates_full/).
+    Pydantic: [Models](https://docs.pydantic.dev/latest/concepts/models/), [Fields](https://docs.pydantic.dev/latest/concepts/fields/), [Validators](https://docs.pydantic.dev/latest/concepts/validators/), [Type Adapter](https://docs.pydantic.dev/latest/concepts/type_adapter/), [JSON Schema](https://docs.pydantic.dev/latest/concepts/json_schema/). Pydantic-схеми в Django — глава книги [Django Ninja](https://nikoriakviktor.github.io/notes_chat_app/06_application_architecture/django_ninja_templates_full/). FastAPI-книга: [модель NewsItem](https://nikoriakviktor.github.io/news_hub/tutorials/01_typing_pydantic/newsitem_model/), [моделі Pydantic 2](https://nikoriakviktor.github.io/news_hub/02_typing_and_pydantic/pydantic_models/), [валідатори і computed_field](https://nikoriakviktor.github.io/news_hub/02_typing_and_pydantic/validators/), [ValidationError](https://nikoriakviktor.github.io/news_hub/02_typing_and_pydantic/validation_error/).
 
 ## Архітектура: межа довіри { #architecture }
 
@@ -437,6 +437,8 @@ flowchart TD
 - **Межа довіри.** Усе, що прийшло ззовні (HTML, файл, тіло запиту), — «сире» (`RawNews`, лише рядки). Перевірка відбувається **один раз** — у `NewsItem`. Далі код працює з гарантіями: `url` — справжній URL з rbc.ua, `lang` — `"uk"` або `"ru"`, `published_time` — `time` або `None`.
 - **Два інструменти — два моменти.** `mypy` ловить помилки в *коді* до запуску; Pydantic — помилки в *даних* під час роботи. Одне не замінює інше.
 - **Модель — контракт.** API (38), база (39), Gemini (44) і бот (48) отримуватимуть `NewsItem`, а не словник: змінимо модель — mypy і тести покажуть усі місця, які це зачепило.
+
+Поглиблено: [межа довіри у FastAPI-книзі](https://nikoriakviktor.github.io/news_hub/tutorials/01_typing_pydantic/trust_boundary/), [межа довіри: теорія](https://nikoriakviktor.github.io/news_hub/02_typing_and_pydantic/trust_boundary/).
 
 ### Тести і mypy
 
@@ -567,6 +569,7 @@ URL — справжній, зі знімка. Чому категорія «Aut
 ## Документація і джерела
 
 - Код: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_37_typing_pydantic/news_hub); `parse_rbc_news` і знімок — зі стартового ноутбука про web scraping, словник категорій — з прототипу `news_dashboard`.
+- [FastAPI-книга](https://nikoriakviktor.github.io/news_hub/), крок 1 Zero to Hero: [огляд](https://nikoriakviktor.github.io/news_hub/tutorials/01_typing_pydantic/), [контрольна точка](https://nikoriakviktor.github.io/news_hub/tutorials/01_typing_pydantic/checkpoint/); частина II «Типи і Pydantic»: [огляд](https://nikoriakviktor.github.io/news_hub/02_typing_and_pydantic/), [режими lax і strict](https://nikoriakviktor.github.io/news_hub/02_typing_and_pydantic/strict_mode/), [URL, email і дати](https://nikoriakviktor.github.io/news_hub/02_typing_and_pydantic/special_types/), [ConfigDict](https://nikoriakviktor.github.io/news_hub/02_typing_and_pydantic/config_dict/), [pydantic-settings і .env](https://nikoriakviktor.github.io/news_hub/02_typing_and_pydantic/settings/)
 - Python: [typing](https://docs.python.org/3/library/typing.html), [Type hints cheat sheet (mypy)](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html), [urllib.parse.urlsplit](https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlsplit)
 - Pydantic: [Models](https://docs.pydantic.dev/latest/concepts/models/), [Fields](https://docs.pydantic.dev/latest/concepts/fields/), [Validators](https://docs.pydantic.dev/latest/concepts/validators/), [Computed fields](https://docs.pydantic.dev/latest/concepts/fields/#the-computed_field-decorator), [Type Adapter](https://docs.pydantic.dev/latest/concepts/type_adapter/), [JSON Schema](https://docs.pydantic.dev/latest/concepts/json_schema/)
 - FastAPI: [Python Types Intro](https://fastapi.tiangolo.com/python-types/) — навіщо FastAPI анотації

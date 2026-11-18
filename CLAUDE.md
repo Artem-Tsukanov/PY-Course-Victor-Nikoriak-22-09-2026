@@ -17,6 +17,7 @@
 | **GitHub** | https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026 |
 | **Audience** | Ukrainian-speaking students, groups 1–4 |
 | **Architecture** | Theory lives as an MkDocs "book" under `docs/` (see `mkdocs.yml`); lesson notebooks keep short in-context explanation + task, not full theory. |
+| **Companion books** | Django book: https://nikoriakviktor.github.io/notes_chat_app/ (repo `NikoriakViktor/notes_chat_app`), linked from the M4 Django lessons (34–36, 41, 45, 46) and M5 via «Поглиблено» / «Документація і джерела». FastAPI book: https://nikoriakviktor.github.io/news_hub/ (local source `/mnt/c/Users/victo/PycharmProjects/news_hub`); course lessons 28, 32–33, 36–45, 47–51 and the M4/M5 overviews deep-link its matching parts and Zero to Hero steps, but the book itself is standalone and must never reference or link to the course. Every book link must be a page from that book's `sitemap.xml` (account `NikoriakViktor`; the pre-rename account’s Pages URLs 404). |
 
 ---
 

@@ -160,7 +160,7 @@ flowchart TD
 
 Порядок має значення: aiogram перевіряє handler згори донизу і зупиняється на першому, чий фільтр підійшов. `F.text` («будь-який текст») пропускає й команди, тому він — останній.
 
-Поглиблено: aiogram — [Router](https://docs.aiogram.dev/en/latest/dispatcher/router.html), [Middlewares](https://docs.aiogram.dev/en/latest/dispatcher/middlewares.html), [Dependency injection](https://docs.aiogram.dev/en/latest/dispatcher/dependency_injection.html).
+Поглиблено: aiogram — [Router](https://docs.aiogram.dev/en/latest/dispatcher/router.html), [Middlewares](https://docs.aiogram.dev/en/latest/dispatcher/middlewares.html), [Dependency injection](https://docs.aiogram.dev/en/latest/dispatcher/dependency_injection.html); FastAPI-книга — [фабрики, роутер, залежності](https://nikoriakviktor.github.io/news_hub/tutorials/09_telegram_bot/bot_structure/).
 
 ## Рефакторинг 2. Відповідь у HTML: екранування і 4096 { #refactor-2 }
 
@@ -236,7 +236,7 @@ def split_message(lines: list[str], limit: int = MAX_MESSAGE) -> list[str]:
     return parts
 ```
 
-Поглиблено: Bot API — [Formatting options: HTML style](https://core.telegram.org/bots/api#html-style).
+Поглиблено: Bot API — [Formatting options: HTML style](https://core.telegram.org/bots/api#html-style); FastAPI-книга — [HTML: екранування і 4096](https://nikoriakviktor.github.io/news_hub/tutorials/09_telegram_bot/html_replies/).
 
 ## Рефакторинг 3. Підписки і сповіщення { #refactor-3 }
 
@@ -325,7 +325,7 @@ POST /api/scrape (Bearer адміна) {"source": "snapshot"}             → ne
 
 `/scrape` у боті — лише для `BOT_ADMIN_IDS`: бот — ще один вхід у застосунок, і правило «хто може змінювати» з уроку 47 діє й тут.
 
-Поглиблено: Telegram — [ліміти розсилки](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this); aiogram — [винятки](https://docs.aiogram.dev/en/latest/api/exceptions.html).
+Поглиблено: Telegram — [ліміти розсилки](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this); aiogram — [винятки](https://docs.aiogram.dev/en/latest/api/exceptions.html); FastAPI-книга — [підписки і сповіщення](https://nikoriakviktor.github.io/news_hub/tutorials/09_telegram_bot/subscriptions_notify/).
 
 ## Рефакторинг 4. Polling і webhook у FastAPI { #refactor-4 }
 
@@ -407,7 +407,7 @@ python -m news_hub.bot → webhook: ''  →  /news 1 → 📰 <b>Останні 
 
 `https://` у `TELEGRAM_WEBHOOK_URL` обов'язковий: Telegram не надсилає webhook на http. Виняток — коли задано `TELEGRAM_API_URL` (двійник або локальний Bot API server).
 
-Поглиблено: Bot API — [getUpdates](https://core.telegram.org/bots/api#getupdates), [setWebhook](https://core.telegram.org/bots/api#setwebhook), [Marvin's Patent Pending Guide to All Things Webhook](https://core.telegram.org/bots/webhooks); aiogram — [webhook](https://docs.aiogram.dev/en/latest/dispatcher/webhook.html).
+Поглиблено: Bot API — [getUpdates](https://core.telegram.org/bots/api#getupdates), [setWebhook](https://core.telegram.org/bots/api#setwebhook), [Marvin's Patent Pending Guide to All Things Webhook](https://core.telegram.org/bots/webhooks); aiogram — [webhook](https://docs.aiogram.dev/en/latest/dispatcher/webhook.html); FastAPI-книга — [polling і webhook у FastAPI](https://nikoriakviktor.github.io/news_hub/tutorials/09_telegram_bot/polling_webhook/).
 
 ## Архітектура { #architecture }
 
@@ -636,6 +636,7 @@ async def test_start_greets_user():
 ## Документація і джерела
 
 - Код: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_48_telegram_bot/news_hub) — `bot/` з `ai_bot/app/` і `echo_bot/`, `notify.py` з `production_bot/backend/workers/notifications.py`, webhook — з `production_bot/backend/api/webhook.py`.
+- [FastAPI-книга](https://nikoriakviktor.github.io/news_hub/), крок 9 Zero to Hero: [огляд](https://nikoriakviktor.github.io/news_hub/tutorials/09_telegram_bot/), [контрольна точка](https://nikoriakviktor.github.io/news_hub/tutorials/09_telegram_bot/checkpoint/); теорія — [Telegram-бот](https://nikoriakviktor.github.io/news_hub/09_integrations/telegram_bots/)
 - Telegram: [Bot API](https://core.telegram.org/bots/api), [HTML style](https://core.telegram.org/bots/api#html-style), [setWebhook](https://core.telegram.org/bots/api#setwebhook), [webhooks](https://core.telegram.org/bots/webhooks), [Bots FAQ: ліміти](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this), [локальний Bot API server](https://github.com/tdlib/telegram-bot-api), [@BotFather](https://core.telegram.org/bots/features#botfather).
 - aiogram 3: [документація](https://docs.aiogram.dev/en/latest/), [Router](https://docs.aiogram.dev/en/latest/dispatcher/router.html), [Middlewares](https://docs.aiogram.dev/en/latest/dispatcher/middlewares.html), [Dependency injection](https://docs.aiogram.dev/en/latest/dispatcher/dependency_injection.html), [webhook](https://docs.aiogram.dev/en/latest/dispatcher/webhook.html).
 - Уроки курсу: [40 — Redis і rate limit](lesson_40.md), [44 — LLM API](lesson_44.md), [47 — Security advanced](lesson_47.md).

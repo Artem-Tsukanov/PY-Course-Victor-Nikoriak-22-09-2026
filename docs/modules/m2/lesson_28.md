@@ -860,6 +860,7 @@ async def report():
 
 Додатково:
 
+- [FastAPI-книга](https://nikoriakviktor.github.io/news_hub/), частина IV «Async і конкурентність»: [чекати чи рахувати](https://nikoriakviktor.github.io/news_hub/04_async/concurrency_basics/), [блокуючий код](https://nikoriakviktor.github.io/news_hub/04_async/blocking_code/), [паралельні запити](https://nikoriakviktor.github.io/news_hub/04_async/concurrency_patterns/) — ті самі ідеї вже в API на FastAPI.
 - [Python docs — Python support for free threading](https://docs.python.org/3/howto/free-threading-python.html) — що змінюється в збірці без GIL і які обмеження.
 - [PEP 779 — Criteria for supported status for free-threaded Python](https://peps.python.org/pep-0779/) — чому з 3.14 збірка без GIL офіційно підтримується.
 - [SuperFastPython — Choose the Right Python Concurrency API](https://superfastpython.com/python-concurrency-choose-api/) — покроковий вибір між трьома інструментами.

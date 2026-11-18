@@ -112,7 +112,7 @@ $ pytest -q -p no:cacheprovider -m unit
 
 Unit-тести ганяють після кожної зміни — вони йдуть близько секунди. Повний набір — перед комітом і в CI (урок 51).
 
-Поглиблено: [піраміда тестів](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/testing_foundations_full/), [маркери й конфігурація pytest](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/pytest_basics_full/).
+Поглиблено: [піраміда тестів](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/testing_foundations_full/), [маркери й конфігурація pytest](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/pytest_basics_full/); FastAPI-книга — [шари тестів: unit і integration](https://nikoriakviktor.github.io/news_hub/tutorials/05_api_testing/test_layers/).
 
 ## Рефакторинг 2. Збережені сторінки замість рядків у тесті { #refactor-2 }
 
@@ -272,7 +272,7 @@ flowchart TD
 
 Тест `test_patch_where_used` робить те саме з `fetch_one`: після патча `news_hub.parser` мок не викликано жодного разу, і `fetch_one` розібрав сторінку справжнім парсером.
 
-Поглиблено: [Mock і patch](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/mocking_and_patching_full/).
+Поглиблено: [Mock і patch](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/mocking_and_patching_full/); FastAPI-книга — [мок мережі: patch where used](https://nikoriakviktor.github.io/news_hub/tutorials/05_api_testing/mock_network/), [підміни: mock і fake](https://nikoriakviktor.github.io/news_hub/07_testing/test_doubles/).
 
 ## Рефакторинг 4. Фейк замість моку: локальний HTTP-сервер { #refactor-4 }
 
@@ -454,7 +454,7 @@ async def test_concurrent_requests_hit_rate_limit_exactly(aclient: httpx.AsyncCl
 | одночасні запити | ні, по одному | `asyncio.gather` |
 | коли | більшість тестів API | конкурентність, async-стан застосунку |
 
-Поглиблено: [async-тести й клієнти](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/pytest_basics_full/); FastAPI — [Async Tests](https://fastapi.tiangolo.com/advanced/async-tests/).
+Поглиблено: [async-тести й клієнти](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/pytest_basics_full/); FastAPI — [Async Tests](https://fastapi.tiangolo.com/advanced/async-tests/); FastAPI-книга — [httpx.AsyncClient](https://nikoriakviktor.github.io/news_hub/tutorials/05_api_testing/async_client/), [тестування FastAPI](https://nikoriakviktor.github.io/news_hub/07_testing/testing_fastapi/).
 
 ## Рефакторинг 6. Покриття: що тести не зачепили { #refactor-6 }
 
@@ -833,6 +833,7 @@ for item in raw:
 - Код: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_42_api_testing/news_hub) — тести уроку 40, перебудовані за `TESTING_FOUNDATIONS.md`, `MOCKING_AND_PATCHING.md`, `TEST_DATA_AND_FIXTURES.md`; HTML-фікстури — з ноутбука web scraping.
 - Урок 26 курсу — [pytest і тестування](../m2/lesson_26.md): fixtures, `parametrize`, mock, покриття, піраміда тестів.
 - Django-книга, частина VIII: [основи тестування](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/testing_foundations_full/), [pytest](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/pytest_basics_full/), [Mock і patch](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/mocking_and_patching_full/), [тестові дані й фікстури](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/test_data_and_fixtures_full/), [практика](https://nikoriakviktor.github.io/notes_chat_app/08_testing_and_quality/testing_practice_project_full/).
+- [FastAPI-книга](https://nikoriakviktor.github.io/news_hub/), крок 5 Zero to Hero: [огляд](https://nikoriakviktor.github.io/news_hub/tutorials/05_api_testing/), [збережені сторінки замість рядків](https://nikoriakviktor.github.io/news_hub/tutorials/05_api_testing/html_fixtures/), [фейк замість моку](https://nikoriakviktor.github.io/news_hub/tutorials/05_api_testing/fake_server/), [покриття](https://nikoriakviktor.github.io/news_hub/tutorials/05_api_testing/coverage/), [мінімальні версії](https://nikoriakviktor.github.io/news_hub/tutorials/05_api_testing/min_versions/); частина VII «Тестування API»: [фікстури](https://nikoriakviktor.github.io/news_hub/07_testing/fixtures/), [тести з базою даних](https://nikoriakviktor.github.io/news_hub/07_testing/test_databases/), [якість тестів](https://nikoriakviktor.github.io/news_hub/07_testing/quality/)
 - pytest: [markers](https://docs.pytest.org/en/stable/how-to/mark.html), [hooks: pytest_collection_modifyitems](https://docs.pytest.org/en/stable/reference/reference.html#pytest.hookspec.pytest_collection_modifyitems), [monkeypatch](https://docs.pytest.org/en/stable/how-to/monkeypatch.html); [pytest-asyncio](https://pytest-asyncio.readthedocs.io/); [pytest-cov](https://pytest-cov.readthedocs.io/).
 - Python: [unittest.mock — where to patch](https://docs.python.org/3/library/unittest.mock.html#where-to-patch), [AsyncMock](https://docs.python.org/3/library/unittest.mock.html#unittest.mock.AsyncMock).
 - FastAPI: [Testing](https://fastapi.tiangolo.com/tutorial/testing/), [Async Tests](https://fastapi.tiangolo.com/advanced/async-tests/), [Testing Dependencies with Overrides](https://fastapi.tiangolo.com/advanced/testing-dependencies/); HTTPX: [ASGI transport](https://www.python-httpx.org/advanced/transports/#asgi-transport).

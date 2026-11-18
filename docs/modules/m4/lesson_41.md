@@ -434,7 +434,7 @@ Too Many Requests: /api/token/
 
 Після 5 спроб за хвилину — `429`, навіть з правильним паролем: зловмисник не може перебирати швидко, а справжній користувач чекає хвилину. Той самий принцип, що rate limit агрегатора в уроці 40, — тут готовий `ScopedRateThrottle` DRF.
 
-Поглиблено: [DRF: автентифікація й permissions у Django-книзі](https://nikoriakviktor.github.io/notes_chat_app/06_application_architecture/drf_rest_api_full/).
+Поглиблено: [DRF: автентифікація й permissions у Django-книзі](https://nikoriakviktor.github.io/notes_chat_app/06_application_architecture/drf_rest_api_full/); FastAPI-книга — [автентифікація: сесії і JWT](https://nikoriakviktor.github.io/news_hub/08_security/authentication/).
 
 ## Налаштування безпеки і `check --deploy` { #settings }
 
@@ -668,6 +668,7 @@ print("підроблений токен →", response.status_code, [note["titl
 
 - Код: [`crispy_notes_project`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_41_auth_security/crispy_notes_project) — проєкт уроку 36 + групи, скидання пароля й налаштування безпеки зі стартового `crispy_notes_project`.
 - Django-книга, частина VII: [огляд](https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/), [автентифікація](https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/auth_basics_full/), [сесії](https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/sessions_flow_full/), [права доступу](https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/permissions_full/), [архітектура безпеки Django](https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/django_security_architecture_full/), [типові помилки](https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/security_misconceptions_full/), [OWASP Top 10](https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/owasp_top_10_full/).
+- [FastAPI-книга](https://nikoriakviktor.github.io/news_hub/), частина VIII «Безпека API» — ті самі ідеї без Django: [паролі: хеш, сіль, вартість](https://nikoriakviktor.github.io/news_hub/08_security/passwords/), [автентифікація: сесії і JWT](https://nikoriakviktor.github.io/news_hub/08_security/authentication/), [авторизація: ролі, scopes, об'єкти](https://nikoriakviktor.github.io/news_hub/08_security/authorization/), [OWASP API Top 10](https://nikoriakviktor.github.io/news_hub/08_security/owasp_api_top10/).
 - Django: [Password management](https://docs.djangoproject.com/en/5.2/topics/auth/passwords/), [Using the authentication system](https://docs.djangoproject.com/en/5.2/topics/auth/default/), [Deployment checklist](https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/), [Security in Django](https://docs.djangoproject.com/en/5.2/topics/security/)
 - DRF: [Authentication](https://www.django-rest-framework.org/api-guide/authentication/), [Permissions](https://www.django-rest-framework.org/api-guide/permissions/), [Throttling](https://www.django-rest-framework.org/api-guide/throttling/); [Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/)
 - [RFC 7519 — JSON Web Token](https://datatracker.ietf.org/doc/html/rfc7519), [jwt.io](https://jwt.io/) — розібрати токен

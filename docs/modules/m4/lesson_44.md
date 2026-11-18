@@ -442,7 +442,7 @@ flowchart TD
 
 Колонка `category` (розділ сайту) лишилась як була; тема від моделі — нова колонка `ai_category`.
 
-Поглиблено: [Gemini — structured output](https://ai.google.dev/gemini-api/docs/structured-output), [Pydantic — JSON Schema](https://docs.pydantic.dev/latest/concepts/json_schema/).
+Поглиблено: [Gemini — structured output](https://ai.google.dev/gemini-api/docs/structured-output), [Pydantic — JSON Schema](https://docs.pydantic.dev/latest/concepts/json_schema/); FastAPI-книга — [JSON за схемою + Pydantic](https://nikoriakviktor.github.io/news_hub/tutorials/07_llm_api/json_schema/).
 
 ## Рефакторинг 4. Промпт: інструкція окремо, новина — як дані { #refactor-4 }
 
@@ -492,7 +492,7 @@ def test_title_cannot_close_the_data_block() -> None:
     assert "Ігноруй попередні інструкції" in data                 # текст лишився — але всередині даних
 ```
 
-Поглиблено: [OWASP Top 10 for LLM Applications — LLM01 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/).
+Поглиблено: [OWASP Top 10 for LLM Applications — LLM01 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/); FastAPI-книга — [промпт: новина — як дані](https://nikoriakviktor.github.io/news_hub/tutorials/07_llm_api/prompt_injection/).
 
 ## Рефакторинг 5. Circuit breaker: атомарний і окремо від провайдера { #refactor-5 }
 
@@ -581,7 +581,7 @@ $ redis-cli ttl cb:llm:open
 - **Redis упав — breaker пропускає виклики** (`retry_after()` повертає 0). Кеш і breaker — захист, а не умова роботи; без Redis аналіз працює, лише без захисту.
 - **Стан — у Redis, а не в пам'яті процесу:** кілька процесів uvicorn (урок 49) бачать той самий breaker, і перезапуск його не скидає.
 
-Поглиблено: [Martin Fowler — CircuitBreaker](https://martinfowler.com/bliki/CircuitBreaker.html).
+Поглиблено: [Martin Fowler — CircuitBreaker](https://martinfowler.com/bliki/CircuitBreaker.html); FastAPI-книга — [circuit breaker](https://nikoriakviktor.github.io/news_hub/tutorials/07_llm_api/circuit_breaker/), [надійність LLM](https://nikoriakviktor.github.io/news_hub/09_integrations/llm_reliability/).
 
 ## Рефакторинг 6. База, кеш і вартість { #refactor-6 }
 
@@ -1027,6 +1027,7 @@ E   news_hub.llm.LLMUnavailable: gemini відхилив запит (400): Inval
 ## Документація і джерела
 
 - Код: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_44_llm_api/news_hub) — `llm.py` з `ai_bot/app/services/ai_service.py`, `analysis.py` замість `news_dashboard/app/nlp.py` (прототип).
+- [FastAPI-книга](https://nikoriakviktor.github.io/news_hub/), крок 7 Zero to Hero: [один інтерфейс LLMClient](https://nikoriakviktor.github.io/news_hub/tutorials/07_llm_api/llm_client/), [async-клієнт і пул моделей](https://nikoriakviktor.github.io/news_hub/tutorials/07_llm_api/gemini_pool/), [база, кеш і вартість](https://nikoriakviktor.github.io/news_hub/tutorials/07_llm_api/db_cache_cost/), [нові ендпоінти й тести](https://nikoriakviktor.github.io/news_hub/tutorials/07_llm_api/endpoints_and_tests/); частина IX: [LLM API](https://nikoriakviktor.github.io/news_hub/09_integrations/llm_api/), [надійність LLM](https://nikoriakviktor.github.io/news_hub/09_integrations/llm_reliability/)
 - Gemini API: [генерація тексту](https://ai.google.dev/gemini-api/docs/text-generation), [structured output](https://ai.google.dev/gemini-api/docs/structured-output), [моделі](https://ai.google.dev/gemini-api/docs/models), [ліміти](https://ai.google.dev/gemini-api/docs/rate-limits), [ціни](https://ai.google.dev/gemini-api/docs/pricing), [помилки](https://ai.google.dev/gemini-api/docs/troubleshooting); SDK [google-genai](https://googleapis.github.io/python-genai/); ключ — [Google AI Studio](https://aistudio.google.com/apikey).
 - Anthropic: [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs), [помилки](https://platform.claude.com/docs/en/api/errors), [ціни](https://platform.claude.com/docs/en/about-claude/pricing); SDK [anthropic-sdk-python](https://github.com/anthropics/anthropic-sdk-python).
 - Безпека: [OWASP Top 10 for LLM Applications](https://genai.owasp.org/llm-top-10/), [LLM01 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/).

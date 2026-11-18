@@ -10,3 +10,5 @@
 | [51. CI/CD (GitHub Actions)](m5/lesson_51.md) | тести, типи й збірка образу на кожен PR; публікація образу | обидва |
 
 Кожен урок — рефакторинг стартового коду (`production_bot`) і Django-книги ([notes_chat_app](https://nikoriakviktor.github.io/notes_chat_app/)): спершу запускаємо його як є і дивимось, що ламається, потім виправляємо — з реальним виводом.
+
+**FastAPI-книга викладача.** Docker, Compose і CI для `news_hub` поглиблено — у кроках 10–12 Zero to Hero [FastAPI-книги](https://nikoriakviktor.github.io/news_hub/): урок 49 — [крок 10](https://nikoriakviktor.github.io/news_hub/tutorials/10_docker/), 50 — [крок 11](https://nikoriakviktor.github.io/news_hub/tutorials/11_compose_deploy/), 51 — [крок 12](https://nikoriakviktor.github.io/news_hub/tutorials/12_ci_cd/); теорія — [частина X «Docker, Compose і CI/CD»](https://nikoriakviktor.github.io/news_hub/10_docker_and_ci/).

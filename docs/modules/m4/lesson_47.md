@@ -251,7 +251,7 @@ $ curl -X POST .../api/scrape -H "Authorization: Bearer $TOKEN" -d '{"source":"s
 
 У Swagger (`/docs`) з'явилась кнопка **Authorize**: `HTTPBearer` описує схему в OpenAPI, і закриті ендпоінти позначено замком. Колекція Postman отримала запит «Вхід адміна», який зберігає `token` у змінну. `newman run … --env-var adminPassword=…` дає 19 запитів і 27 перевірок, 0 падінь.
 
-Поглиблено: урок 41 курсу — [JWT для API](lesson_41.md); FastAPI — [OAuth2 з JWT](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/).
+Поглиблено: урок 41 курсу — [JWT для API](lesson_41.md); FastAPI — [OAuth2 з JWT](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/); FastAPI-книга — [адмін і JWT](https://nikoriakviktor.github.io/news_hub/tutorials/08_security/admin_jwt/), [паролі](https://nikoriakviktor.github.io/news_hub/08_security/passwords/), [сесії і JWT](https://nikoriakviktor.github.io/news_hub/08_security/authentication/).
 
 ## Рефакторинг 2. SSRF: куди ходить сервер { #refactor-2 }
 
@@ -404,7 +404,7 @@ flowchart TD
     class W warning
 ```
 
-Поглиблено: [OWASP — SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html); Python — [`ipaddress`](https://docs.python.org/3/library/ipaddress.html); aiohttp — [Resolvers](https://docs.aiohttp.org/en/stable/client_reference.html#resolvers).
+Поглиблено: [OWASP — SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html); Python — [`ipaddress`](https://docs.python.org/3/library/ipaddress.html); aiohttp — [Resolvers](https://docs.aiohttp.org/en/stable/client_reference.html#resolvers); FastAPI-книга — [SSRF: куди ходить сервер](https://nikoriakviktor.github.io/news_hub/tutorials/08_security/ssrf/), [SSRF і вихідні запити](https://nikoriakviktor.github.io/news_hub/08_security/ssrf_and_outbound/).
 
 ## Рефакторинг 3. Підписані webhook { #refactor-3 }
 
@@ -500,7 +500,7 @@ sequenceDiagram
 
 Telegram (урок 48) так не підписує: він надсилає лише заголовок `X-Telegram-Bot-Api-Secret-Token`. Для нього в `webhooks.py` є `verify_secret_token` — теж з `compare_digest`, і теж без секрету в URL.
 
-Поглиблено: [GitHub — Validating webhook deliveries](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries); Python — [`hmac.compare_digest`](https://docs.python.org/3/library/hmac.html#hmac.compare_digest).
+Поглиблено: [GitHub — Validating webhook deliveries](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries); Python — [`hmac.compare_digest`](https://docs.python.org/3/library/hmac.html#hmac.compare_digest); FastAPI-книга — [підписані webhook](https://nikoriakviktor.github.io/news_hub/tutorials/08_security/webhooks/), [webhook і підписи](https://nikoriakviktor.github.io/news_hub/08_security/webhooks_and_signatures/).
 
 ## Архітектура { #architecture }
 
@@ -734,6 +734,7 @@ is_safe_url: True
 ## Документація і джерела
 
 - Код: [`news_hub`](https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_47_security_advanced/news_hub) — `security.py` з `production_bot/backend/core/security.py`, `api/deps.py`, `api/admin/auth.py`; `webhooks.py` з `api/webhook.py`; `safe_fetch.py` — розділ A10 `OWASP_TOP_10.md`.
+- [FastAPI-книга](https://nikoriakviktor.github.io/news_hub/), крок 8 Zero to Hero: [огляд](https://nikoriakviktor.github.io/news_hub/tutorials/08_security/), [тести безпеки](https://nikoriakviktor.github.io/news_hub/tutorials/08_security/security_tests/); частина VIII «Безпека API»: [авторизація](https://nikoriakviktor.github.io/news_hub/08_security/authorization/), [секрети, заголовки, проксі](https://nikoriakviktor.github.io/news_hub/08_security/secrets_and_headers/), [OWASP API Top 10](https://nikoriakviktor.github.io/news_hub/08_security/owasp_api_top10/)
 - OWASP: [Top 10](https://owasp.org/Top10/), [SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html), [Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html), [JSON Web Token for Java Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html) (атаки на JWT — не лише для Java).
 - Бібліотеки: [PyJWT](https://pyjwt.readthedocs.io/en/stable/usage.html), [bcrypt](https://github.com/pyca/bcrypt), [aiohttp — client reference](https://docs.aiohttp.org/en/stable/client_reference.html), Python — [`hmac`](https://docs.python.org/3/library/hmac.html), [`ipaddress`](https://docs.python.org/3/library/ipaddress.html), [`secrets`](https://docs.python.org/3/library/secrets.html).
 - FastAPI: [Security](https://fastapi.tiangolo.com/tutorial/security/), [OAuth2 з JWT](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/).
