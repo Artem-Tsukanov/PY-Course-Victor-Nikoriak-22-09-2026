@@ -1154,6 +1154,8 @@
       
         
       
+        
+      
     
     
     
@@ -1540,6 +1542,64 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../m2/bonus_patterns/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. Патерни програмування
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1556,6 +1616,8 @@
   
     
     
+      
+        
       
         
       
@@ -1720,6 +1782,34 @@
     
   
     30. Основи SQL (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../m3/bonus_duckdb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. DuckDB і data lake: патерни зберігання та аналізу даних
   
 
     
@@ -3889,29 +3979,29 @@
 </thead>
 <tbody>
 <tr>
-<td>36–39</td>
+<td>37–40</td>
 <td>парсер і модель, FastAPI, база, Redis</td>
 </tr>
 <tr>
-<td>41</td>
+<td>42</td>
 <td>тести: unit / integration, мок і фейк мережі, покриття</td>
 </tr>
 <tr>
-<td><strong>42</strong></td>
+<td><strong>43</strong></td>
 <td><strong>Claude Code у проєкті: CLAUDE.md, дозволи, hook; друге джерело (RSS) — написане AI за тестами</strong></td>
 </tr>
 <tr>
-<td>43</td>
+<td>44</td>
 <td>Gemini: підсумок, категорія, тональність</td>
 </tr>
 <tr>
-<td>47</td>
+<td>48</td>
 <td>Telegram-бот</td>
 </tr>
 </tbody>
 </table>
 <p>Проєкти: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_43_ai_dev_tools/news_hub"><code>news_hub</code></a>, <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_43_ai_dev_tools/depression_dashboard"><code>depression_dashboard</code></a>. Довідник: <a href="../ai/claude_code/">Claude Code</a> — встановлення, CLAUDE.md, skills, MCP, hooks, дозволи.</p>
-<p><strong>Що потрібно з попередніх уроків:</strong> чекліст валідації AI-коду й тести властивостей (урок 26); тест конвеєра, мок і фейк, покриття, мінімальні версії (41); Pydantic (36); FastAPI, <code>Depends</code> (37).</p>
+<p><strong>Що потрібно з попередніх уроків:</strong> чекліст валідації AI-коду й тести властивостей (урок 26); тест конвеєра, мок і фейк, покриття, мінімальні версії (42); Pydantic (37); FastAPI, <code>Depends</code> (38).</p>
 <p><strong>Після уроку ти зможеш:</strong></p>
 <ul>
 <li>налаштувати проєкт для AI-агента: <code>CLAUDE.md</code>, дозволи, hook, skill;</li>
@@ -4578,6 +4668,7 @@
 <h2 id="_9">Документація і джерела<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Код: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_43_ai_dev_tools/news_hub"><code>news_hub</code></a> — <code>rss.py</code> і зміни <code>models.py</code> написав Claude Code за специфікацією, правки рецензента позначено; ідея RSS-джерела — скрипт аналізу тональності <code>analysis_tonality_2.py</code>. <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_43_ai_dev_tools/depression_dashboard"><code>depression_dashboard</code></a> — проєкт, який згенерував AI, разом з промптами (<code>prompts/</code>).</li>
+<li><a href="https://nikoriakviktor.github.io/news_hub/">FastAPI-книга</a>, крок 6 Zero to Hero: <a href="https://nikoriakviktor.github.io/news_hub/tutorials/06_ai_dev_tools/ai_ready_project/">проєкт для AI-агента</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/06_ai_dev_tools/two_prompts/">одне завдання — два запити</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/06_ai_dev_tools/review_with_tests/">рецензія AI-коду тестами</a>; теорія — <a href="https://nikoriakviktor.github.io/news_hub/09_integrations/ai_dev_tools/">AI-агент у проєкті</a></li>
 <li><a href="../ai/claude_code/">Довідник: Claude Code</a> — звірений з установленим <code>claude</code> і з документацією.</li>
 <li>Урок 26 — <a href="../../m2/lesson_26/">валідація AI-коду</a>; урок 42 — <a href="../lesson_42/">тест конвеєра, мок і фейк, мінімальні версії</a>.</li>
 <li>Claude Code: <a href="https://code.claude.com/docs/en/best-practices">Best practices</a>, <a href="https://code.claude.com/docs/en/memory">Memory (CLAUDE.md)</a>, <a href="https://code.claude.com/docs/en/permissions">Permissions</a>, <a href="https://code.claude.com/docs/en/hooks">Hooks</a>, <a href="https://code.claude.com/docs/en/headless">Headless (<code>-p</code>)</a>, <a href="https://code.claude.com/docs/en/security">Security</a>.</li>

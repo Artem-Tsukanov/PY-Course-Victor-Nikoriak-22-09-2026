@@ -1154,6 +1154,8 @@
       
         
       
+        
+      
     
     
     
@@ -1540,6 +1542,64 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../m2/bonus_patterns/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. Патерни програмування
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1556,6 +1616,8 @@
   
     
     
+      
+        
       
         
       
@@ -1720,6 +1782,34 @@
     
   
     30. Основи SQL (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../m3/bonus_duckdb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. DuckDB і data lake: патерни зберігання та аналізу даних
   
 
     
@@ -3666,7 +3756,7 @@
 <li>отримати OpenAPI-схему API;</li>
 <li>порівняти Django + DRF і FastAPI і обрати інструмент під задачу.</li>
 </ul>
-<p><strong>Ноутбук заняття:</strong> <a class="md-button md-button--primary" href="https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_36_drf_fastapi/note_lesson_36_drf_student.ipynb">Відкрити вправи в Colab</a> <a class="solutions-link" href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_36_drf_fastapi/note_lesson_36_drf.ipynb">Переглянути розв’язки</a> — серіалізатори й API з перевірками.</p>
+<p><strong>Ноутбук заняття:</strong> <a class="md-button md-button--primary" href="https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_36_drf_fastapi/note_lesson_36_drf_student.ipynb">Відкрити вправи в Colab</a> <a class="solutions-link" href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_36_drf_fastapi/note_lesson_36_drf.ipynb">Переглянути розв’язки</a> — серіалізатори, API через <code>APIClient</code>, IDOR, OpenAPI-схема і той самий API на FastAPI; 3 задачі з перевірками.</p>
 <h2 id="_1">Пригадай<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Який код повертає REST API, коли створено ресурс? Коли видалено? Коли дані не пройшли перевірку (урок 33)?</li>
@@ -4072,6 +4162,7 @@
 <p class="admonition-title">Поглиблено</p>
 <ul>
 <li>Django-книга: <a href="https://nikoriakviktor.github.io/notes_chat_app/06_application_architecture/drf_rest_api_full/">REST API: Django REST Framework</a> — <code>APIView.dispatch()</code> зсередини, об'єктні права, Input/Output-серіалізатори; <a href="https://nikoriakviktor.github.io/notes_chat_app/06_application_architecture/django_serializers_full/">Serializers — Transport Layer</a>; <a href="https://nikoriakviktor.github.io/notes_chat_app/06_application_architecture/services_selectors_full/">Services і Selectors</a></li>
+<li>FastAPI-книга: <a href="https://nikoriakviktor.github.io/news_hub/03_fastapi_core/fastapi_vs_drf/">FastAPI і DRF</a> — той самий API двома інструментами; <a href="https://nikoriakviktor.github.io/news_hub/reference/django_to_fastapi/">від Django до FastAPI</a> — словник відповідностей</li>
 <li>DRF: <a href="https://www.django-rest-framework.org/api-guide/serializers/">Serializers</a>, <a href="https://www.django-rest-framework.org/api-guide/viewsets/">ViewSets</a>, <a href="https://www.django-rest-framework.org/api-guide/routers/">Routers</a>, <a href="https://www.django-rest-framework.org/api-guide/permissions/">Permissions</a>; <a href="https://drf-spectacular.readthedocs.io/">drf-spectacular</a></li>
 </ul>
 </div>
@@ -4189,7 +4280,7 @@
     class A,B,C decision
     class D,F success
     class E warning</code></pre>
-<p><strong>Куди далі.</strong> Django-гілка курсу продовжує нотатки: вхід і спільний доступ (урок 41), тести (41), архітектура services/selectors (44), чат на WebSocket (45). FastAPI-гілка з уроку 37 будує <strong>новинний агрегатор</strong> — стартовий парсер новин, який крок за кроком обростає Pydantic-моделями, FastAPI, базою, кешем, підсумками від Gemini і Telegram-ботом.</p>
+<p><strong>Куди далі.</strong> Django-гілка курсу продовжує нотатки: вхід і спільний доступ (урок 41), тести (42), архітектура services/selectors (45), чат на WebSocket (46). FastAPI-гілка з уроку 37 будує <strong>новинний агрегатор</strong> — стартовий парсер новин, який крок за кроком обростає Pydantic-моделями, FastAPI, базою, кешем, підсумками від Gemini і Telegram-ботом.</p>
 <h2 id="practice">Практика<a class="headerlink" href="#practice" title="Permanent link">&para;</a></h2>
 <h3 id="_6">Розібраний приклад: фільтр за записником<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>Клієнту потрібні нотатки одного записника: <code>GET /api/notes/?notebook=&lt;id&gt;</code>. Писати новий ORM-запит не треба — <code>selectors.get_user_notes</code> уже вміє фільтр <code>notebook=</code> (ним користується sidebar сторінок). У <code>list</code> лише перевіряємо параметр:</p>
@@ -4350,6 +4441,7 @@
 <ul>
 <li>Код: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_36_drf_fastapi/crispy_notes_project"><code>crispy_notes_project</code></a> — проєкт уроку 35 + <code>api.py</code> з Django-книги (<a href="https://github.com/NikoriakViktor/notes_chat_app/blob/main/notes_app/api.py"><code>notes_app/api.py</code></a>), доповнений до CRUD. Порівняльний <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_4/lessons/lesson_36_drf_fastapi/fastapi_notes.py"><code>fastapi_notes.py</code></a>.</li>
 <li>Django-книга: <a href="https://nikoriakviktor.github.io/notes_chat_app/06_application_architecture/drf_rest_api_full/">REST API: Django REST Framework</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/06_application_architecture/django_serializers_full/">Serializers — Transport Layer</a></li>
+<li><a href="https://nikoriakviktor.github.io/news_hub/">FastAPI-книга</a>: <a href="https://nikoriakviktor.github.io/news_hub/03_fastapi_core/fastapi_vs_drf/">FastAPI і DRF</a>, <a href="https://nikoriakviktor.github.io/news_hub/03_fastapi_core/fastapi_flask_django/">FastAPI, Flask і Django</a>, <a href="https://nikoriakviktor.github.io/news_hub/reference/django_to_fastapi/">від Django до FastAPI</a></li>
 <li>DRF: <a href="https://www.django-rest-framework.org/tutorial/quickstart/">Quickstart</a>, <a href="https://www.django-rest-framework.org/api-guide/serializers/">Serializers</a>, <a href="https://www.django-rest-framework.org/api-guide/viewsets/">ViewSets</a>, <a href="https://www.django-rest-framework.org/api-guide/routers/">Routers</a>, <a href="https://www.django-rest-framework.org/api-guide/authentication/">Authentication</a>, <a href="https://www.django-rest-framework.org/api-guide/permissions/">Permissions</a>, <a href="https://www.django-rest-framework.org/api-guide/testing/">Testing</a>, <a href="https://www.django-rest-framework.org/topics/browsable-api/">Browsable API</a></li>
 <li>Django: <a href="https://docs.djangoproject.com/en/5.2/ref/models/instances/#specifying-which-fields-to-save"><code>Model.save(update_fields=…)</code></a>, <a href="https://docs.djangoproject.com/en/5.2/ref/models/fields/#django.db.models.DateField.auto_now"><code>DateField.auto_now</code></a></li>
 <li><a href="https://drf-spectacular.readthedocs.io/">drf-spectacular</a>; FastAPI: <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial</a>, <a href="https://fastapi.tiangolo.com/alternatives/">Alternatives, Inspiration and Comparisons</a></li>

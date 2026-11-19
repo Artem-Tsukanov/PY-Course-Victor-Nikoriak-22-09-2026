@@ -1154,6 +1154,8 @@
       
         
       
+        
+      
     
     
     
@@ -1540,6 +1542,64 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../m2/bonus_patterns/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. Патерни програмування
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1556,6 +1616,8 @@
   
     
     
+      
+        
       
         
       
@@ -1720,6 +1782,34 @@
     
   
     30. Основи SQL (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../m3/bonus_duckdb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. DuckDB і data lake: патерни зберігання та аналізу даних
   
 
     
@@ -3596,8 +3686,8 @@
 
 
 <h1 id="linux">Бонус. Linux для розробника<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
-<p>До цього моменту <code>news_hub</code> і проєкт нотаток жили на твоєму комп'ютері: <code>uvicorn --reload</code>, <code>python manage.py runserver</code>. Модуль 5 переносить їх туди, де працює майже кожен вебзастосунок, — на <strong>Linux</strong>: у контейнер Docker (урок 49), на сервер з Compose (49), у CI на GitHub Actions (50). Усі три — це Linux, і всі їхні «загадкові» поломки — звичайні речі Linux: процес не отримав сигнал, користувач не має прав на папку, сервер слухає не ту адресу, змінну середовища не передали.</p>
-<p>Цей бонус-урок (поза нумерацією 1–52) — мінімум Linux, потрібний для уроків 49–51. Кожна тема тут — з того, на що ми справді наткнулися, переносячи <code>news_hub</code> у Docker.</p>
+<p>До цього моменту <code>news_hub</code> і проєкт нотаток жили на твоєму комп'ютері: <code>uvicorn --reload</code>, <code>python manage.py runserver</code>. Модуль 5 переносить їх туди, де працює майже кожен вебзастосунок, — на <strong>Linux</strong>: у контейнер Docker (урок 49), на сервер з Compose (50), у CI на GitHub Actions (51). Усі три — це Linux, і всі їхні «загадкові» поломки — звичайні речі Linux: процес не отримав сигнал, користувач не має прав на папку, сервер слухає не ту адресу, змінну середовища не передали.</p>
+<p>Цей бонус-урок (поза нумерацією 1–53) — мінімум Linux, потрібний для уроків 49–51. Кожна тема тут — з того, на що ми справді наткнулися, переносячи <code>news_hub</code> у Docker.</p>
 <table>
 <thead>
 <tr>
@@ -3610,7 +3700,7 @@
 <tr>
 <td>1</td>
 <td><a class="md-button md-button--primary" href="https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/bonus/linux_devops/note_bonus_linux_devops_student.ipynb">Відкрити вправи в Colab</a> <a class="solutions-link" href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/bonus/linux_devops/note_bonus_linux_devops.ipynb">Переглянути розв’язки</a></td>
-<td>9 вправ у справжньому Linux (Colab — це Ubuntu): пайплайни, коди виходу, права, процеси й сигнали, порти, змінні середовища, скрипт з <code>set -euo pipefail</code></td>
+<td>42 приклади і 3 задачі у справжньому Linux (Colab — це Ubuntu): пайплайни, коди виходу, права, процеси й сигнали, порти, змінні середовища, скрипт з <code>set -euo pipefail</code></td>
 </tr>
 <tr>
 <td>2</td>
@@ -3625,7 +3715,7 @@
 </tbody>
 </table>
 <p>Довідник перевірено: команди запущено в контейнерах Ubuntu, Debian і <code>python:3.12-slim</code>, конфігурації nginx і Compose — перевірені інструментами.</p>
-<p><strong>Що потрібно з попередніх уроків:</strong> запуск Python-скриптів і <code>pip</code> (М1), <code>subprocess</code> і процеси (урок 28), HTTP і порти (31), змінні середовища й секрети (43, 46).</p>
+<p><strong>Що потрібно з попередніх уроків:</strong> запуск Python-скриптів і <code>pip</code> (М1), <code>subprocess</code> і процеси (урок 28), HTTP і порти (32), змінні середовища й секрети (44, 47).</p>
 <p><strong>Після уроку ти зможеш:</strong></p>
 <ul>
 <li>зібрати з маленьких команд пайплайн, що відповідає на питання про журнал;</li>

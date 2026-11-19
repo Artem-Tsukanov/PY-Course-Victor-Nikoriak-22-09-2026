@@ -1154,6 +1154,8 @@
       
         
       
+        
+      
     
     
     
@@ -1540,6 +1542,64 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../m2/bonus_patterns/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. Патерни програмування
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1556,6 +1616,8 @@
   
     
     
+      
+        
       
         
       
@@ -1720,6 +1782,34 @@
     
   
     30. Основи SQL (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../m3/bonus_duckdb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. DuckDB і data lake: патерни зберігання та аналізу даних
   
 
     
@@ -3812,33 +3902,33 @@
 </thead>
 <tbody>
 <tr>
-<td>36–39</td>
+<td>37–40</td>
 <td>парсер і модель, FastAPI, база, Redis</td>
 </tr>
 <tr>
-<td>41–43</td>
+<td>42–44</td>
 <td>тести; Claude Code і RSS; аналіз LLM</td>
 </tr>
 <tr>
-<td>46–47</td>
+<td>47–48</td>
 <td>безпека; Telegram-бот</td>
 </tr>
 <tr>
-<td><strong>48</strong></td>
+<td><strong>49</strong></td>
 <td><strong>Docker: образ застосунку, тести образу</strong></td>
 </tr>
 <tr>
-<td>49</td>
+<td>50</td>
 <td>Compose: API, міграції, PostgreSQL, Redis, nginx, бот — однією командою; деплой</td>
 </tr>
 <tr>
-<td>50</td>
+<td>51</td>
 <td>CI/CD: тести й збірка образу на кожен PR</td>
 </tr>
 </tbody>
 </table>
 <p>Проєкт: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_49_docker/news_hub"><code>news_hub</code></a>.</p>
-<p><strong>Що потрібно з попередніх уроків:</strong> змінні середовища і секрети (уроки 44, 47); Alembic (38); Redis (39); <code>/health</code> і lifespan FastAPI (37, 47). Процеси, сигнали й права файлів — у <a href="../bonus_linux/">бонус-уроці Linux</a>: контейнер — це процес Linux.</p>
+<p><strong>Що потрібно з попередніх уроків:</strong> змінні середовища і секрети (уроки 44, 47); Alembic (39); Redis (40); <code>/health</code> і lifespan FastAPI (38, 48). Процеси, сигнали й права файлів — у <a href="../bonus_linux/">бонус-уроці Linux</a>: контейнер — це процес Linux.</p>
 <p><strong>Після уроку ти зможеш:</strong></p>
 <ul>
 <li>пояснити, чим образ відрізняється від контейнера, а шар — від тому;</li>
@@ -3848,7 +3938,7 @@
 <li>пояснити, чому <code>docker stop</code> зупиняє один контейнер за секунду, а інший — за десять;</li>
 <li>перевірити образ тестами.</li>
 </ul>
-<p><strong>Ноутбук заняття:</strong> <a class="md-button md-button--primary" href="https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_49_docker/note_lesson_49_docker_student.ipynb">Відкрити вправи в Colab</a> <a class="solutions-link" href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_49_docker/note_lesson_49_docker.ipynb">Переглянути розв’язки</a>. У Colab немає Docker, тому в ноутбуці — те, що можна перевірити без нього: <code>.dockerignore</code>, кеш шарів, змінні середовища, сигнали. Команди Docker — з реальним виводом, щоб повторити локально.</p>
+<p><strong>Ноутбук заняття:</strong> <a class="md-button md-button--primary" href="https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_49_docker/note_lesson_49_docker_student.ipynb">Відкрити вправи в Colab</a> <a class="solutions-link" href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_49_docker/note_lesson_49_docker.ipynb">Переглянути розв’язки</a>. 39 прикладів і 3 задачі: <code>Dockerfile</code> як дані, <code>.dockerignore</code>, кеш шарів, секрети в шарах і <code>--env-file</code>, сигнали й <code>docker stop</code>, <code>HEALTHCHECK</code>. У Colab Docker немає, тому все це відтворено чистим Python і bash; якщо Docker встановлений, розділ 8 перевіряє те саме на справжніх образах (без Docker — показує вивід справжнього запуску).</p>
 <h2 id="_1">Пригадай<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Де <code>news_hub</code> бере адресу бази й Redis і що буде, якщо змінну не задано (уроки 39–40)?</li>
@@ -4604,6 +4694,7 @@
 <h2 id="_10">Документація і джерела<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Код: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_49_docker/news_hub"><code>news_hub</code></a> — <code>Dockerfile</code> зі стартового <code>production_bot</code>.</li>
+<li><a href="https://nikoriakviktor.github.io/news_hub/">FastAPI-книга</a>, крок 10 Zero to Hero: <a href="https://nikoriakviktor.github.io/news_hub/tutorials/10_docker/image_contents/">що потрапляє в образ</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/10_docker/layers_cache/">шари й кеш</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/10_docker/user_data_env/">користувач, дані, змінні</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/10_docker/health_shutdown/">здоров'я і зупинка</a>; частина X: <a href="https://nikoriakviktor.github.io/news_hub/10_docker_and_ci/docker_image/">Docker-образ</a></li>
 <li>Docker: <a href="https://docs.docker.com/reference/dockerfile/">Dockerfile reference</a>, <a href="https://docs.docker.com/build/cache/">build cache</a>, <a href="https://docs.docker.com/build/concepts/context/#dockerignore-files">.dockerignore</a>, <a href="https://docs.docker.com/build/building/best-practices/">best practices</a>, <a href="https://docs.docker.com/reference/dockerfile/#healthcheck">HEALTHCHECK</a>, <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form">shell і exec форми</a>, <a href="https://docs.docker.com/engine/storage/volumes/">volumes</a>, <a href="https://docs.docker.com/engine/network/">networking</a>, <a href="https://docs.docker.com/reference/cli/docker/container/run/#env"><code>docker run --env-file</code></a>.</li>
 <li>Python-образи: <a href="https://hub.docker.com/_/python">python на Docker Hub</a> (варіанти <code>slim</code>, <code>alpine</code>).</li>
 <li>uvicorn: <a href="https://www.uvicorn.org/deployment/">deployment</a>, <a href="https://www.uvicorn.org/settings/">налаштування</a> (<code>--workers</code>: «Defaults to the $WEB_CONCURRENCY environment variable if available, or 1»). FastAPI: <a href="https://fastapi.tiangolo.com/deployment/docker/">FastAPI in Containers</a>.</li>

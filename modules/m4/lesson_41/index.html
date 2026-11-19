@@ -1154,6 +1154,8 @@
       
         
       
+        
+      
     
     
     
@@ -1540,6 +1542,64 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../m2/bonus_patterns/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. Патерни програмування
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1556,6 +1616,8 @@
   
     
     
+      
+        
       
         
       
@@ -1720,6 +1782,34 @@
     
   
     30. Основи SQL (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../m3/bonus_duckdb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. DuckDB і data lake: патерни зберігання та аналізу даних
   
 
     
@@ -3724,7 +3814,7 @@
 
 
 <h1 id="41-security-basics-jwt-hashing-owasp">Урок 41. Автентифікація та security basics (JWT, hashing, OWASP)<a class="headerlink" href="#41-security-basics-jwt-hashing-owasp" title="Permanent link">&para;</a></h1>
-<p>Django-гілка курсу веде той самий застосунок нотаток з уроку 34: сторінки з формами (34), JSON API на DRF (35). Вхід на сайт і правило «кожен бачить лише свої нотатки» вже є — <code>login_required</code>, <code>user=request.user</code>, чужа нотатка → <code>404</code>. Сьогодні <strong>рефакторинг 4</strong> — безпека:</p>
+<p>Django-гілка курсу веде той самий застосунок нотаток з уроку 34: сторінки з формами (35), JSON API на DRF (36). Вхід на сайт і правило «кожен бачить лише свої нотатки» вже є — <code>login_required</code>, <code>user=request.user</code>, чужа нотатка → <code>404</code>. Сьогодні <strong>рефакторинг 4</strong> — безпека:</p>
 <ul>
 <li><strong>спільний доступ</strong>: нотатка належить групі («Сім'я», «Команда») — і тоді вже не можна просто писати <code>user=request.user</code>;</li>
 <li><strong>паролі</strong>: як Django їх зберігає, зміна й скидання пароля листом;</li>
@@ -3742,39 +3832,39 @@
 </thead>
 <tbody>
 <tr>
-<td>33</td>
+<td>34</td>
 <td>MVT, ORM, admin</td>
 <td><code>hello_project</code></td>
 </tr>
 <tr>
-<td>34</td>
+<td>35</td>
 <td>форми, Bootstrap, crispy</td>
 <td><code>crispy_notes_project</code></td>
 </tr>
 <tr>
-<td>35</td>
+<td>36</td>
 <td>REST API на DRF</td>
 <td>+ <code>api.py</code></td>
 </tr>
 <tr>
-<td><strong>40</strong></td>
+<td><strong>41</strong></td>
 <td><strong>групи, паролі, JWT, налаштування безпеки</strong></td>
 <td><strong>+ групи, <code>/api/token/</code></strong></td>
 </tr>
 <tr>
-<td>44</td>
+<td>45</td>
 <td>архітектура: services і selectors</td>
 <td>—</td>
 </tr>
 <tr>
-<td>45</td>
+<td>46</td>
 <td>чат на WebSocket</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
 <p>Проєкт: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_41_auth_security/crispy_notes_project"><code>crispy_notes_project</code></a>.</p>
-<p><strong>Що потрібно з попередніх уроків:</strong> застосунок нотаток і його <code>services</code>/<code>selectors</code> (33–35), DRF-серіалізатори й <code>ViewSet</code> (35), HTTP-заголовки й статус-коди (31–32), хеш-функції (урок 17).</p>
+<p><strong>Що потрібно з попередніх уроків:</strong> застосунок нотаток і його <code>services</code>/<code>selectors</code> (34–36), DRF-серіалізатори й <code>ViewSet</code> (36), HTTP-заголовки й статус-коди (32–33), хеш-функції (урок 17).</p>
 <p><strong>Після уроку ти зможеш:</strong></p>
 <ul>
 <li>відрізнити автентифікацію («хто ти») від авторизації («що тобі можна») і перевірити обидві на кожному вході в застосунок;</li>
@@ -4193,7 +4283,7 @@
 <a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>правильний пароль → 429 57 с
 </code></pre></div>
 <p>Після 5 спроб за хвилину — <code>429</code>, навіть з правильним паролем: зловмисник не може перебирати швидко, а справжній користувач чекає хвилину. Той самий принцип, що rate limit агрегатора в уроці 40, — тут готовий <code>ScopedRateThrottle</code> DRF.</p>
-<p>Поглиблено: <a href="https://nikoriakviktor.github.io/notes_chat_app/06_application_architecture/drf_rest_api_full/">DRF: автентифікація й permissions у Django-книзі</a>.</p>
+<p>Поглиблено: <a href="https://nikoriakviktor.github.io/notes_chat_app/06_application_architecture/drf_rest_api_full/">DRF: автентифікація й permissions у Django-книзі</a>; FastAPI-книга — <a href="https://nikoriakviktor.github.io/news_hub/08_security/authentication/">автентифікація: сесії і JWT</a>.</p>
 <h2 id="settings">Налаштування безпеки і <code>check --deploy</code><a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <p>Стартовий код додав блок налаштувань; урок 41 — <code>SECRET_KEY</code>, <code>DEBUG</code> і <code>ALLOWED_HOSTS</code> зі змінних середовища:</p>
 <div class="highlight"><span class="filename">hello_project/settings.py (фрагмент)</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Цим ключем підписуються сесії, токени скидання пароля і JWT. Хто його знає — підробить будь-який токен.</span>
@@ -4248,7 +4338,7 @@
 <tr>
 <td><strong>A01</strong> Broken Access Control</td>
 <td>чужа нотатка; нотатка групи в API</td>
-<td><code>404</code> для чужих (35), <code>_get_own_note</code> → <code>403</code> для учасників (40), групи у формі — лише свої</td>
+<td><code>404</code> для чужих (36), <code>_get_own_note</code> → <code>403</code> для учасників (41), групи у формі — лише свої</td>
 </tr>
 <tr>
 <td><strong>A02</strong> Cryptographic Failures</td>
@@ -4458,6 +4548,7 @@
 <ul>
 <li>Код: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_41_auth_security/crispy_notes_project"><code>crispy_notes_project</code></a> — проєкт уроку 36 + групи, скидання пароля й налаштування безпеки зі стартового <code>crispy_notes_project</code>.</li>
 <li>Django-книга, частина VII: <a href="https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/">огляд</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/auth_basics_full/">автентифікація</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/sessions_flow_full/">сесії</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/permissions_full/">права доступу</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/django_security_architecture_full/">архітектура безпеки Django</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/security_misconceptions_full/">типові помилки</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/07_auth_and_security/owasp_top_10_full/">OWASP Top 10</a>.</li>
+<li><a href="https://nikoriakviktor.github.io/news_hub/">FastAPI-книга</a>, частина VIII «Безпека API» — ті самі ідеї без Django: <a href="https://nikoriakviktor.github.io/news_hub/08_security/passwords/">паролі: хеш, сіль, вартість</a>, <a href="https://nikoriakviktor.github.io/news_hub/08_security/authentication/">автентифікація: сесії і JWT</a>, <a href="https://nikoriakviktor.github.io/news_hub/08_security/authorization/">авторизація: ролі, scopes, об'єкти</a>, <a href="https://nikoriakviktor.github.io/news_hub/08_security/owasp_api_top10/">OWASP API Top 10</a>.</li>
 <li>Django: <a href="https://docs.djangoproject.com/en/5.2/topics/auth/passwords/">Password management</a>, <a href="https://docs.djangoproject.com/en/5.2/topics/auth/default/">Using the authentication system</a>, <a href="https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/">Deployment checklist</a>, <a href="https://docs.djangoproject.com/en/5.2/topics/security/">Security in Django</a></li>
 <li>DRF: <a href="https://www.django-rest-framework.org/api-guide/authentication/">Authentication</a>, <a href="https://www.django-rest-framework.org/api-guide/permissions/">Permissions</a>, <a href="https://www.django-rest-framework.org/api-guide/throttling/">Throttling</a>; <a href="https://django-rest-framework-simplejwt.readthedocs.io/">Simple JWT</a></li>
 <li><a href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519 — JSON Web Token</a>, <a href="https://jwt.io/">jwt.io</a> — розібрати токен</li>

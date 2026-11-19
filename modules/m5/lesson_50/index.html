@@ -1154,6 +1154,8 @@
       
         
       
+        
+      
     
     
     
@@ -1540,6 +1542,64 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../m2/bonus_patterns/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. Патерни програмування
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1556,6 +1616,8 @@
   
     
     
+      
+        
       
         
       
@@ -1720,6 +1782,34 @@
     
   
     30. Основи SQL (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../m3/bonus_duckdb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. DuckDB і data lake: патерни зберігання та аналізу даних
   
 
     
@@ -3739,21 +3829,21 @@
 </thead>
 <tbody>
 <tr>
-<td>48</td>
+<td>49</td>
 <td>образ <code>news_hub</code>: <code>Dockerfile</code>, <code>.dockerignore</code>, <code>/health/ready</code>, тести образу</td>
 </tr>
 <tr>
-<td><strong>49</strong></td>
+<td><strong>50</strong></td>
 <td><strong>Compose для обох проєктів; nginx; реальний IP клієнта; деплой і бекап</strong></td>
 </tr>
 <tr>
-<td>50</td>
+<td>51</td>
 <td>CI/CD: тести й збірка образу на кожен PR</td>
 </tr>
 </tbody>
 </table>
 <p>Проєкти: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_50_compose_deploy/news_hub"><code>news_hub</code></a>, <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_50_compose_deploy/crispy_notes_project"><code>crispy_notes_project</code></a>.</p>
-<p><strong>Що потрібно з попередніх уроків:</strong> образ, том, мережа, <code>/health</code> і <code>/health/ready</code> (48); rate limit входу (39, 46); webhook Telegram (47); чат на WebSocket і channel layer (45); <code>set -euo pipefail</code> (<a href="../bonus_linux/#pipes">бонус Linux</a>).</p>
+<p><strong>Що потрібно з попередніх уроків:</strong> образ, том, мережа, <code>/health</code> і <code>/health/ready</code> (49); rate limit входу (40, 47); webhook Telegram (48); чат на WebSocket і channel layer (46); <code>set -euo pipefail</code> (<a href="../bonus_linux/#pipes">бонус Linux</a>).</p>
 <p><strong>Після уроку ти зможеш:</strong></p>
 <ul>
 <li>описати систему з кількох сервісів у <code>docker-compose.yml</code> і запускати її в правильному порядку;</li>
@@ -3762,7 +3852,7 @@
 <li>розділити «випуск» (міграції, статика) і «роботу» (сервер) — щоб масштабувати без гонок;</li>
 <li>розгорнути стек на сервері, оновити його, зробити бекап і відновитись з нього.</li>
 </ul>
-<p><strong>Ноутбук заняття:</strong> <a class="md-button md-button--primary" href="https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_50_compose_deploy/note_lesson_50_compose_student.ipynb">Відкрити вправи в Colab</a> <a class="solutions-link" href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_50_compose_deploy/note_lesson_50_compose.ipynb">Переглянути розв’язки</a> — читаємо <code>docker-compose.yml</code> як дані: порядок запуску за <code>depends_on</code> (топологічне сортування), підстановка <code>${VAR}</code>, IP клієнта за <code>X-Forwarded-For</code>. Docker для ноутбука не потрібен.</p>
+<p><strong>Ноутбук заняття:</strong> <a class="md-button md-button--primary" href="https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_50_compose_deploy/note_lesson_50_compose_student.ipynb">Відкрити вправи в Colab</a> <a class="solutions-link" href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_50_compose_deploy/note_lesson_50_compose.ipynb">Переглянути розв’язки</a> — <code>docker-compose.yml</code> обох проєктів як дані: порядок запуску за <code>depends_on</code> (хвилі, цикл, часова шкала старту), підстановка <code>${VAR}</code> і лапки в <code>.env</code>, IP клієнта за <code>X-Forwarded-For</code> і rate limit, гонка міграцій у двох репліках, бекап з <code>pipefail</code> і відновлення. Docker для ноутбука не потрібен; якщо він є — <code>docker compose config</code> і міні-стек <code>up --wait</code> запускаються наживо.</p>
 <h2 id="_1">Пригадай<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Що означає <code>localhost</code> усередині контейнера (урок 49)?</li>
@@ -4627,7 +4717,8 @@
 <h2 id="_8">Документація і джерела<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Код: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_50_compose_deploy/news_hub"><code>news_hub</code></a> — <code>docker-compose.yml</code> і <code>nginx.conf</code> зі стартового <code>production_bot</code>; <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_50_compose_deploy/crispy_notes_project"><code>crispy_notes_project</code></a> — Docker-файли з Django-книги <a href="https://nikoriakviktor.github.io/notes_chat_app/">notes_chat_app</a>.</li>
-<li>Поглиблено в Django-книзі: крок 8–9 — Docker Compose, entrypoint, nginx, PostgreSQL, Redis, production checklist (<a href="https://nikoriakviktor.github.io/notes_chat_app/">розділ «Деплой»</a>).</li>
+<li><a href="https://nikoriakviktor.github.io/news_hub/">FastAPI-книга</a>, крок 11 Zero to Hero: <a href="https://nikoriakviktor.github.io/news_hub/tutorials/11_compose_deploy/startup_order/">порядок запуску</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/11_compose_deploy/nginx_real_ip/">nginx і IP клієнта</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/11_compose_deploy/env_secrets/">секрети в .env</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/11_compose_deploy/external_services/">зовнішній сервіс не зупиняє старт</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/11_compose_deploy/deploy/">деплой на сервер</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/11_compose_deploy/backup_restore/">бекап і відновлення</a>; частина X: <a href="https://nikoriakviktor.github.io/news_hub/10_docker_and_ci/compose/">Docker Compose</a>, <a href="https://nikoriakviktor.github.io/news_hub/10_docker_and_ci/production_server/">сервер у production</a></li>
+<li>Поглиблено в Django-книзі, крок 9 «Deployment»: <a href="https://nikoriakviktor.github.io/notes_chat_app/tutorials/09_deployment/">огляд</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/tutorials/09_deployment/docker_compose/">Docker Compose</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/tutorials/09_deployment/entrypoint/">entrypoint</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/tutorials/09_deployment/nginx/">nginx</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/tutorials/09_deployment/postgresql/">PostgreSQL</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/tutorials/09_deployment/redis/">Redis</a>, <a href="https://nikoriakviktor.github.io/notes_chat_app/tutorials/09_deployment/production_checklist/">production checklist</a>.</li>
 <li>Docker Compose: <a href="https://docs.docker.com/reference/compose-file/">Compose file reference</a>, <a href="https://docs.docker.com/reference/compose-file/services/">services: depends_on, healthcheck, profiles</a>, <a href="https://docs.docker.com/reference/compose-file/interpolation/">interpolation</a>, <a href="https://docs.docker.com/compose/how-tos/environment-variables/"><code>.env</code> і env_file</a>, <a href="https://docs.docker.com/reference/compose-file/networks/">networks</a>, <a href="https://docs.docker.com/compose/how-tos/startup-order/">startup order</a>.</li>
 <li>Docker і firewall: <a href="https://docs.docker.com/engine/network/packet-filtering-firewalls/">Packet filtering and firewalls</a>.</li>
 <li>nginx: <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html">ngx_http_proxy_module</a>, <a href="https://nginx.org/en/docs/http/websocket.html">WebSocket proxying</a>, <a href="https://nginx.org/en/docs/varindex.html">variables</a>.</li>

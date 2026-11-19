@@ -1154,6 +1154,8 @@
       
         
       
+        
+      
     
     
     
@@ -1540,6 +1542,64 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../m2/bonus_patterns/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. Патерни програмування
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1556,6 +1616,8 @@
   
     
     
+      
+        
       
         
       
@@ -1720,6 +1782,34 @@
     
   
     30. Основи SQL (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../m3/bonus_duckdb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. DuckDB і data lake: патерни зберігання та аналізу даних
   
 
     
@@ -3662,41 +3752,41 @@
 </thead>
 <tbody>
 <tr>
-<td>36</td>
+<td>37</td>
 <td>парсер з типами; <code>NewsItem</code> на Pydantic</td>
 </tr>
 <tr>
-<td>37</td>
+<td>38</td>
 <td>FastAPI: <code>GET /api/news</code>, <code>POST /api/scrape</code>, <code>/docs</code>, Postman</td>
 </tr>
 <tr>
-<td>38</td>
+<td>39</td>
 <td>SQLAlchemy: новини в базі, повний CRUD, Alembic</td>
 </tr>
 <tr>
-<td><strong>39</strong></td>
+<td><strong>40</strong></td>
 <td><strong>middleware, кеш і rate limit на Redis, фоновий збір</strong></td>
 </tr>
 <tr>
-<td>41</td>
+<td>42</td>
 <td>тести API</td>
 </tr>
 <tr>
-<td>43</td>
+<td>44</td>
 <td>Gemini: підсумок, категорія, тональність</td>
 </tr>
 <tr>
-<td>47</td>
+<td>48</td>
 <td>Telegram-бот</td>
 </tr>
 <tr>
-<td>48–50</td>
+<td>49–51</td>
 <td>Docker, Compose, CI/CD</td>
 </tr>
 </tbody>
 </table>
 <p>Проєкт: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_40_middleware_redis/news_hub"><code>news_hub</code></a>.</p>
-<p><strong>Що потрібно з попередніх уроків:</strong> Redis — ключі, <code>INCR</code>, <code>EXPIRE</code>/<code>TTL</code>, hash, pipeline, cache-aside (урок 31); декоратори й функції як значення (9, 18); FastAPI, <code>Depends</code>, <code>lifespan</code> (37); <code>get_db</code> і COMMIT до відповіді (38).</p>
+<p><strong>Що потрібно з попередніх уроків:</strong> Redis — ключі, <code>INCR</code>, <code>EXPIRE</code>/<code>TTL</code>, hash, pipeline, cache-aside (урок 31); декоратори й функції як значення (10, 19); FastAPI, <code>Depends</code>, <code>lifespan</code> (38); <code>get_db</code> і COMMIT до відповіді (39).</p>
 <p><strong>Після уроку ти зможеш:</strong></p>
 <ul>
 <li>написати HTTP-middleware і пояснити, в якому порядку вони виконуються;</li>
@@ -3831,7 +3921,7 @@
 </code></pre></div>
 <h2 id="refactor-2">Рефакторинг 2. Кеш стрічки в Redis<a class="headerlink" href="#refactor-2" title="Permanent link">&para;</a></h2>
 <p><code>GET /api/news</code> і <code>/api/news/stats</code> читають однакові дані сотні разів, а змінюються вони лише під час збору. Це cache-aside з уроку 31:</p>
-<div class="highlight"><span class="filename">news_hub/api.py: GET /api/news, було (38) → стало (39)</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gd">-async def list_news(repo: RepoDep, skip: int = ..., ...) -&gt; list[NewsRow]:</span>
+<div class="highlight"><span class="filename">news_hub/api.py: GET /api/news, було (39) → стало (40)</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gd">-async def list_news(repo: RepoDep, skip: int = ..., ...) -&gt; list[NewsRow]:</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="gd">-    return await repo.find(skip=skip, limit=limit, category=category, source=source, lang=lang or "")</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="gi">+async def list_news(repo: RepoDep, cache: CacheDep, skip: int = ..., ...) -&gt; Response:</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="gi">+    key = await cache.key("list", {"skip": skip, "limit": limit, "category": category,</span>
@@ -4260,6 +4350,7 @@
 <h2 id="_9">Документація і джерела<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Код: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_4/lessons/lesson_40_middleware_redis/news_hub"><code>news_hub</code></a> — Redis-клієнт з <code>production_bot/backend/core/redis.py</code>, rate limit з <code>ai_bot/app/middlewares/rate_limit.py</code> і <code>repositories/rate_limit_repo.py</code> (стартовий код), фоновий збір — з <code>news_dashboard/app/main.py</code>.</li>
+<li><a href="https://nikoriakviktor.github.io/news_hub/">FastAPI-книга</a>, крок 4 Zero to Hero: <a href="https://nikoriakviktor.github.io/news_hub/tutorials/04_middleware_redis/middleware/">middleware</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/04_middleware_redis/cache/">кеш стрічки в Redis</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/04_middleware_redis/rate_limit/">rate limit: 429 і Retry-After</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/04_middleware_redis/background_jobs/">фоновий збір: 202 і статус</a>; частина VI «Middleware, кеш і фонові задачі»: <a href="https://nikoriakviktor.github.io/news_hub/06_middleware_cache_jobs/middleware/">middleware</a>, <a href="https://nikoriakviktor.github.io/news_hub/06_middleware_cache_jobs/cors/">CORS</a>, <a href="https://nikoriakviktor.github.io/news_hub/06_middleware_cache_jobs/redis_basics/">Redis для API</a>, <a href="https://nikoriakviktor.github.io/news_hub/06_middleware_cache_jobs/caching/">стратегії кешу</a>, <a href="https://nikoriakviktor.github.io/news_hub/06_middleware_cache_jobs/rate_limiting/">rate limit</a>, <a href="https://nikoriakviktor.github.io/news_hub/06_middleware_cache_jobs/background_jobs/">фонові задачі й черги</a></li>
 <li>Урок 31 курсу — <a href="../../m3/lesson_31/">Redis overview</a>: cache-aside, <code>INCR</code>/<code>EXPIRE</code>, pipeline, sorted set.</li>
 <li>FastAPI: <a href="https://fastapi.tiangolo.com/tutorial/middleware/">Middleware</a>, <a href="https://fastapi.tiangolo.com/tutorial/background-tasks/">Background Tasks</a>, <a href="https://fastapi.tiangolo.com/advanced/custom-response/">Custom Response</a></li>
 <li>Redis: <a href="https://redis.io/docs/latest/commands/incr/">INCR — pattern: rate limiter</a>, <a href="https://redis.io/docs/latest/commands/expire/">EXPIRE (опції NX/XX/GT/LT)</a>, <a href="https://redis.io/docs/latest/develop/interact/transactions/">Transactions</a>, <a href="https://redis.io/docs/latest/commands/keys/">KEYS — не для продакшену</a></li>

@@ -1154,6 +1154,8 @@
       
         
       
+        
+      
     
     
     
@@ -1540,6 +1542,64 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../m2/bonus_patterns/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. Патерни програмування
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1556,6 +1616,8 @@
   
     
     
+      
+        
       
         
       
@@ -1720,6 +1782,34 @@
     
   
     30. Основи SQL (PostgreSQL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../m3/bonus_duckdb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бонус. DuckDB і data lake: патерни зберігання та аналізу даних
   
 
     
@@ -3681,7 +3771,7 @@
 <p>За уроки 37–50 у <code>news_hub</code> з'явилося 343 тести, <code>mypy --strict</code>, тести образу, smoke-тест Compose. У проєкті нотаток — 81 тест і <code>check --deploy</code>. Але все це працює, лише коли хтось <strong>не забуває</strong> запустити. Забути легко: змінив одну функцію, «це ж дрібниця», push — і зламав те, що ламатися не мало.</p>
 <p><strong>CI</strong> (continuous integration) — автомат, який на кожну зміну сам збирає проєкт і проганяє всі перевірки, а результат показує прямо в pull request: зелена галочка чи червоний хрестик з журналом. <strong>CD</strong> (continuous delivery) — наступний крок: те, що пройшло перевірки в <code>main</code>, автоматично стає готовим до встановлення артефактом — у нас образом Docker у реєстрі.</p>
 <p>Сьогодні обидва проєкти курсу отримують справжні workflows GitHub Actions. Вони вже працюють на PR, у якому з'явився цей урок, — і все, що на сторінці названо «прогоном CI», взято з їхніх журналів.</p>
-<p>Основа — <code>.github/workflows/django-tests.yml</code> з <a href="https://nikoriakviktor.github.io/notes_chat_app/">Django-книги</a> (крок 8: тести й CI).</p>
+<p>Основа — <code>.github/workflows/django-tests.yml</code> з <a href="https://nikoriakviktor.github.io/notes_chat_app/">Django-книги</a> (крок 6: <a href="https://nikoriakviktor.github.io/notes_chat_app/tutorials/06_testing/ci_github_actions/">GitHub Actions CI</a>).</p>
 <table>
 <thead>
 <tr>
@@ -3691,21 +3781,21 @@
 </thead>
 <tbody>
 <tr>
-<td>48</td>
+<td>49</td>
 <td>образ <code>news_hub</code>, тести образу</td>
 </tr>
 <tr>
-<td>49</td>
+<td>50</td>
 <td>Compose для обох проєктів; nginx; деплой і бекап</td>
 </tr>
 <tr>
-<td><strong>50</strong></td>
+<td><strong>51</strong></td>
 <td><strong>CI на кожен PR: тести ×2 версії Python, мінімальні версії, PostgreSQL, типи, образ + smoke; CD: образ у ghcr.io з <code>main</code></strong></td>
 </tr>
 </tbody>
 </table>
 <p>Проєкти: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_51_ci_cd/news_hub"><code>news_hub</code></a>, <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_51_ci_cd/crispy_notes_project"><code>crispy_notes_project</code></a>. Workflows: <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/.github/workflows/news_hub.yml"><code>.github/workflows/news_hub.yml</code></a>, <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/.github/workflows/crispy_notes.yml"><code>.github/workflows/crispy_notes.yml</code></a>.</p>
-<p><strong>Що потрібно з попередніх уроків:</strong> pytest, маркери й фікстури (25, 41); Git, гілки й pull request (15); тести образу (48); Compose, <code>.env</code>, smoke-перевірки (49); коди виходу (<a href="../bonus_linux/#pipes">бонус Linux</a>).</p>
+<p><strong>Що потрібно з попередніх уроків:</strong> pytest, маркери й фікстури (26, 42); Git, гілки й pull request (16); тести образу (49); Compose, <code>.env</code>, smoke-перевірки (50); коди виходу (<a href="../bonus_linux/#pipes">бонус Linux</a>).</p>
 <p><strong>Після уроку ти зможеш:</strong></p>
 <ul>
 <li>прочитати й написати workflow GitHub Actions: тригери, jobs, steps, matrix, services;</li>
@@ -3714,7 +3804,7 @@
 <li>давати workflow лише потрібні права й не світити секрети в журналах;</li>
 <li>публікувати образ у реєстр з <code>main</code>.</li>
 </ul>
-<p><strong>Ноутбук заняття:</strong> <a class="md-button md-button--primary" href="https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_51_ci_cd/note_lesson_51_ci_cd_student.ipynb">Відкрити вправи в Colab</a> <a class="solutions-link" href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_51_ci_cd/note_lesson_51_ci_cd.ipynb">Переглянути розв’язки</a> — workflow як дані: чи запуститься він на цей PR, у якому порядку підуть jobs, що розгорне matrix, які права отримає токен.</p>
+<p><strong>Ноутбук заняття:</strong> <a class="md-button md-button--primary" href="https://colab.research.google.com/github/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_51_ci_cd/note_lesson_51_ci_cd_student.ipynb">Відкрити вправи в Colab</a> <a class="solutions-link" href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_5/lessons/lesson_51_ci_cd/note_lesson_51_ci_cd.ipynb">Переглянути розв’язки</a> — workflow як дані: чи запуститься він на цей PR (<code>branches</code>, <code>paths</code>, <code>concurrency</code>), у якому порядку й скільки часу підуть jobs, що буде, коли job упав, що розгорне matrix, ключі кешу, права токена; кроки CI локально — ruff і pytest на міні-проєкті, перевірки <code>Dockerfile</code>, маскування секретів і <code>$GITHUB_ENV</code>.</p>
 <h2 id="_1">Пригадай<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Що таке код виходу і що він означає для скрипта з <code>set -e</code> (бонус Linux)?</li>
@@ -3916,7 +4006,7 @@
 </tr>
 <tr>
 <td><code>образ і smoke-тест</code></td>
-<td>зібрана система працює: тести образу (48) + стек через nginx (49)</td>
+<td>зібрана система працює: тести образу (49) + стек через nginx (50)</td>
 </tr>
 </tbody>
 </table>
@@ -4325,6 +4415,7 @@
 <h2 id="_9">Документація і джерела<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Код: workflows <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/.github/workflows/news_hub.yml"><code>news_hub.yml</code></a> і <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/.github/workflows/crispy_notes.yml"><code>crispy_notes.yml</code></a> — з <code>.github/workflows/django-tests.yml</code> Django-книги <a href="https://nikoriakviktor.github.io/notes_chat_app/">notes_chat_app</a>; проєкти — <a href="https://github.com/NikoriakViktor/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_5/lessons/lesson_51_ci_cd"><code>lesson_51_ci_cd</code></a>.</li>
+<li><a href="https://nikoriakviktor.github.io/news_hub/">FastAPI-книга</a>, крок 12 Zero to Hero: <a href="https://nikoriakviktor.github.io/news_hub/tutorials/12_ci_cd/triggers/">коли CI запускається</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/12_ci_cd/what_to_check/">що саме перевіряти</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/12_ci_cd/order_and_parallel/">порядок і паралельність</a>, <a href="https://nikoriakviktor.github.io/news_hub/tutorials/12_ci_cd/permissions_and_publish/">права, секрети, публікація</a>; частина X: <a href="https://nikoriakviktor.github.io/news_hub/10_docker_and_ci/ci_cd/">CI/CD на GitHub Actions</a></li>
 <li>GitHub Actions: <a href="https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions">workflow syntax</a>, <a href="https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows">events that trigger workflows (<code>pull_request</code>, <code>paths</code>)</a>, <a href="https://docs.github.com/en/actions/use-cases-and-examples/using-containerized-services/about-service-containers">service containers</a>, <a href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/automatic-token-authentication"><code>GITHUB_TOKEN</code></a>, <a href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions">secrets</a>, <a href="https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions">workflow commands (<code>add-mask</code>)</a>, <a href="https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/monitoring-workflows/adding-a-workflow-status-badge">status badge</a>.</li>
 <li>Дії: <a href="https://github.com/actions/checkout">actions/checkout</a>, <a href="https://github.com/actions/setup-python">actions/setup-python</a>, <a href="https://github.com/astral-sh/setup-uv">astral-sh/setup-uv</a>, <a href="https://github.com/docker/build-push-action">docker/build-push-action</a>, <a href="https://github.com/docker/metadata-action">docker/metadata-action</a>. Реєстр: <a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry">GitHub Container Registry</a>.</li>
 <li>uv: <a href="https://docs.astral.sh/uv/concepts/resolution/">resolution strategies (<code>--resolution lowest-direct</code>)</a>. actionlint: <a href="https://github.com/rhysd/actionlint">rhysd/actionlint</a>.</li>
